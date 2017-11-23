@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="https://tribunet.hacienda.go.cr/docs/esquemas/2011/v3_1" targetNamespace="https://tribunet.hacienda.go.cr/docs/esquemas/2011/v3_1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="3_1">
+	<xs:element name="FacturaElectronicaXML">
+		<xs:annotation>
+			<xs:documentation>Para los efectos de facilitar la implementaciÃ³n de sistemas computacionales se definio el esquema XML para los Documentos ElectrÃ³nicos (Factura, Nota de DÃ©bito y Nota de CrÃ©dito)</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:sequence>
+					<xs:element name="Encabezado">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="VersionDoc" nillable="false">
+									<xs:annotation>
+										<xs:documentation>VersiÃ³n del Documento ElectrÃ³nico</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:int">
+											<xs:totalDigits value="4"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="TipoDoc" nillable="false">
+									<xs:annotation>
+										<xs:documentation>Tipo de Documento ElectrÃ³nico: 01 Factura, 02 Nota de DÃ©bito, 03 Nota de CrÃ©dito</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:int">
+											<xs:totalDigits value="2"/>
+											<xs:enumeration value="01"/>
+											<xs:enumeration value="02"/>
+											<xs:enumeration value="03"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="NumConsecutivoCompr">
+									<xs:annotation>
+										<xs:documentation>NÃºmero consecutivo del Documento ElectrÃ³nico</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:unsignedLong">
+											<xs:totalDigits value="20"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="FechaEmisionDoc" type="xs:dateTime">
+									<xs:annotation>
+										<xs:documentation>Fecha en la que se genera el documento ElectrÃ³nico</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="CondicionVenta">
+									<xs:annotation>
+										<xs:documentation>CondiciÃ³n de Venta: 01 Contado, 02 CrÃ©dito, 03 ConsignaciÃ³n, 04 Apartado, 05 Arrendamiento con OpciÃ³n de Compra. Este dato aplica para Factura, Nota de CrÃ©dito y DÃ©bito</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:int">
+											<xs:totalDigits value="2"/>
+											<xs:enumeration value="01"/>
+											<xs:enumeration value="02"/>
+											<xs:enumeration value="03"/>
+											<xs:enumeration value="04"/>
+											<xs:enumeration value="05"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="Emisor">
+									<xs:annotation>
+										<xs:documentation>InformaciÃ³n completa de los Datos del Emisor del Documento ElectrÃ³nico</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="NumCedulaEmisor">
+												<xs:annotation>
+													<xs:documentation>CÃ©dula FÃ­sica o JurÃ­dica del Emisor del Documento ElectrÃ³nico</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:unsignedLong">
+														<xs:totalDigits value="10"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="NombreEmisor">
+												<xs:annotation>
+													<xs:documentation>Nombre del la persona FÃ­sica o JurÃ­dica que emite el Documento ElectrÃ³nico</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="80"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="NombreComercialEmisor">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="80"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="DireccionEmisor" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Esta etiqueta se debe llenar con informaciÃ³n cuando se trata de una factura, en el caso de Nota de CrÃ©dito o DÃ©bito no serÃ¡ requerido</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="160"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="NumeroAreaTelEmisor" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Esta etiqueta se refiere al cÃ³digo de Ã¡rea del paÃ­s.</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:integer">
+														<xs:totalDigits value="3"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="NumeroTelEmisor" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Esta etiqueta se debe llenar con informaciÃ³n cuando se trata de una factura, en el caso de Nota de CrÃ©dito o DÃ©bito no serÃ¡ requerido</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:integer">
+														<xs:totalDigits value="8"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="NumeroAreaFaxEmisor" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Esta etiqueta se refiere al cÃ³digo de Ã¡rea del paÃ­s.</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:integer">
+														<xs:totalDigits value="3"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="NumeroFaxEmisor" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Esta etiqueta se debe llenar con informaciÃ³n cuando se trata de una factura, en el caso de Nota de CrÃ©dito o DÃ©bito no serÃ¡ requerido</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:integer">
+														<xs:totalDigits value="8"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="CorreoElectronicoEmisor" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Esta etiqueta se debe llenar con informaciÃ³n cuando se trata de una factura, en el caso de Nota de CrÃ©dito o DÃ©bito no serÃ¡ requerido</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="60"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="Receptor">
+									<xs:annotation>
+										<xs:documentation>InformaciÃ³n de los Datos del Receptor del Documento ElectrÃ³nico</xs:documentation>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:choice>
+												<xs:element name="NumCedulaReceptor">
+													<xs:annotation>
+														<xs:documentation>NÃºmero de CÃ©dula FÃ­sica o JurÃ­dica del receptor del Documento ElectrÃ³nico si es nacional</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:unsignedLong">
+															<xs:totalDigits value="10"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="IdentificacionExtranjero" minOccurs="0">
+													<xs:annotation>
+														<xs:documentation>IdentificaciÃ³n de tratarce de un extranjero</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="20"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+											</xs:choice>
+											<xs:element name="NombreReceptor">
+												<xs:annotation>
+													<xs:documentation>Nombre de la entidad FÃ­sica o JurÃ­dica que recibe el Documento ElectrÃ³nico</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="80"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="DireccionReceptor" minOccurs="0">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="160"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="NumeroAreaTelReceptor" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Esta etiqueta se refiere al cÃ³digo de Ã¡rea del paÃ­s.</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:integer">
+														<xs:totalDigits value="3"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="NumeroTelReceptor" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>NÃºmero de telÃ©fono del receptor, esta etiqueta se debe llenar con informaciÃ³n cuando se trata de una factura, en el caso de Nota de CrÃ©dito o DÃ©bito no serÃ¡ requerido</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:integer">
+														<xs:totalDigits value="8"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="NumeroTelReceptorExtranjero" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>NÃºmero de telÃ©fono del receptor extranjero, esta etiqueta se debe llenar con informaciÃ³n cuando se trata de una factura, en el caso de Nota de CrÃ©dito o DÃ©bito no serÃ¡ requerido</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:unsignedLong">
+														<xs:totalDigits value="20"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Detalle">
+						<xs:annotation>
+							<xs:documentation>El detalle del documento electrÃ³nico tendra un mÃ¡ximo de 60 lÃ­neas de detalle</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>El detalle del documento electrÃ³nico tendra un mÃ¡ximo de 60 lÃ­neas de detalle</xs:documentation>
+								</xs:annotation>
+								<xs:element name="Linea">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:annotation>
+												<xs:documentation>El detalle del documento electrÃ³nico tendra un mÃ¡ximo de 60 lÃ­neas de detalle</xs:documentation>
+											</xs:annotation>
+											<xs:element name="NroLinDet" type="xs:integer" minOccurs="0" maxOccurs="60"/>
+											<xs:element name="Codigos" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>CÃ³digos del Producto o Servicio que estan reportandos en el documento electrÃ³nico</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:sequence maxOccurs="5">
+														<xs:element name="Codigo">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element name="TpoCodigo">
+																		<xs:annotation>
+																			<xs:documentation>Tipo de CodificaciÃ³n del producto o servicio. Tipos: 01 CÃ³digo Vendedor,02 CÃ³digo Comprador,03 CÃ³digo Asignado por la Industria,04 CÃ³digo Uso Interno</xs:documentation>
+																		</xs:annotation>
+																		<xs:simpleType>
+																			<xs:restriction base="xs:int">
+																				<xs:totalDigits value="2"/>
+																				<xs:enumeration value="01"/>
+																				<xs:enumeration value="02"/>
+																				<xs:enumeration value="03"/>
+																				<xs:enumeration value="04"/>
+																			</xs:restriction>
+																		</xs:simpleType>
+																	</xs:element>
+																	<xs:element name="VlrCodigo">
+																		<xs:annotation>
+																			<xs:documentation>Valor del CÃ³digo del producto o servicio para la CodificaciÃ³n particular</xs:documentation>
+																		</xs:annotation>
+																		<xs:simpleType>
+																			<xs:restriction base="xs:string">
+																				<xs:maxLength value="20"/>
+																			</xs:restriction>
+																		</xs:simpleType>
+																	</xs:element>
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="Cantidad" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Cantidad del Producto o Servicio, serÃ¡ requerido para la factura, no asÃ­ para la nota de crÃ©dito o dÃ©bito</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="Cantidad"/>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="UnidadMedida" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Unidad de Medida del Producto o Servicio</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="13"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="DetalleMerc" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Detalle de la MercancÃ­a o Servicio prestado, en la factura deberÃ¡ de incluirse, no asÃ­ en nota de crÃ©dito o dÃ©bito</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="160"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="PrecioUnitario" type="Monto" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Precio Unitario del MercancÃ­a o Servicio Prestado, serÃ¡ requerido para la factura no asÃ­ para la nota de crÃ©dito o dÃ©bito</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="MontoTotal" type="Monto" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Monto Total Bruto sin Descuentos ni Impuestos, requerido para la factura no asÃ­ para las notas de crÃ©dito o dÃ©bito</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="MontoDescuento" type="Monto" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Monto de descuento aplicado a la lÃ­nea de detalle</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="NaturalezaDescuento" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Es la descripciÃ³n o nombre del Descuento aplicado a la lÃ­nea de detalle</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="80"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="SubTotal" type="Monto" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Subtotal</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="Impuestos" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Impuestos aplicable a la lÃ­nea de detalle</xs:documentation>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:sequence maxOccurs="unbounded">
+														<xs:element name="Impuesto">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element name="CodigoImpuesto">
+																		<xs:annotation>
+																			<xs:documentation>CÃ³digo de Impuesto aplicado a la lÃ­nea de detalle segun tabla del Ministerio de Hacienda. Tipos: 01 Impuesto de ventas,02 Impuesto selectivo de consumo, 35 otros tributos aplicables, 40 cargo por servicio</xs:documentation>
+																		</xs:annotation>
+																		<xs:simpleType>
+																			<xs:restriction base="xs:int">
+																				<xs:totalDigits value="2"/>
+																				<xs:enumeration value="01"/>
+																				<xs:enumeration value="02"/>
+																				<xs:enumeration value="35"/>
+																				<xs:enumeration value="40"/>
+																			</xs:restriction>
+																		</xs:simpleType>
+																	</xs:element>
+																	<xs:element name="TarifaImpuesto" minOccurs="0">
+																		<xs:annotation>
+																			<xs:documentation>Tasa de Impuesto asociado a la codificaciÃ³n seleccionada aplicada a la lÃ­nea de detalle</xs:documentation>
+																		</xs:annotation>
+																		<xs:simpleType>
+																			<xs:restriction base="xs:decimal">
+																				<xs:totalDigits value="4"/>
+																				<xs:fractionDigits value="2"/>
+																			</xs:restriction>
+																		</xs:simpleType>
+																	</xs:element>
+																	<xs:element name="MontoImpuesto" type="Monto">
+																		<xs:annotation>
+																			<xs:documentation>Monto de Impuesto aplicado a la lÃ­nea de detalle</xs:documentation>
+																		</xs:annotation>
+																	</xs:element>
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="TotalesFactura">
+						<xs:annotation>
+							<xs:documentation>Totales Finales del Documento ElectrÃ³nico. Estos totales se derivan de cada una de las lÃ­neas del detalle del Documento ElectrÃ³nico.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Moneda" default="CRC">
+									<xs:annotation>
+										<xs:documentation>Montos expresados en colones, conversiÃ³n a: CRC ColÃ³n Costarricense, EUR Euro europeo (cÃ³digo EAN), GBP  Libra esterlina Gran BretaÃ±a, JPY Yen japonÃ©s, MXN Peso Mexicano. USD DÃ³lar Estadounidense. Si no se especifica la moneda se asignara CRC</xs:documentation>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:maxLength value="3"/>
+											<xs:enumeration value="CRC"/>
+											<xs:enumeration value="EUR"/>
+											<xs:enumeration value="GBP"/>
+											<xs:enumeration value="JPY"/>
+											<xs:enumeration value="MXN"/>
+											<xs:enumeration value="USD"/>
+											<xs:enumeration value=""/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="tipoCambio" type="Monto" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Tipo de cambio, la factura electrÃ³nica debe expresarse en moneda nacional</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="TotalSerGravados" type="Monto" nillable="0"/>
+								<xs:element name="TotalSerExentos" type="Monto"/>
+								<xs:element name="TotalMerGravadas" type="Monto"/>
+								<xs:element name="TotalMerExentas" type="Monto"/>
+								<xs:element name="TotalGravado" type="Monto"/>
+								<xs:element name="TotalExento" type="Monto"/>
+								<xs:element name="TotalVenta" type="Monto"/>
+								<xs:element name="Descuentos" type="Monto"/>
+								<xs:element name="TotalVentaNeta" type="Monto"/>
+								<xs:element name="MontoImpConsumo" type="Monto"/>
+								<xs:element name="MontoOtrosImp" type="Monto"/>
+								<xs:element name="TarifaImpuesto" type="xs:decimal"/>
+								<xs:element name="MontoImpVentas" type="Monto"/>
+								<xs:element name="TotalFactura" type="Monto"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="InformacionDeReferencia" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Las referencias son para cuando se deben de emitir Notas de CrÃ©dito o DÃ©bito que anulan o modifican documentos anteriores </xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence maxOccurs="10">
+								<xs:element name="Referencia">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="TpoDocRef" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Los Tipo de Documento de Referencia definidos son:  01 Factura, 02 Nota de DÃ©bito, 03 Nota de CrÃ©dito, 05 Nota de despacho, 06 Compras autorizadas, 07 Ventas exentas a diplomÃ¡ticos, 08 Orden de Compra, 09 Contrato, 10 Procedimiento, 11 Documento de Trasporte </xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:int">
+														<xs:totalDigits value="2"/>
+														<xs:enumeration value="01"/>
+														<xs:enumeration value="02"/>
+														<xs:enumeration value="03"/>
+														<xs:enumeration value="05"/>
+														<xs:enumeration value="06"/>
+														<xs:enumeration value="07"/>
+														<xs:enumeration value="08"/>
+														<xs:enumeration value="09"/>
+														<xs:enumeration value="10"/>
+														<xs:enumeration value="11"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="NumeroReferencia" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>NÃºmero del Documento de Referencia</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:minLength value="1"/>
+														<xs:maxLength value="20"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="FechaReferencia" type="xs:dateTime" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Fecha del Documento de  Referencia. En general se referencia la fecha de emisiÃ³n del documento.</xs:documentation>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="CodigoReferencia" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Son los cÃ³digos de referencia definidos por la DGT: 1 Anula Documento de Referencia, 2 Corrige Texto Documento de referencia, 3 Corrige monto, 4 Referencia a otro documento</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:int">
+														<xs:enumeration value="1"/>
+														<xs:enumeration value="2"/>
+														<xs:enumeration value="3"/>
+														<xs:enumeration value="4"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="RazonReferencia" minOccurs="0">
+												<xs:annotation>
+													<xs:documentation>Texto para aclaraciones adicionales</xs:documentation>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:maxLength value="180"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Autorizacion">
+						<xs:annotation>
+							<xs:documentation>Etiqueta para anotar el nÃºmero de resoluciÃ³n de la DGT</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:attribute name="NumResolucion" use="required">
+								<xs:annotation>
+									<xs:documentation>NÃºmero de resoluciÃ³n como usuario de documentos electrÃ³nicos</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:maxLength value="13"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="FechaResoluciÃ³n" type="xs:dateTime" use="required">
+								<xs:annotation>
+									<xs:documentation>Fecha y Hora de la resoluciÃ³n emitida por la DGT al usuario</xs:documentation>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Otros" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Etiqueta para ser utilizada en el Intercambio ElectrÃ³nico de Datos</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:element name="FirmaDigital">
+					<xs:annotation>
+						<xs:documentation>Firma Digital del Documento ElectrÃ³nico usando el formato pkcs#7, consultar anexo 3</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="firma" type="xs:base64Binary">
+								<xs:annotation>
+									<xs:documentation>Firma del documento electrÃ³nico expresada en base64</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="x509Certificado" type="xs:base64Binary">
+								<xs:annotation>
+									<xs:documentation>Certificado de llave pÃºblica que se uso para firmar el documento electrÃ³nico expresada en base64</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="Monto">
+		<xs:annotation>
+			<xs:documentation>Tipo de dato Utilizado para montos</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="28"/>
+			<xs:fractionDigits value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Cantidad">
+		<xs:annotation>
+			<xs:documentation>Tipo de dato Utilizado para cantidades</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="28"/>
+			<xs:fractionDigits value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

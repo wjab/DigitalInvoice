@@ -1,0 +1,5 @@
+C:\Users\Administrador\documents\visual studio 2015\Projects\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\Centauro.DigitalInvoice.BusinessLogic.dll
+C:\Users\Administrador\documents\visual studio 2015\Projects\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\Centauro.DigitalInvoice.BusinessLogic.pdb
+C:\Users\Administrador\documents\visual studio 2015\Projects\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\obj\Debug\Centauro.DigitalInvoice.BusinessLogic.dll
+C:\Users\Administrador\documents\visual studio 2015\Projects\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\obj\Debug\Centauro.DigitalInvoice.BusinessLogic.pdb
+C:\Users\Administrador\documents\visual studio 2015\Projects\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\obj\Debug\Centauro.DigitalInvoice.BusinessLogic.csprojResolveAssemblyReference.cache

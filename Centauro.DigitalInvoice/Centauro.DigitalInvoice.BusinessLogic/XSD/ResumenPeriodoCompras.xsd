@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="https://tribunet.hacienda.go.cr/docs/esquemas/2011/v3_1" targetNamespace="https://tribunet.hacienda.go.cr/docs/esquemas/2011/v3_1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="3_1">
+	<xs:element name="ResumenPeriodoCompras">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Periodos">
+					<xs:complexType>
+						<xs:sequence maxOccurs="unbounded">
+							<xs:element name="Encabezado">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="FechaEmisionDoc" type="xs:dateTime">
+											<xs:annotation>
+												<xs:documentation>Fecha en la que se genera el documento ElectrÃ³nico</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Emisor">
+											<xs:annotation>
+												<xs:documentation>InformaciÃ³n completa de los Datos del Emisor del Documento ElectrÃ³nico</xs:documentation>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="NombreEmisor" use="required">
+													<xs:annotation>
+														<xs:documentation>Nombre del la persona FÃ­sica o JurÃ­dica que emite el Documento ElectrÃ³nico</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="80"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="NumCedulaEmisor" use="required">
+													<xs:annotation>
+														<xs:documentation>CÃ©dula FÃ­sica o JurÃ­dica del Emisor del Documento ElectrÃ³nico</xs:documentation>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:unsignedLong">
+															<xs:totalDigits value="10"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="NombreComercialEmisor" use="required">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:maxLength value="80"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Periodo">
+											<xs:complexType>
+												<xs:attribute name="Mes" use="required">
+													<xs:simpleType>
+														<xs:restriction base="xs:byte">
+															<xs:totalDigits value="2" fixed="false"/>
+															<xs:minInclusive value="1"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="AÃ±o" use="required">
+													<xs:simpleType>
+														<xs:restriction base="xs:int">
+															<xs:totalDigits value="4"/>
+															<xs:minInclusive value="4"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Detalle">
+								<xs:complexType>
+									<xs:sequence maxOccurs="unbounded">
+										<xs:element name="Linea">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="FechaEmisionDoc">
+														<xs:annotation>
+															<xs:documentation>Fecha y Hora de la TransacciÃ³n</xs:documentation>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:dateTime"/>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="NumConsecutivo">
+														<xs:annotation>
+															<xs:documentation>NÃºmero consecutivo del Documento ElectrÃ³nico que es aceptado/rechazado</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:unsignedLong">
+																<xs:totalDigits value="20"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TipoDoc" nillable="false">
+														<xs:annotation>
+															<xs:documentation>Tipo de Documento ElectrÃ³nico: 01 Factura, 02 Nota dÃ©bito, 03 Nota crÃ©dito, 05 Factura Manual, 06 Otros comprobantes manuales</xs:documentation>
+														</xs:annotation>
+														<xs:simpleType>
+															<xs:restriction base="xs:int">
+																<xs:totalDigits value="2"/>
+																<xs:enumeration value="01"/>
+																<xs:enumeration value="02"/>
+																<xs:enumeration value="03"/>
+																<xs:enumeration value="05"/>
+																<xs:enumeration value="06"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="TotalComprasGravadas" type="Monto" nillable="false">
+														<xs:annotation>
+															<xs:documentation>Monto Total de las Compras Gravadas</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotalComprasExentas" type="Monto" nillable="false">
+														<xs:annotation>
+															<xs:documentation>Monto Total de las Compras Exentas</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotalMensualCompras" type="Monto" nillable="false">
+														<xs:annotation>
+															<xs:documentation>Monto Tota Mensual de Compras</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+													<xs:element name="TotalImpuestoVtas" type="Monto" nillable="false">
+														<xs:annotation>
+															<xs:documentation>Monto Total del Impuesto Pagado</xs:documentation>
+														</xs:annotation>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="FirmaDigital">
+					<xs:annotation>
+						<xs:documentation>Firma Digital del Documentos ElectrÃ³nicos usando el formato pkcs#7, consultar anexo 3</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="firma" type="xs:base64Binary">
+								<xs:annotation>
+									<xs:documentation>Firma del documento electrÃ³nico expresada en base64</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="x509Certificado" type="xs:base64Binary">
+								<xs:annotation>
+									<xs:documentation>Certificado de llave pÃºblica que se uso para firmar el documento electrÃ³nico expresada en base64</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="Cantidad">
+		<xs:annotation>
+			<xs:documentation>Tipo de dato Utilizado para cantidades</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="28"/>
+			<xs:fractionDigits value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Monto">
+		<xs:annotation>
+			<xs:documentation>Tipo de dato Utilizado para montos</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="28"/>
+			<xs:fractionDigits value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

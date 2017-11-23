@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by rartavia (GS1CR) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="Acepta_o_Rechaza_Documento">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="NombreEmisor">
+          <xs:annotation>
+            <xs:documentation>{0}</xs:documentation><!-- Mombre del Emisor del documento electrÃ³nico -->            
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="80"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="NumCedulaEmisor" type="xs:unsignedLong">
+          <xs:annotation>
+            <xs:documentation>{1}</xs:documentation> <!-- NÃºmero de CÃ©dula FÃ­sica o jurÃ­dica del Emisor-->
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="FechaEmisionDoc">
+          <xs:annotation>
+            <xs:documentation>{2}</xs:documentation><!-- Fecha y Hora de la TransacciÃ³n -->
+          </xs:annotation>
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:dateTime"/>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="NumConsecutivoCompr" type="xs:unsignedLong">
+          <xs:annotation>
+            <xs:documentation>{3}</xs:documentation><!-- NÃºmero consecutivo del Documento ElectrÃ³nico que es aceptado/rechazado -->
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="TipoDoc" nillable="false">
+          <xs:annotation>
+            <xs:documentation>{4}</xs:documentation>
+            <!-- Tipo de Documento ElectrÃ³nico: 01 Factura, 02 Nota de DÃ©bito, 03 Nota de CrÃ©dito -->
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:totalDigits value="2"/>
+              <xs:pattern value="01"/>
+              <xs:pattern value="02"/>
+              <xs:pattern value="03"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="Mensaje">
+          <xs:annotation>
+            <xs:documentation>{5}</xs:documentation><!-- Este almacena el cÃ³digo de AceptaciÃ³n = 1 Ã³ de Rechazo = 9 -->
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="xs:int">
+              <xs:totalDigits value="1"/>
+              <xs:enumeration value="1"/>
+              <xs:enumeration value="9"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="DetalleMensaje" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>{6}</xs:documentation><!-- Algun texto explicativo en caso de rechazo del documento referencia -->
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:maxLength value="80"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="NumConsecutivorecep" type="xs:unsignedLong">
+          <xs:annotation>
+            <xs:documentation>{7}</xs:documentation><!--Numero consecutivo del mensaje -->
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

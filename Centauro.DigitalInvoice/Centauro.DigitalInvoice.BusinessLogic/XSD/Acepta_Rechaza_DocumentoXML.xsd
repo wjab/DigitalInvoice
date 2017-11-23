@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="https://tribunet.hacienda.go.cr/docs/esquemas/2011/v3_1" targetNamespace="https://tribunet.hacienda.go.cr/docs/esquemas/2011/v3_1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="3_1">
+	<xs:element name="Acepta_Rechaza_DocumentoXML">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="NombreEmisor" nillable="false">
+					<xs:annotation>
+						<xs:documentation>Nombre del Emisor del documento electrÃ³nico</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="80"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="NumCedulaEmisor" nillable="false">
+					<xs:annotation>
+						<xs:documentation>NÃºmero de CÃ©dula FÃ­sica o jurÃ­dica del Emisor</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:unsignedLong">
+							<xs:totalDigits value="10"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FechaEmisionDoc" nillable="false">
+					<xs:annotation>
+						<xs:documentation>Fecha y Hora de la TransacciÃ³n</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:dateTime"/>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="NumConsecutivoCompr" nillable="false">
+					<xs:annotation>
+						<xs:documentation>NÃºmero consecutivo del Documento ElectrÃ³nico que es aceptado/rechazado</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:unsignedLong">
+							<xs:totalDigits value="20"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="TipoDoc" nillable="false">
+					<xs:annotation>
+						<xs:documentation>Tipo de Documento ElectrÃ³nico: 01 Factura, 02 Nota de DÃ©bito, 03 Nota de CrÃ©dito</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:int">
+							<xs:totalDigits value="2"/>
+							<xs:pattern value="01"/>
+							<xs:pattern value="02"/>
+							<xs:pattern value="03"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Mensaje">
+					<xs:annotation>
+						<xs:documentation>Este almacena el cÃ³digo de AceptaciÃ³n = 1 o de Rechazo = 9</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:int">
+							<xs:totalDigits value="1"/>
+							<xs:enumeration value="1"/>
+							<xs:enumeration value="9"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="DetalleMensaje" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>AlgÃºn texto explicativo en caso de rechazo del documento referencia</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="80"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="NombreReceptor">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="80"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:choice>
+					<xs:element name="NumCedulaReceptor">
+						<xs:annotation>
+							<xs:documentation>NÃºmero de CÃ©dula FÃ­sica o JurÃ­dica del receptor del Documento ElectrÃ³nico si es nacional</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:unsignedLong">
+								<xs:totalDigits value="10"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="IdentificacionExtranjero" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>IdentificaciÃ³n de tratarce de un extranjero</xs:documentation>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="20"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:choice>
+				<xs:element name="NumConsecutivorecep" nillable="false">
+					<xs:annotation>
+						<xs:documentation>NÃºmero consecutivo del mensaje </xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:unsignedLong">
+							<xs:totalDigits value="20"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="FirmaDigital">
+					<xs:annotation>
+						<xs:documentation>Firma Digital del Documento ElectrÃ³nico usando el formato pkcs#7, consultar anexo 3</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="firma" type="xs:base64Binary">
+								<xs:annotation>
+									<xs:documentation>Firma del documento electrÃ³nico expresada en base64</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="x509Certificado" type="xs:base64Binary">
+								<xs:annotation>
+									<xs:documentation>Certificado de llave pÃºblica que se uso para firmar el documento electrÃ³nico expresada en base64</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
