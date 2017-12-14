@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9d99f0c85f834c5ba4a9f9ef5c057d83" Name="Diagram1" ZoomLevel="88">
+        <EntityTypeShape EntityType="DigitalInvoiceModel.CodeProductService" Width="2.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DigitalInvoiceModel.DocumentTypeAuthExon" Width="2.625" PointX="3.875" PointY="0.75" />
+        <EntityTypeShape EntityType="DigitalInvoiceModel.PaymentMethods" Width="2.375" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DigitalInvoiceModel.SaleCondition" Width="2" PointX="4.125" PointY="3.5" />
+        <EntityTypeShape EntityType="DigitalInvoiceModel.IdentificationType" Width="2.625" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DigitalInvoiceModel.Location" Width="1.5" PointX="7.25" PointY="3.5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

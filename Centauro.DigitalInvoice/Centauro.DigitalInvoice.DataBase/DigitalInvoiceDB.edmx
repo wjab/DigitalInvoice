@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DigitalInvoiceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CodeProductService">
+          <Key>
+            <PropertyRef Name="CodeId" />
+          </Key>
+          <Property Name="CodeId" Type="int" Nullable="false" />
+          <Property Name="CodeProductService" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocumentTypeAuthExon">
+          <Key>
+            <PropertyRef Name="CodeId" />
+          </Key>
+          <Property Name="CodeId" Type="int" Nullable="false" />
+          <Property Name="DocumentType" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="IdentificationType">
+          <Key>
+            <PropertyRef Name="CodeId" />
+            <PropertyRef Name="IdentificationType" />
+          </Key>
+          <Property Name="CodeId" Type="int" Nullable="false" />
+          <Property Name="IdentificationType" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="AutoId" />
+            <PropertyRef Name="IdProvincia" />
+            <PropertyRef Name="IdCanton" />
+            <PropertyRef Name="IdDistrito" />
+            <PropertyRef Name="IdBarrio" />
+          </Key>
+          <Property Name="AutoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProvincia" Type="int" Nullable="false" />
+          <Property Name="IdCanton" Type="int" Nullable="false" />
+          <Property Name="IdDistrito" Type="int" Nullable="false" />
+          <Property Name="IdBarrio" Type="int" Nullable="false" />
+          <Property Name="Barrio" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Provincia" Type="varchar" MaxLength="50" />
+          <Property Name="Canton" Type="varchar" MaxLength="150" />
+          <Property Name="Distrito" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="PaymentMethods">
+          <Key>
+            <PropertyRef Name="CodeId" />
+          </Key>
+          <Property Name="CodeId" Type="int" Nullable="false" />
+          <Property Name="PaymentMethods" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SaleCondition">
+          <Key>
+            <PropertyRef Name="CodeId" />
+          </Key>
+          <Property Name="CodeId" Type="int" Nullable="false" />
+          <Property Name="SaleCondition" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="DigitalInvoiceModelStoreContainer">
+          <EntitySet Name="CodeProductService" EntityType="Self.CodeProductService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentTypeAuthExon" EntityType="Self.DocumentTypeAuthExon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleCondition" EntityType="Self.SaleCondition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentificationType" EntityType="Self.IdentificationType" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [IdentificationType].[CodeId] AS [CodeId], 
+    [IdentificationType].[IdentificationType] AS [IdentificationType]
+    FROM [dbo].[IdentificationType] AS [IdentificationType]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DigitalInvoiceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DigitalInvoiceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CodeProductService" EntityType="DigitalInvoiceModel.CodeProductService" />
+          <EntitySet Name="DocumentTypeAuthExon" EntityType="DigitalInvoiceModel.DocumentTypeAuthExon" />
+          <EntitySet Name="PaymentMethods" EntityType="DigitalInvoiceModel.PaymentMethods" />
+          <EntitySet Name="SaleCondition" EntityType="DigitalInvoiceModel.SaleCondition" />
+          <EntitySet Name="IdentificationType" EntityType="DigitalInvoiceModel.IdentificationType" />
+          <EntitySet Name="Location" EntityType="DigitalInvoiceModel.Location" />
+        </EntityContainer>
+        <EntityType Name="CodeProductService">
+          <Key>
+            <PropertyRef Name="CodeId" />
+          </Key>
+          <Property Name="CodeId" Type="Int32" Nullable="false" />
+          <Property Name="CodeProductService1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DocumentTypeAuthExon">
+          <Key>
+            <PropertyRef Name="CodeId" />
+          </Key>
+          <Property Name="CodeId" Type="Int32" Nullable="false" />
+          <Property Name="DocumentType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PaymentMethods">
+          <Key>
+            <PropertyRef Name="CodeId" />
+          </Key>
+          <Property Name="CodeId" Type="Int32" Nullable="false" />
+          <Property Name="PaymentMethods1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SaleCondition">
+          <Key>
+            <PropertyRef Name="CodeId" />
+          </Key>
+          <Property Name="CodeId" Type="Int32" Nullable="false" />
+          <Property Name="SaleCondition1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="IdentificationType">
+          <Key>
+            <PropertyRef Name="CodeId" />
+            <PropertyRef Name="IdentificationType1" />
+          </Key>
+          <Property Name="CodeId" Type="Int32" Nullable="false" />
+          <Property Name="IdentificationType1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="AutoId" />
+            <PropertyRef Name="IdProvincia" />
+            <PropertyRef Name="IdCanton" />
+            <PropertyRef Name="IdDistrito" />
+            <PropertyRef Name="IdBarrio" />
+          </Key>
+          <Property Name="AutoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProvincia" Type="Int32" Nullable="false" />
+          <Property Name="IdCanton" Type="Int32" Nullable="false" />
+          <Property Name="IdDistrito" Type="Int32" Nullable="false" />
+          <Property Name="IdBarrio" Type="Int32" Nullable="false" />
+          <Property Name="Barrio" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Canton" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Distrito" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DigitalInvoiceModelStoreContainer" CdmEntityContainer="DigitalInvoiceEntities">
+          <EntitySetMapping Name="CodeProductService">
+            <EntityTypeMapping TypeName="DigitalInvoiceModel.CodeProductService">
+              <MappingFragment StoreEntitySet="CodeProductService">
+                <ScalarProperty Name="CodeProductService1" ColumnName="CodeProductService" />
+                <ScalarProperty Name="CodeId" ColumnName="CodeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentTypeAuthExon">
+            <EntityTypeMapping TypeName="DigitalInvoiceModel.DocumentTypeAuthExon">
+              <MappingFragment StoreEntitySet="DocumentTypeAuthExon">
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="CodeId" ColumnName="CodeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentMethods">
+            <EntityTypeMapping TypeName="DigitalInvoiceModel.PaymentMethods">
+              <MappingFragment StoreEntitySet="PaymentMethods">
+                <ScalarProperty Name="PaymentMethods1" ColumnName="PaymentMethods" />
+                <ScalarProperty Name="CodeId" ColumnName="CodeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleCondition">
+            <EntityTypeMapping TypeName="DigitalInvoiceModel.SaleCondition">
+              <MappingFragment StoreEntitySet="SaleCondition">
+                <ScalarProperty Name="SaleCondition1" ColumnName="SaleCondition" />
+                <ScalarProperty Name="CodeId" ColumnName="CodeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentificationType">
+            <EntityTypeMapping TypeName="DigitalInvoiceModel.IdentificationType">
+              <MappingFragment StoreEntitySet="IdentificationType">
+                <ScalarProperty Name="IdentificationType1" ColumnName="IdentificationType" />
+                <ScalarProperty Name="CodeId" ColumnName="CodeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Location">
+            <EntityTypeMapping TypeName="DigitalInvoiceModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="Distrito" ColumnName="Distrito" />
+                <ScalarProperty Name="Canton" ColumnName="Canton" />
+                <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+                <ScalarProperty Name="Barrio" ColumnName="Barrio" />
+                <ScalarProperty Name="IdBarrio" ColumnName="IdBarrio" />
+                <ScalarProperty Name="IdDistrito" ColumnName="IdDistrito" />
+                <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
+                <ScalarProperty Name="IdProvincia" ColumnName="IdProvincia" />
+                <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
