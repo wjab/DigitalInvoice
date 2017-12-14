@@ -17,7 +17,7 @@ namespace Centauro.DigitalInvoice.Api.Controllers
         /*
          * Global variables
          */
-        private GenericResponse response;
+        //private GenericResponse response;
 
 
         /// <summary>
@@ -43,16 +43,14 @@ namespace Centauro.DigitalInvoice.Api.Controllers
 	                            </book>
                             </books>";
 
-            response = new GenericResponse();
+            //response = new GenericResponse();
             string myString = "esta es mi respuesta";
 
-            response.message = myString;
-
             DataValidator validator = new DataValidator();
-            response.errorList = validator.ValidateXML(xml);
+            //response.errorList = validator.ValidateXML(xml);
 
 
-            return Ok(JsonConvert.SerializeObject(response));
+            return Ok(JsonConvert.SerializeObject(myString));
         }
     }
 }

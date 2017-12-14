@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Centauro.DigitalInvoice.Api
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Centauro.DigitalInvoice.BusinessLogic", "Centauro.DigitalInvoice.BusinessLogic\Centauro.DigitalInvoice.BusinessLogic.csproj", "{7C110CDC-CD96-46A9-BAB2-D55691C5CBC1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Centauro.DigitalInvoice.WebApi", "Centauro.DigitalInvoice.WebApi\Centauro.DigitalInvoice.WebApi.csproj", "{577A5AD5-E130-409D-9B98-E8321E6BF1C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Centauro.DigitalInvoice.DataBase", "Centauro.DigitalInvoice.DataBase\Centauro.DigitalInvoice.DataBase.csproj", "{0D46C5CF-692C-43A4-A442-32CC3D3E4E2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{7C110CDC-CD96-46A9-BAB2-D55691C5CBC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C110CDC-CD96-46A9-BAB2-D55691C5CBC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C110CDC-CD96-46A9-BAB2-D55691C5CBC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{577A5AD5-E130-409D-9B98-E8321E6BF1C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{577A5AD5-E130-409D-9B98-E8321E6BF1C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{577A5AD5-E130-409D-9B98-E8321E6BF1C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{577A5AD5-E130-409D-9B98-E8321E6BF1C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D46C5CF-692C-43A4-A442-32CC3D3E4E2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D46C5CF-692C-43A4-A442-32CC3D3E4E2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D46C5CF-692C-43A4-A442-32CC3D3E4E2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D46C5CF-692C-43A4-A442-32CC3D3E4E2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

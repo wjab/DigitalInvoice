@@ -1,4 +1,5 @@
-﻿using Centauro.DigitalInvoice.BusinessLogic.Model;
+﻿using Centauro.DigitalInvoice.BusinessLogic.Enums;
+using Centauro.DigitalInvoice.BusinessLogic.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,54 +13,36 @@ namespace Centauro.DigitalInvoice.BusinessLogic
 {
     public class DataValidator
     {
-        public IList<IError> ValidateXML(string xmlData)
+        public IList<IError> ValidateXML(string xmlData, xsdDocument xsdDocumentType)
         {
             IList<IError> errorList = new List<IError>();
+            string xsd = string.Empty;
 
             string errorHolder = string.Empty;
             ValidationHandler handler = new ValidationHandler();
 
             try
             {
-                string xsd = @"C:\Users\Administrador\documents\visual studio 2015\Projects\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\XSD\Acepta_Rechaza_DocumentoXML.xsd";
+                switch (xsdDocumentType)
+                {
+                    case xsdDocument.Sample:
+                        {
+                            xsd = @"C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\XSD\sample.xsd";
+                        }break;
+                    case xsdDocument.AceptaRechaza:
+                        {
+                            xsd = @"C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\XSD\Acepta_Rechaza_DocumentoXML.xsd";
+                        }
+                        break;
+                    default:
+                        {
 
-                string xsd1 = @"<xs:schema xmlns:xs=""http://www.w3.org/2001/XMLSchema"" elementFormDefault=""qualified"" attributeFormDefault=""unqualified"">
-	                                <xs:element name=""books"">
-		                                <xs:complexType>
-			                                <xs:sequence>
-				                                <xs:element name=""book"" maxOccurs=""unbounded"" minOccurs=""0"">
-					                                <xs:complexType>
-						                                <xs:sequence>
-							                                <xs:element type=""xs:string"" name=""author"" />
-							                                <xs:element type=""xs:string"" name=""title"" />
-							                                <xs:element type=""xs:float"" name=""price"" />
-							                                <xs:element name=""TipoDoc"" nillable=""false"">
-								                                <xs:annotation>
-									                                <xs:documentation>Tipo de Documento ElectrÃ³nico: 01 Factura, 02 Nota de DÃ©bito, 03 Nota de CrÃ©dito</xs:documentation>
-								                                </xs:annotation>
-								                                <xs:simpleType>
-									                                <xs:restriction base=""xs:int"">
-										                                <xs:totalDigits value=""2""/>
-										                                <xs:enumeration value=""01""/>
-										                                <xs:enumeration value=""02""/>
-										                                <xs:enumeration value=""03""/>
-									                                </xs:restriction>
-								                                </xs:simpleType>
-							                                </xs:element>
-						                                </xs:sequence>
-						                                <xs:attribute type=""xs:string"" name=""id"" use=""optional""/>
-					                                </xs:complexType>
-				                                </xs:element>
-			                                </xs:sequence>
-		                                </xs:complexType>
-	                                </xs:element>
-                                </xs:schema>";
-
-                XmlReader xmlReaderXSD = XmlReader.Create(new StringReader(xsd1));
+                        }break;
+                }
 
                 XmlReaderSettings settings = new XmlReaderSettings();
                 settings.ValidationType = ValidationType.Schema;
-                settings.Schemas.Add(null, xmlReaderXSD);//XmlReader.Create(xsd)
+                settings.Schemas.Add(null, XmlReader.Create(xsd));
 
                 XmlReader xmlReader = XmlReader.Create(new StringReader(xmlData), settings);
                 settings.ValidationEventHandler += new ValidationEventHandler(handler.HandleValidationError);
@@ -71,7 +54,9 @@ namespace Centauro.DigitalInvoice.BusinessLogic
                 errorList = handler.ValidationErrors;
             }
             catch (Exception ex)
-            {            }
+            {
+                errorList.Add(new ValidationError() { Error = ex.Message });
+            }
             
             return errorList;
         }

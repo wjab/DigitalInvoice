@@ -8,7 +8,7 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Model
 {
     public class FirmaDigital
     {
-        public byte[] firma { get; set; }
-        public byte[] x509Certificado { get; set; }
+        public string firma { get; set; }
+        public string x509Certificado { get; set; }
     }
 }
