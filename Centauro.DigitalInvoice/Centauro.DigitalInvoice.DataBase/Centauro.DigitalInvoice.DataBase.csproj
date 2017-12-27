@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.cs">
+      <DependentUpon>DigitalInvoiceDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="CodeProductService.cs">
       <DependentUpon>DigitalInvoiceDB.tt</DependentUpon>
     </Compile>
@@ -78,11 +81,17 @@
     <Compile Include="Location.cs">
       <DependentUpon>DigitalInvoiceDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="MeasureUnit.cs">
+      <DependentUpon>DigitalInvoiceDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="PaymentMethods.cs">
       <DependentUpon>DigitalInvoiceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SaleCondition.cs">
+      <DependentUpon>DigitalInvoiceDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Taxes.cs">
       <DependentUpon>DigitalInvoiceDB.tt</DependentUpon>
     </Compile>
   </ItemGroup>

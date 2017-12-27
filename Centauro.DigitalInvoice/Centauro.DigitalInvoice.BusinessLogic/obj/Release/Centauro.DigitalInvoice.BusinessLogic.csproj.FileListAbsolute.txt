@@ -1,0 +1,17 @@
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Release\Centauro.DigitalInvoice.BusinessLogic.dll.config
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Release\Centauro.DigitalInvoice.BusinessLogic.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Release\Centauro.DigitalInvoice.BusinessLogic.pdb
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Release\Centauro.DigitalInvoice.DataBase.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Release\EntityFramework.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Release\EntityFramework.SqlServer.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Release\Newtonsoft.Json.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Release\System.Net.Http.Formatting.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Release\Centauro.DigitalInvoice.DataBase.pdb
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Release\EntityFramework.xml
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Release\EntityFramework.SqlServer.xml
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Release\Newtonsoft.Json.xml
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Release\System.Net.Http.Formatting.xml
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Release\es\System.Net.Http.Formatting.resources.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\obj\Release\Centauro.DigitalInvoice.BusinessLogic.csprojResolveAssemblyReference.cache
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\obj\Release\Centauro.DigitalInvoice.BusinessLogic.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\obj\Release\Centauro.DigitalInvoice.BusinessLogic.pdb

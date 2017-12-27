@@ -1,5 +1,6 @@
 ﻿using Centauro.DigitalInvoice.BusinessLogic;
 using Centauro.DigitalInvoice.BusinessLogic.Enums;
+using Centauro.DigitalInvoice.BusinessLogic.Interface;
 using Centauro.DigitalInvoice.BusinessLogic.Model;
 using Centauro.DigitalInvoice.BusinessLogic.Utilities;
 using Newtonsoft.Json;
@@ -128,6 +129,26 @@ namespace Centauro.DigitalInvoice.WebApi.Controllers
             try
             {
                 response.results = catalogInterface.GetIdentificationType();
+                response.status = HttpStatusCode.OK;
+            }
+            catch (Exception ex)
+            {
+                Utils.SetExceptionToResponse(ref response, ex);
+            }
+
+            return Ok(JObject.Parse(JsonConvert.SerializeObject(response)));
+        }
+
+
+        [HttpGet]
+        public IHttpActionResult GetMeasureUnit()
+        {
+            response = new GenericResponse();
+            catalogInterface = new Catalogs();
+
+            try
+            {
+                response.results = catalogInterface.GetMeasureUnit();
                 response.status = HttpStatusCode.OK;
             }
             catch (Exception ex)

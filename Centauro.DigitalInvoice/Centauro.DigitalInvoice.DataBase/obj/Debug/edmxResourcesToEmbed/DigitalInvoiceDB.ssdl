@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DigitalInvoiceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="accountId" />
+    </Key>
+    <Property Name="accountId" Type="varchar" MaxLength="36" Nullable="false" />
+    <Property Name="userATV" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="passwordATV" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="certificateName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="certificatePIN" Type="int" Nullable="false" />
+    <Property Name="certificateExt" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="certificate" Type="varchar(max)" Nullable="false" />
+    <Property Name="enabled" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CodeProductService">
+    <Key>
+      <PropertyRef Name="CodeId" />
+    </Key>
+    <Property Name="CodeId" Type="int" Nullable="false" />
+    <Property Name="CodeProductService" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DocumentTypeAuthExon">
+    <Key>
+      <PropertyRef Name="CodeId" />
+    </Key>
+    <Property Name="CodeId" Type="int" Nullable="false" />
+    <Property Name="DocumentType" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="IdentificationType">
+    <Key>
+      <PropertyRef Name="CodeId" />
+      <PropertyRef Name="IdentificationType" />
+    </Key>
+    <Property Name="CodeId" Type="int" Nullable="false" />
+    <Property Name="IdentificationType" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="AutoId" />
+      <PropertyRef Name="IdProvincia" />
+      <PropertyRef Name="IdCanton" />
+      <PropertyRef Name="IdDistrito" />
+      <PropertyRef Name="IdBarrio" />
+    </Key>
+    <Property Name="AutoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdProvincia" Type="int" Nullable="false" />
+    <Property Name="IdCanton" Type="int" Nullable="false" />
+    <Property Name="IdDistrito" Type="int" Nullable="false" />
+    <Property Name="IdBarrio" Type="int" Nullable="false" />
+    <Property Name="Barrio" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Provincia" Type="varchar" MaxLength="50" />
+    <Property Name="Canton" Type="varchar" MaxLength="150" />
+    <Property Name="Distrito" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="MeasureUnit">
+    <Key>
+      <PropertyRef Name="IdMeasureUnit" />
+    </Key>
+    <Property Name="IdMeasureUnit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Symbol" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PaymentMethods">
+    <Key>
+      <PropertyRef Name="CodeId" />
+    </Key>
+    <Property Name="CodeId" Type="int" Nullable="false" />
+    <Property Name="PaymentMethods" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SaleCondition">
+    <Key>
+      <PropertyRef Name="CodeId" />
+    </Key>
+    <Property Name="CodeId" Type="int" Nullable="false" />
+    <Property Name="SaleCondition" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Taxes">
+    <Key>
+      <PropertyRef Name="CodeId" />
+    </Key>
+    <Property Name="CodeId" Type="int" Nullable="false" />
+    <Property Name="TaxName" Type="varchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="DigitalInvoiceModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CodeProductService" EntityType="Self.CodeProductService" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocumentTypeAuthExon" EntityType="Self.DocumentTypeAuthExon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MeasureUnit" EntityType="Self.MeasureUnit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethods" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleCondition" EntityType="Self.SaleCondition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Taxes" EntityType="Self.Taxes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IdentificationType" EntityType="Self.IdentificationType" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [IdentificationType].[CodeId] AS [CodeId], 
+    [IdentificationType].[IdentificationType] AS [IdentificationType]
+    FROM [dbo].[IdentificationType] AS [IdentificationType]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

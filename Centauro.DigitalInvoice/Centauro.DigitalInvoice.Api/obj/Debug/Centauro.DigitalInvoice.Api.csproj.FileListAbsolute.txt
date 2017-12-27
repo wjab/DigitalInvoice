@@ -48,6 +48,7 @@ C:\Users\Administrador\documents\visual studio 2015\Projects\Centauro.DigitalInv
 C:\Users\Administrador\documents\visual studio 2015\Projects\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\System.Web.Cors.dll
 C:\Users\Administrador\documents\visual studio 2015\Projects\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\System.Web.Http.Cors.dll
 C:\Users\Administrador\documents\visual studio 2015\Projects\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\System.Web.Http.Cors.xml
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\obj\Debug\Centauro.DigitalInvoice.Api.csprojResolveAssemblyReference.cache
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\ApplicationInsights.config
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\roslyn\csc.exe
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -99,6 +100,5 @@ C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\es\System.Net.Http.Formatting.resources.dll
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\es\System.Web.Http.resources.dll
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\es\System.Web.Http.WebHost.resources.dll
-C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\obj\Debug\Centauro.DigitalInvoice.Api.csprojResolveAssemblyReference.cache
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\obj\Debug\Centauro.DigitalInvoice.Api.dll
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\obj\Debug\Centauro.DigitalInvoice.Api.pdb

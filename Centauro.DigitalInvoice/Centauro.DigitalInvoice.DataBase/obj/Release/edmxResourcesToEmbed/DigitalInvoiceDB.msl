@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DigitalInvoiceModelStoreContainer" CdmEntityContainer="DigitalInvoiceEntities">
+    <EntitySetMapping Name="CodeProductService">
+      <EntityTypeMapping TypeName="DigitalInvoiceModel.CodeProductService">
+        <MappingFragment StoreEntitySet="CodeProductService">
+          <ScalarProperty Name="CodeProductService1" ColumnName="CodeProductService" />
+          <ScalarProperty Name="CodeId" ColumnName="CodeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DocumentTypeAuthExon">
+      <EntityTypeMapping TypeName="DigitalInvoiceModel.DocumentTypeAuthExon">
+        <MappingFragment StoreEntitySet="DocumentTypeAuthExon">
+          <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+          <ScalarProperty Name="CodeId" ColumnName="CodeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentMethods">
+      <EntityTypeMapping TypeName="DigitalInvoiceModel.PaymentMethods">
+        <MappingFragment StoreEntitySet="PaymentMethods">
+          <ScalarProperty Name="PaymentMethods1" ColumnName="PaymentMethods" />
+          <ScalarProperty Name="CodeId" ColumnName="CodeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleCondition">
+      <EntityTypeMapping TypeName="DigitalInvoiceModel.SaleCondition">
+        <MappingFragment StoreEntitySet="SaleCondition">
+          <ScalarProperty Name="SaleCondition1" ColumnName="SaleCondition" />
+          <ScalarProperty Name="CodeId" ColumnName="CodeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IdentificationType">
+      <EntityTypeMapping TypeName="DigitalInvoiceModel.IdentificationType">
+        <MappingFragment StoreEntitySet="IdentificationType">
+          <ScalarProperty Name="IdentificationType1" ColumnName="IdentificationType" />
+          <ScalarProperty Name="CodeId" ColumnName="CodeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Location">
+      <EntityTypeMapping TypeName="DigitalInvoiceModel.Location">
+        <MappingFragment StoreEntitySet="Location">
+          <ScalarProperty Name="Distrito" ColumnName="Distrito" />
+          <ScalarProperty Name="Canton" ColumnName="Canton" />
+          <ScalarProperty Name="Provincia" ColumnName="Provincia" />
+          <ScalarProperty Name="Barrio" ColumnName="Barrio" />
+          <ScalarProperty Name="IdBarrio" ColumnName="IdBarrio" />
+          <ScalarProperty Name="IdDistrito" ColumnName="IdDistrito" />
+          <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
+          <ScalarProperty Name="IdProvincia" ColumnName="IdProvincia" />
+          <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DigitalInvoiceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DigitalInvoiceEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CodeProductService" EntityType="DigitalInvoiceModel.CodeProductService" />
+    <EntitySet Name="DocumentTypeAuthExon" EntityType="DigitalInvoiceModel.DocumentTypeAuthExon" />
+    <EntitySet Name="PaymentMethods" EntityType="DigitalInvoiceModel.PaymentMethods" />
+    <EntitySet Name="SaleCondition" EntityType="DigitalInvoiceModel.SaleCondition" />
+    <EntitySet Name="IdentificationType" EntityType="DigitalInvoiceModel.IdentificationType" />
+    <EntitySet Name="Location" EntityType="DigitalInvoiceModel.Location" />
+  </EntityContainer>
+  <EntityType Name="CodeProductService">
+    <Key>
+      <PropertyRef Name="CodeId" />
+    </Key>
+    <Property Name="CodeId" Type="Int32" Nullable="false" />
+    <Property Name="CodeProductService1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="DocumentTypeAuthExon">
+    <Key>
+      <PropertyRef Name="CodeId" />
+    </Key>
+    <Property Name="CodeId" Type="Int32" Nullable="false" />
+    <Property Name="DocumentType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PaymentMethods">
+    <Key>
+      <PropertyRef Name="CodeId" />
+    </Key>
+    <Property Name="CodeId" Type="Int32" Nullable="false" />
+    <Property Name="PaymentMethods1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SaleCondition">
+    <Key>
+      <PropertyRef Name="CodeId" />
+    </Key>
+    <Property Name="CodeId" Type="Int32" Nullable="false" />
+    <Property Name="SaleCondition1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="IdentificationType">
+    <Key>
+      <PropertyRef Name="CodeId" />
+      <PropertyRef Name="IdentificationType1" />
+    </Key>
+    <Property Name="CodeId" Type="Int32" Nullable="false" />
+    <Property Name="IdentificationType1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="AutoId" />
+      <PropertyRef Name="IdProvincia" />
+      <PropertyRef Name="IdCanton" />
+      <PropertyRef Name="IdDistrito" />
+      <PropertyRef Name="IdBarrio" />
+    </Key>
+    <Property Name="AutoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdProvincia" Type="Int32" Nullable="false" />
+    <Property Name="IdCanton" Type="Int32" Nullable="false" />
+    <Property Name="IdDistrito" Type="Int32" Nullable="false" />
+    <Property Name="IdBarrio" Type="Int32" Nullable="false" />
+    <Property Name="Barrio" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Canton" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Distrito" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

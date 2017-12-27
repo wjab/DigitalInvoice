@@ -50,6 +50,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,22 +60,51 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auth\Authentication.cs" />
-    <Compile Include="Constants\Contants.cs" />
+    <Compile Include="Common\Exceptions\InvalidDocumentException.cs" />
+    <Compile Include="Common\Exceptions\InvalidParameterException.cs" />
+    <Compile Include="Common\Exceptions\InvalidSignedDocumentException.cs" />
+    <Compile Include="Common\ExtendedSignedXml.cs" />
+    <Compile Include="Common\VerificationParameters.cs" />
+    <Compile Include="Common\XmlPropertyDescriptor.cs" />
+    <Compile Include="Constants\Constants.cs" />
     <Compile Include="CustomDelegatingHandler.cs" />
     <Compile Include="DataValidator.cs" />
     <Compile Include="Enums\Enum.cs" />
-    <Compile Include="Catalogs.cs" />
-    <Compile Include="ICatalogs.cs" />
+    <Compile Include="InterfaceImp\AccountImp.cs" />
+    <Compile Include="InterfaceImp\Catalogs.cs" />
+    <Compile Include="Interface\IAccount.cs" />
+    <Compile Include="Interface\ICatalogs.cs" />
     <Compile Include="Model\AceptaRechazaDocumento.cs" />
     <Compile Include="Model\AuthenticationResponse.cs" />
+    <Compile Include="Model\ContainerObjectDigitalSign.cs" />
+    <Compile Include="Model\facturaelectronicaxml.cs" />
     <Compile Include="Model\GeneralObject.cs" />
     <Compile Include="Model\FirmaDigital.cs" />
     <Compile Include="Model\GenericResponse.cs" />
     <Compile Include="Model\IError.cs" />
+    <Compile Include="Model\SignatureType.cs" />
     <Compile Include="Model\ValidationError.cs" />
+    <Compile Include="Operations\Signers\XmlDsigDetachedSignOperation.cs" />
+    <Compile Include="Operations\Signers\XmlDsigEnvelopedSignOperation.cs" />
+    <Compile Include="Operations\Signers\XmlDsigEnvelopingSignOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SendDocument.cs" />
+    <Compile Include="Utilities\ArrayHelper.cs" />
+    <Compile Include="Utilities\Cryptography\CryptoHelper.cs" />
+    <Compile Include="Utilities\Xml\XmlHelper.cs" />
+    <Compile Include="Xades\Common\XadesSignParameters.cs" />
+    <Compile Include="Xades\Dsl\XadesSignDsl.cs" />
+    <Compile Include="Xades\Dsl\XadesVerifyDsl.cs" />
+    <Compile Include="Xades\Operations\XadesSignOperation.cs" />
+    <Compile Include="Xades\Operations\XadesVerifyOperation.cs" />
+    <Compile Include="Xades\XadesHelper.cs" />
+    <Compile Include="XmlDsigSignOperation.cs" />
     <Compile Include="Utilities\Utils.cs" />
+    <Compile Include="XmlDsig\Common\VerificationResults.cs" />
+    <Compile Include="XmlDsig\Common\XmlDsigSignatureFormat.cs" />
+    <Compile Include="XmlDsig\Common\XmlDsigSignParameters.cs" />
+    <Compile Include="XmlDsig\Helpers\XmlDsigNodesHelper.cs" />
+    <Compile Include="XmlDsig\XmlDsigVerifyOperation.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Centauro.DigitalInvoice.DataBase\Centauro.DigitalInvoice.DataBase.csproj">
@@ -86,7 +116,6 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Certificate\310156726431.cer" />
     <None Include="Certificate\310156726431.p12" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -110,6 +139,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

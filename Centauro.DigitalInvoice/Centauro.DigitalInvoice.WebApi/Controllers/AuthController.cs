@@ -44,10 +44,9 @@ namespace Centauro.DigitalInvoice.WebApi.Controllers
                 NumConsecutivorecep = 1
             };
 
-            AuthenticationResponse aa = await Authentication.AUthenticationMH_1();
-            var result = await sendDocument.SendAceptDenyDocument(aceptaDocumento, aa);
+            AuthenticationResponse aa = await Authentication.Instance().AuthenticationMH();
 
-            return Ok(a);
+            return Ok(aa.access_token);
         }              
 
         /// <summary>
@@ -62,10 +61,10 @@ namespace Centauro.DigitalInvoice.WebApi.Controllers
 
             try
             {
-                string xml = Contants.XMLTest;                
+                string xml = Constants.XMLTest;                
                 response.errorList = validator.ValidateXML(xml, xsdDocument.Sample);
 
-                response.results = await Authentication.AUthenticationMH_1();
+                response.results = await Authentication.Instance().AuthenticationMH();
             }
             catch(Exception ex)
             {
@@ -86,7 +85,7 @@ namespace Centauro.DigitalInvoice.WebApi.Controllers
 
             try
             {
-                response.results = await Authentication.AUthenticationMH_1();
+                response.results = await Authentication.Instance().AuthenticationMH();
             }
             catch (Exception ex)
             {

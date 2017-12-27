@@ -31,5 +31,8 @@ namespace Centauro.DigitalInvoice.DataBase
         public virtual DbSet<SaleCondition> SaleCondition { get; set; }
         public virtual DbSet<IdentificationType> IdentificationType { get; set; }
         public virtual DbSet<Location> Location { get; set; }
+        public virtual DbSet<MeasureUnit> MeasureUnit { get; set; }
+        public virtual DbSet<Taxes> Taxes { get; set; }
+        public virtual DbSet<Account> Account { get; set; }
     }
 }

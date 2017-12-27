@@ -85,6 +85,10 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -94,6 +98,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -124,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
@@ -156,6 +165,10 @@
     <ProjectReference Include="..\Centauro.DigitalInvoice.BusinessLogic\Centauro.DigitalInvoice.BusinessLogic.csproj">
       <Project>{7c110cdc-cd96-46a9-bab2-d55691c5cbc1}</Project>
       <Name>Centauro.DigitalInvoice.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Centauro.DigitalInvoice.DataBase\Centauro.DigitalInvoice.DataBase.csproj">
+      <Project>{0d46c5cf-692c-43a4-a442-32cc3d3e4e2c}</Project>
+      <Name>Centauro.DigitalInvoice.DataBase</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

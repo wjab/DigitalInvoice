@@ -1,0 +1,10 @@
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.DataBase\bin\Release\Centauro.DigitalInvoice.DataBase.dll.config
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.DataBase\bin\Release\Centauro.DigitalInvoice.DataBase.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.DataBase\bin\Release\Centauro.DigitalInvoice.DataBase.pdb
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.DataBase\bin\Release\EntityFramework.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.DataBase\bin\Release\EntityFramework.SqlServer.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.DataBase\bin\Release\EntityFramework.xml
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.DataBase\bin\Release\EntityFramework.SqlServer.xml
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.DataBase\obj\Release\Centauro.DigitalInvoice.DataBase.csprojResolveAssemblyReference.cache
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.DataBase\obj\Release\Centauro.DigitalInvoice.DataBase.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.DataBase\obj\Release\Centauro.DigitalInvoice.DataBase.pdb

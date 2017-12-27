@@ -1,0 +1,226 @@
+<facturaelectronicaxml>
+  <CodigoType>
+    <Tipo />
+    <Codigo />
+  </CodigoType>
+  <EmisorType>
+    <Nombre>
+    </Nombre>
+    <Identificacion>
+      <Tipo />
+      <Numero />
+    </Identificacion>
+    <NombreComercial />
+    <Ubicacion>
+      <Provincia />
+      <Canton />
+      <Distrito />
+      <Barrio />
+      <OtrasSenas />
+    </Ubicacion>
+    <Telefono>
+      <CodigoPais />
+      <NumTelefono />
+    </Telefono>
+    <Fax>
+      <CodigoPais />
+      <NumTelefono />
+    </Fax>
+    <CorreoElectronico />
+  </EmisorType>
+  <ExoneracionType>
+    <TipoDocumento />
+    <NumeroDocumento />
+    <NombreInstitucion>
+    </NombreInstitucion>
+    <FechaEmision>0001-01-01T00:00:00</FechaEmision>
+    <MontoImpuesto>0</MontoImpuesto>
+    <PorcentajeCompra>0</PorcentajeCompra>
+  </ExoneracionType>
+  <IdentificacionType>
+    <Tipo>
+    </Tipo>
+    <Numero />
+  </IdentificacionType>
+  <ImpuestoType>
+    <Codigo>
+    </Codigo>
+    <Tarifa>0</Tarifa>
+    <Monto>0</Monto>
+    <Exoneracion>
+      <TipoDocumento />
+      <NumeroDocumento />
+      <NombreInstitucion />
+      <FechaEmision>0001-01-01T00:00:00</FechaEmision>
+      <MontoImpuesto>0</MontoImpuesto>
+      <PorcentajeCompra>0</PorcentajeCompra>
+    </Exoneracion>
+  </ImpuestoType>
+  <ReceptorType>
+    <Nombre>
+    </Nombre>
+    <Identificacion>
+      <Tipo />
+      <Numero />
+    </Identificacion>
+    <IdentificacionExtranjero />
+    <NombreComercial />
+    <Ubicacion>
+      <Provincia />
+      <Canton />
+      <Distrito />
+      <Barrio />
+      <OtrasSenas />
+    </Ubicacion>
+    <Telefono>
+      <CodigoPais />
+      <NumTelefono />
+    </Telefono>
+    <Fax>
+      <CodigoPais />
+      <NumTelefono />
+    </Fax>
+    <CorreoElectronico />
+  </ReceptorType>
+  <TelefonoType>
+    <CodigoPais>
+    </CodigoPais>
+    <NumTelefono />
+  </TelefonoType>
+  <UbicacionType>
+    <Provincia>
+    </Provincia>
+    <Canton />
+    <Distrito />
+    <Barrio />
+    <OtrasSenas />
+  </UbicacionType>
+  <ClaveType>
+  </ClaveType>
+  <DecimalDineroType>0</DecimalDineroType>
+  <NumeroConsecutivoType>
+  </NumeroConsecutivoType>
+  <UnidadMedidaType>
+  </UnidadMedidaType>
+  <FacturaElectronica>
+    <Clave>
+    </Clave>
+    <NumeroConsecutivo>
+    </NumeroConsecutivo>
+    <FechaEmision>2017-12-21T16:38:25.46936-06:00</FechaEmision>
+    <Emisor>
+    </Emisor>
+    <Receptor>
+    </Receptor>
+    <CondicionVenta>
+    </CondicionVenta>
+    <PlazoCredito>
+    </PlazoCredito>
+    <MedioPago>
+    </MedioPago>
+    <ResumenFactura>
+      <CodigoMoneda />
+      <TipoCambio />
+      <TotalServGravados />
+      <TotalServExentos />
+      <TotalMercanciasGravadas />
+      <TotalMercanciasExentas />
+      <TotalGravado />
+      <TotalExento />
+      <TotalVenta />
+      <TotalDescuentos />
+      <TotalVentaNeta />
+      <TotalImpuesto />
+      <TotalComprobante />
+    </ResumenFactura>
+    <InformacionReferencia>
+      <TipoDoc />
+      <Numero />
+      <FechaEmision>0001-01-01T00:00:00</FechaEmision>
+      <Codigo />
+      <Razon />
+    </InformacionReferencia>
+    <Normativa>
+      <NumeroResolucion />
+      <FechaResolucion />
+    </Normativa>
+    <Otros />
+    <Signature>
+      <SignedInfo>
+        <KeyName />
+        <KeyValue>
+          <Manifest>
+            <Reference>
+              <Id />
+              <MimeType />
+              <Encoding />
+            </Reference>
+          </Manifest>
+        </KeyValue>
+        <RetrievalMethod />
+        <X509Data />
+        <PGPData />
+        <SPKIData>
+          <SPKISexp />
+        </SPKIData>
+        <MgmtData />
+      </SignedInfo>
+      <SignatureValue />
+      <KeyInfo />
+      <Object>
+        <Id />
+        <MimeType />
+        <Encoding />
+      </Object>
+      <Id>jajsa</Id>
+    </Signature>
+  </FacturaElectronica>
+  <Signature />
+  <Signature Id="signature" xmlns="http://www.w3.org/2000/09/xmldsig#">
+    <SignedInfo>
+      <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+      <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+      <Reference URI="">
+        <Transforms>
+          <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+        </Transforms>
+        <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <DigestValue>U4ujksXiAI1xPIfAmvPes6Njv+8=</DigestValue>
+      </Reference>
+      <Reference URI="#xadesSignedProperties" Type="http://www.w3.org/2000/09/xmldsig#SignatureProperties">
+        <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <DigestValue>ZJmx1WaIVsu0ZXtSSownzWfhFuA=</DigestValue>
+      </Reference>
+    </SignedInfo>
+    <SignatureValue>xBh1O02D7vy0BWN9Wzxlf+c7HCHHm9+QlULIFU/fJxFsQwIVno19+gOLeL7GveZPQvo5VGBAUgOoeRHHhzRpgerMJA8oifkfOzZ+Sj+5Z0Wbe/XNpNFZcZjW8NNUJ2IMyOSeqKUN1wZow63xyHIhizDEQIwbjT5CqIO6qrAE7qhR4L86z6v1mNA5KaFVM6K/Mb/AMehhk8jYSTJofGSbK9Nhtq9P+maTCq8g6A4luCUkXYcFaln1WxBG0IykMs/7e6BJJT7KPw7BARqeK4XFyzNb9DvmMzB4hJYVS3iKV6fLhJ5jlIu6oIoYl8cTaiYPZ+ojW3VI14isgVLutsCQkA==</SignatureValue>
+    <KeyInfo>
+      <X509Data>
+        <X509Certificate>MIIFcjCCA1qgAwIBAgIGAWBcPcq5MA0GCSqGSIb3DQEBCwUAMG4xCzAJBgNVBAYTAkNSMSkwJwYDVQQKDCBNSU5JU1RFUklPIERFIEhBQ0lFTkRBIC0gU0FOREJPWDEMMAoGA1UECwwDREdUMSYwJAYDVQQDDB1DQSBQRVJTT05BIEpVUklESUNBIC0gU0FOREJPWDAeFw0xNzEyMTUyMjE0MDFaFw0xOTEyMTUyMjE0MDFaMIG4MRkwFwYDVQQFExBDUEotMy0xMDEtNTY3MjY0MQkwBwYDVQQEDAAxLDAqBgNVBCoMI0NFTlRBVVJPIFNPTFVUSU9OUyBTT0NJRURBRCBBTk9OSU1BMQswCQYDVQQGEwJDUjEZMBcGA1UECgwQUEVSU09OQSBKVVJJRElDQTEMMAoGA1UECwwDQ1BKMSwwKgYDVQQDDCNDRU5UQVVSTyBTT0xVVElPTlMgU09DSUVEQUQgQU5PTklNQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMspVwsNUbAcYwQgQ43B4DWkIRxZptToZifjdN0eiKj6DFFnKZcH0FYkp03Bgs8Ik6ZSJr3M69Gue+eEcD6M43ZwrJmILbvQ9YUJtGeRDbmj85dZ7s8Yn1Vukx+hgn7z7deke7zQM7gq5Yv0V+sBdlD9z7YHgtkfr9kvaVn3YhYl+f7mXo31ThOZdUye9YcLVJbKfqySu3F1qhhKpm4UxIAsc/A+B+yoS5uEiN7HxkHL9MM/cgEHNgiBAPnad+rKQ9S2dMyNf9l5QwBG+u87w+7OFvMIZvg9uRou8jAV25OLXq2PGRW7AuBuRcHpAR0YA42OXP0LPajSpoFgca8AMk0CAwEAAaOByjCBxzAfBgNVHSMEGDAWgBSsKEX4L51IXywfAJDrMsWjB1OA4TAdBgNVHQ4EFgQU7nYPykwTpndF64T5ipKf+NjyD20wCwYDVR0PBAQDAgbAMBMGA1UdJQQMMAoGCCsGAQUFBwMEMGMGCCsGAQUFBwEBBFcwVTBTBggrBgEFBQcwAoZHaHR0cHM6Ly9wa2kuY29tcHJvYmFudGVzZWxlY3Ryb25pY29zLmdvLmNyL3N0YWcvaW50ZXJtZWRpYXRlLXBqLXBlbS5jcnQwDQYJKoZIhvcNAQELBQADggIBADhfbGx6RZ/vtcEBdFj4NZPZZXs0+ioi9+ejPUq8Z+9APOuFquJKxG/2DELNygGBfWZ5fdwLfQlagmFXKUSXW/J2VrvmABo2HGctJEPHjjLRNOfN6f3PmCQK74CKq8IpCd/rsEGy3ZFTT3qcDo27shSpECyvgQRszcAa5ZC+VOH5FwUZWyUT3F5V6EAC7w+HMUgQZ8R3VFV8aUrOrP6YEBUNmhjU8JCoV4WSByPlkVE3hP2izVVB9W0c/fhA6OlW69A5pY9meQVSFDMT0P1RMUFjYxWzDQrXnQGe8PVYeLUhi9ZLRtjVbgGpT7u1sDvIC+8BxllICfjOSVtUDpg7WP2AnmAKfMldR4rhVGzF7rChlxfTE6XL27UYWWKqT+O4UljXeIr772iLcsG7GnHwG3rmJKuziSUFf7bG/eBF8bYEc2CtQYpKO9Ss/PFrDhkvUVRDfPaNb17dZIZS/3fduQjwVthxcAnUxr0OvkBmCqLsmyBrBUfSnl8c6YgDm+3jW8jus8P9ffx94ro+9GVwvnYzGRqoNhG18NmXdrhnQXFMhnMaQxFYVsR7kiVV3T0uSxcujNAHV00P+o/VZyMei6Hw07lMNpspyk8JUSHMO3cG1QY3KCq9ZVDFD4FfILyfnkOgOZS4uox4UMzNrAmTqLY9NHIBljPMPYkMppPVQSbB</X509Certificate>
+      </X509Data>
+    </KeyInfo>
+    <Object>
+      <QualifyingProperties Target="signature" xmlns="http://uri.etsi.org/01903/v1.3.2#">
+        <SignedProperties Id="xadesSignedProperties">
+          <SignedSignatureProperties>
+            <SigningTime>2017-12-21T22:38:41Z</SigningTime>
+            <SigningCertificate>
+              <Cert>
+                <CertDigest>
+                  <DigestMethod xmlns="http://www.w3.org/2000/09/xmldsig#">http://www.w3.org/2000/09/xmldsig#sha1</DigestMethod>
+                  <DigestValue xmlns="http://www.w3.org/2000/09/xmldsig#">4ohkDI6Sm37B6Sh23sh1SlQAZQU=</DigestValue>
+                </CertDigest>
+                <IssuerSerial>
+                  <X509IssuerName xmlns="http://www.w3.org/2000/09/xmldsig#">CN=CA PERSONA JURIDICA - SANDBOX, OU=DGT, O=MINISTERIO DE HACIENDA - SANDBOX, C=CR</X509IssuerName>
+                  <X509SerialNumber xmlns="http://www.w3.org/2000/09/xmldsig#">01605C3DCAB9</X509SerialNumber>
+                </IssuerSerial>
+              </Cert>
+            </SigningCertificate>
+          </SignedSignatureProperties>
+        </SignedProperties>
+        <UnsignedProperties>
+          <UnsignedSignatureProperties />
+        </UnsignedProperties>
+      </QualifyingProperties>
+    </Object>
+  </Signature>
+</facturaelectronicaxml>

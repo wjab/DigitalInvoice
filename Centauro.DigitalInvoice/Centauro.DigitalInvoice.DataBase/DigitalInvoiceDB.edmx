@@ -5,6 +5,19 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DigitalInvoiceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="accountId" />
+          </Key>
+          <Property Name="accountId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="userATV" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="passwordATV" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="certificateName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="certificatePIN" Type="int" Nullable="false" />
+          <Property Name="certificateExt" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="certificate" Type="varchar(max)" Nullable="false" />
+          <Property Name="enabled" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="CodeProductService">
           <Key>
             <PropertyRef Name="CodeId" />
@@ -47,6 +60,14 @@ advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no ti
           <Property Name="Canton" Type="varchar" MaxLength="150" />
           <Property Name="Distrito" Type="varchar" MaxLength="150" />
         </EntityType>
+        <EntityType Name="MeasureUnit">
+          <Key>
+            <PropertyRef Name="IdMeasureUnit" />
+          </Key>
+          <Property Name="IdMeasureUnit" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Symbol" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="PaymentMethods">
           <Key>
             <PropertyRef Name="CodeId" />
@@ -61,12 +82,22 @@ advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no ti
           <Property Name="CodeId" Type="int" Nullable="false" />
           <Property Name="SaleCondition" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Taxes">
+          <Key>
+            <PropertyRef Name="CodeId" />
+          </Key>
+          <Property Name="CodeId" Type="int" Nullable="false" />
+          <Property Name="TaxName" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="DigitalInvoiceModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CodeProductService" EntityType="Self.CodeProductService" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentTypeAuthExon" EntityType="Self.DocumentTypeAuthExon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MeasureUnit" EntityType="Self.MeasureUnit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethods" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SaleCondition" EntityType="Self.SaleCondition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Taxes" EntityType="Self.Taxes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IdentificationType" EntityType="Self.IdentificationType" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [IdentificationType].[CodeId] AS [CodeId], 
@@ -85,6 +116,9 @@ advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no ti
           <EntitySet Name="SaleCondition" EntityType="DigitalInvoiceModel.SaleCondition" />
           <EntitySet Name="IdentificationType" EntityType="DigitalInvoiceModel.IdentificationType" />
           <EntitySet Name="Location" EntityType="DigitalInvoiceModel.Location" />
+          <EntitySet Name="MeasureUnit" EntityType="DigitalInvoiceModel.MeasureUnit" />
+          <EntitySet Name="Taxes" EntityType="DigitalInvoiceModel.Taxes" />
+          <EntitySet Name="Account" EntityType="DigitalInvoiceModel.Account" />
         </EntityContainer>
         <EntityType Name="CodeProductService">
           <Key>
@@ -139,6 +173,34 @@ advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no ti
           <Property Name="Provincia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Canton" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="Distrito" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MeasureUnit">
+          <Key>
+            <PropertyRef Name="IdMeasureUnit" />
+          </Key>
+          <Property Name="IdMeasureUnit" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Symbol" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Taxes">
+          <Key>
+            <PropertyRef Name="CodeId" />
+          </Key>
+          <Property Name="CodeId" Type="Int32" Nullable="false" />
+          <Property Name="TaxName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="accountId" />
+          </Key>
+          <Property Name="accountId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="userATV" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="passwordATV" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="certificateName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="certificatePIN" Type="Int32" Nullable="false" />
+          <Property Name="certificateExt" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="certificate" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="enabled" Type="Boolean" Nullable="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -198,6 +260,37 @@ advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no ti
                 <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
                 <ScalarProperty Name="IdProvincia" ColumnName="IdProvincia" />
                 <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MeasureUnit">
+            <EntityTypeMapping TypeName="DigitalInvoiceModel.MeasureUnit">
+              <MappingFragment StoreEntitySet="MeasureUnit">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+                <ScalarProperty Name="IdMeasureUnit" ColumnName="IdMeasureUnit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Taxes">
+            <EntityTypeMapping TypeName="DigitalInvoiceModel.Taxes">
+              <MappingFragment StoreEntitySet="Taxes">
+                <ScalarProperty Name="TaxName" ColumnName="TaxName" />
+                <ScalarProperty Name="CodeId" ColumnName="CodeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Account">
+            <EntityTypeMapping TypeName="DigitalInvoiceModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
+                <ScalarProperty Name="certificate" ColumnName="certificate" />
+                <ScalarProperty Name="certificateExt" ColumnName="certificateExt" />
+                <ScalarProperty Name="certificatePIN" ColumnName="certificatePIN" />
+                <ScalarProperty Name="certificateName" ColumnName="certificateName" />
+                <ScalarProperty Name="passwordATV" ColumnName="passwordATV" />
+                <ScalarProperty Name="userATV" ColumnName="userATV" />
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -5,10 +5,12 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Centauro.DigitalInvoice.BusinessLogic.Auth
@@ -16,81 +18,73 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Auth
     public class Authentication
     {
         private static Authentication instance;
+        private static AuthenticationResponse authenticationResponse;
+        private static DateTime datetime;
 
         public static Authentication Instance()
         {
-            if(instance == null)
+            if (instance == null)
             {
                 instance = new Authentication();
+                authenticationResponse = new AuthenticationResponse();
+                datetime = DateTime.Now;
             }
 
             return instance;
         }
 
-        public static async Task<string> AUthenticationMH()
+        public async Task<string> AuthenticationMH_Custom()
         {
             string respuesta = string.Empty;
 
-            HttpCutomClient client = new HttpCutomClient();
-            var newObject = new
+            HttpCustomClient client = new HttpCustomClient();
+            object newObject = new
             {
-                access_token = ConfigurationManager.AppSettings[Contants.tokenEndpoint],
-                grant_type = Contants.password,
-                client_id = Contants.apiStag,
+                access_token = ConfigurationManager.AppSettings[Constants.Constants.tokenEndpoint],
+                grant_type = Constants.Constants.password,
+                client_id = Constants.Constants.apiStag,
                 client_secret = string.Empty,
                 scope = string.Empty,
-                username = ConfigurationManager.AppSettings[Contants.userATV],
-                password = ConfigurationManager.AppSettings[Contants.passwordATV]
+                username = ConfigurationManager.AppSettings[Constants.Constants.userATV],
+                password = ConfigurationManager.AppSettings[Constants.Constants.passwordATV]
             };
 
-            var x = await client.Post(newObject, Contants.tokenEndpoint);
-
-            /*HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, ConfigurationManager.AppSettings[Contants.tokenEndpoint]);
-            request.Content = new FormUrlEncodedContent(authenticationDictionary);
-            request.Method = HttpMethod.Post;
-
-            CustomDelegatingHandler customHandler = new CustomDelegatingHandler();
-            HttpClient client = HttpClientFactory.Create(customHandler);
-
-            var rest = client.PostAsJsonAsync(ConfigurationManager.AppSettings["mhEndpointRecepcion"].ToString(), request);
-
-            if(rest != null)
-            {
-                respuesta = await rest.Result.Content.ReadAsStringAsync();
-            }*/
-
-            return respuesta;
+            return await client.Post(newObject, Constants.Constants.tokenEndpoint);
         }
 
-        public static async Task<AuthenticationResponse> AUthenticationMH_1()
+        public async Task<AuthenticationResponse> AuthenticationMH()
         {
+            HttpCustomClient client;
             string respuesta = string.Empty;
-            HttpResponseMessage responseMessage;
 
-            using (HttpClient client = new HttpClient())
+            if(authenticationResponse.expires_in == 0 || DateTime.Now > datetime.AddSeconds(authenticationResponse.expires_in))
             {
-                Dictionary<string, string> authenticationDictionary = new Dictionary<string, string>
+                #region Gets tokenObject
+                try
                 {
-                    {Contants.access_token, ConfigurationManager.AppSettings[Contants.tokenEndpoint]},
-                    {Contants.grant_type, Contants.password},
-                    {Contants.client_id, Contants.apiStag},
-                    {Contants.client_secret, string.Empty},
-                    {Contants.scope, string.Empty},
-                    {Contants.username, ConfigurationManager.AppSettings[Contants.userATV]},
-                    {Contants.password, ConfigurationManager.AppSettings[Contants.passwordATV]}
-                };
+                    client = new HttpCustomClient();
+                    Dictionary<string, string> authenticationDictionary = new Dictionary<string, string>
+                    {
+                        {Constants.Constants.access_token, ConfigurationManager.AppSettings[Constants.Constants.tokenEndpoint]},
+                        {Constants.Constants.grant_type, Constants.Constants.password},
+                        {Constants.Constants.client_id, Constants.Constants.apiStag},
+                        {Constants.Constants.client_secret, string.Empty},
+                        {Constants.Constants.scope, string.Empty},
+                        {Constants.Constants.username, ConfigurationManager.AppSettings[Constants.Constants.userATV]},
+                        {Constants.Constants.password, ConfigurationManager.AppSettings[Constants.Constants.passwordATV]}
+                    };
 
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, ConfigurationManager.AppSettings[Contants.tokenEndpoint]);
-                request.Content = new FormUrlEncodedContent(authenticationDictionary);
-
-                responseMessage = await client.SendAsync(request);
-                respuesta = await responseMessage.Content.ReadAsStringAsync();
-
-                return JsonConvert.DeserializeObject<AuthenticationResponse>(respuesta);
-
+                    respuesta = await client.SendRequest(authenticationDictionary, Constants.Constants.tokenEndpoint);
+                    authenticationResponse = JsonConvert.DeserializeObject<AuthenticationResponse>(respuesta);
+                }
+                catch (Exception ex)
+                {
+                    ex.Message.ToString();
+                }
+                #endregion
             }
 
-
+            return authenticationResponse;
         }
 
 

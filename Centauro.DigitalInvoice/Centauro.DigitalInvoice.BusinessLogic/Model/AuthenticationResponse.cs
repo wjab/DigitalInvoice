@@ -9,6 +9,13 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Model
 {
     public class AuthenticationResponse
     {
+        public AuthenticationResponse()
+        {
+            expires_in = 0;
+            refresh_expires_in = 0;
+            not_before_policy = 0;
+        }
+
         public string access_token { get; set; }
         public int expires_in { get; set; }
         public int refresh_expires_in { get; set; }

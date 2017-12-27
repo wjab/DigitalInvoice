@@ -34,9 +34,29 @@ namespace Centauro.DigitalInvoice.BusinessLogic
                             xsd = @"C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\XSD\Acepta_Rechaza_DocumentoXML.xsd";
                         }
                         break;
+                    case xsdDocument.FacturaElectronica:
+                        {
+                            xsd = @"C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\XSD\FacturaElectronicaXML.xsd";
+                        }
+                        break;
+                    case xsdDocument.ResumenPeriodoCompras:
+                        {
+                            xsd = @"C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\XSD\ResumenPeriodoCompras.xsd";
+                        }
+                        break;
+                    case xsdDocument.ResumenPeriodoComprasVentas:
+                        {
+                            xsd = @"C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\XSD\ResumenPeriodoComprasVentas.xsd";
+                        }
+                        break;
+                    case xsdDocument.ResumenPeriodoVentas:
+                        {
+                            xsd = @"C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\XSD\ResumenPeriodoVentas.xsd";
+                        }
+                        break;                    
                     default:
                         {
-
+                            xsd = string.Empty;
                         }break;
                 }
 
