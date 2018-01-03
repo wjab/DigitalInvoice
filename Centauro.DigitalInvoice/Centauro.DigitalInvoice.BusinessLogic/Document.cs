@@ -317,8 +317,7 @@ namespace Centauro.DigitalInvoice.BusinessLogic
                                     }
                                 }
                 };
-
-                byte[] a = _pdfConverter.Convert(htmlDocToPdf);
+                
                 #endregion
 
                 try
@@ -397,7 +396,7 @@ namespace Centauro.DigitalInvoice.BusinessLogic
                             }
                             
                             InvoiceResponse.xmlInvoice = Convert.ToBase64String(Encoding.UTF8.GetBytes(xmlDocInvoice.OuterXml));
-                            InvoiceResponse.pdfInvoice = Convert.ToBase64String(Encoding.UTF8.GetBytes(xmlDocInvoice.OuterXml));
+                            InvoiceResponse.pdfInvoice = Convert.ToBase64String(pdfConverter.Convert(htmlDocToPdf));
                         }            
                         else
                         {
@@ -475,10 +474,13 @@ namespace Centauro.DigitalInvoice.BusinessLogic
             return callBackResponse;
         }
 
-        private static readonly IConverter _pdfConverter =
-                new ThreadSafeConverter(
-                    new RemotingToolset<PdfToolset>(
-                        new Win64EmbeddedDeployment(
-                            new TempFolderDeployment())));
+        #region HTML to PDF Converter
+        static IConverter pdfConverter =
+            new ThreadSafeConverter(
+                new RemotingToolset<PdfToolset>(
+                    new Win32EmbeddedDeployment(new TempFolderDeployment())
+                )
+            );
+        #endregion
     }
 }

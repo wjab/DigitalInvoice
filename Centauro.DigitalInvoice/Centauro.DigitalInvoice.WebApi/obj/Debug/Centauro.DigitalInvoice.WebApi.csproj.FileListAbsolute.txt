@@ -55,3 +55,4 @@ C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.WebApi\
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.WebApi\obj\Debug\Centauro.DigitalInvoice.WebApi.pdb
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.WebApi\bin\TuesPechkin.dll
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.WebApi\bin\Gma.QrCodeNet.Encoding.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.WebApi\bin\TuesPechkin.Wkhtmltox.Win32.dll

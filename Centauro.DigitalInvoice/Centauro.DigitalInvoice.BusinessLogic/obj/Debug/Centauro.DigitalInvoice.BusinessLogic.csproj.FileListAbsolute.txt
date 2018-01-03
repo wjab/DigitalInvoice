@@ -23,3 +23,5 @@ C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Busines
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\obj\Debug\Centauro.DigitalInvoice.BusinessLogic.pdb
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\TuesPechkin.dll
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\Gma.QrCodeNet.Encoding.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\TuesPechkin.Wkhtmltox.Win64.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\TuesPechkin.Wkhtmltox.Win32.dll
