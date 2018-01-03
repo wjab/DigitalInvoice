@@ -23,5 +23,9 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Interface
         List<GeneralObject> GetIdentificationType();
 
         List<GeneralResponseObject> GetMeasureUnit();
+
+        List<GeneralObject> GetTaxes();
+
+        List<GeneralObject> GetExonerationTypes();
     }
 }

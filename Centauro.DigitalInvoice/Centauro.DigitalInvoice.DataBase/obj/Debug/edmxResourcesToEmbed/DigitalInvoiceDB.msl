@@ -87,5 +87,27 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CallBackReceived">
+      <EntityTypeMapping TypeName="DigitalInvoiceModel.CallBackReceived">
+        <MappingFragment StoreEntitySet="CallBackReceived">
+          <ScalarProperty Name="fechaCallBack" ColumnName="fechaCallBack" />
+          <ScalarProperty Name="respuestaXml" ColumnName="respuestaXml" />
+          <ScalarProperty Name="callBackUrl" ColumnName="callBackUrl" />
+          <ScalarProperty Name="indEstado" ColumnName="indEstado" />
+          <ScalarProperty Name="clave" ColumnName="clave" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="IdCallBack" ColumnName="IdCallBack" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogRequest">
+      <EntityTypeMapping TypeName="DigitalInvoiceModel.LogRequest">
+        <MappingFragment StoreEntitySet="LogRequest">
+          <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+          <ScalarProperty Name="Request" ColumnName="Request" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

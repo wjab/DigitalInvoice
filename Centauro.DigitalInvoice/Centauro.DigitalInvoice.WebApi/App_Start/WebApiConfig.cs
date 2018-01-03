@@ -1,4 +1,5 @@
-﻿using Centauro.DigitalInvoice.BusinessLogic.Constants;
+﻿using Centauro.DigitalInvoice.BusinessLogic;
+using Centauro.DigitalInvoice.BusinessLogic.Constants;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -28,6 +29,7 @@ namespace Centauro.DigitalInvoice.WebApi
             var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
             config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
 
+            //DataValidator.Instance();
         }
     }
 }

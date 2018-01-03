@@ -54,6 +54,9 @@
     <Compile Include="Account.cs">
       <DependentUpon>DigitalInvoiceDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="CallBackReceived.cs">
+      <DependentUpon>DigitalInvoiceDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="CodeProductService.cs">
       <DependentUpon>DigitalInvoiceDB.tt</DependentUpon>
     </Compile>
@@ -79,6 +82,9 @@
       <DependentUpon>DigitalInvoiceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Location.cs">
+      <DependentUpon>DigitalInvoiceDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogRequest.cs">
       <DependentUpon>DigitalInvoiceDB.tt</DependentUpon>
     </Compile>
     <Compile Include="MeasureUnit.cs">

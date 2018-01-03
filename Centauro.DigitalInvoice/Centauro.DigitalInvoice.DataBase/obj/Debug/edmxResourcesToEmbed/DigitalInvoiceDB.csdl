@@ -10,6 +10,8 @@
     <EntitySet Name="MeasureUnit" EntityType="DigitalInvoiceModel.MeasureUnit" />
     <EntitySet Name="Taxes" EntityType="DigitalInvoiceModel.Taxes" />
     <EntitySet Name="Account" EntityType="DigitalInvoiceModel.Account" />
+    <EntitySet Name="CallBackReceived" EntityType="DigitalInvoiceModel.CallBackReceived" />
+    <EntitySet Name="LogRequest" EntityType="DigitalInvoiceModel.LogRequest" />
   </EntityContainer>
   <EntityType Name="CodeProductService">
     <Key>
@@ -92,5 +94,25 @@
     <Property Name="certificateExt" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
     <Property Name="certificate" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="enabled" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CallBackReceived">
+    <Key>
+      <PropertyRef Name="IdCallBack" />
+    </Key>
+    <Property Name="IdCallBack" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="clave" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="indEstado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="callBackUrl" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="respuestaXml" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="fechaCallBack" Type="DateTime" Nullable="false" Precision="7" />
+  </EntityType>
+  <EntityType Name="LogRequest">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+    <Property Name="Request" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="LogDate" Type="DateTime" Nullable="false" Precision="7" />
   </EntityType>
 </Schema>

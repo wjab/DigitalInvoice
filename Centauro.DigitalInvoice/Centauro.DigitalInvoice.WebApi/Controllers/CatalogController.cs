@@ -139,6 +139,44 @@ namespace Centauro.DigitalInvoice.WebApi.Controllers
             return Ok(JObject.Parse(JsonConvert.SerializeObject(response)));
         }
 
+        [HttpGet]
+        public IHttpActionResult GetTaxes()
+        {
+            response = new GenericResponse();
+            catalogInterface = new Catalogs();
+
+            try
+            {
+                response.results = catalogInterface.GetTaxes();
+                response.status = HttpStatusCode.OK;
+            }
+            catch (Exception ex)
+            {
+                Utils.SetExceptionToResponse(ref response, ex);
+            }
+
+            return Ok(JObject.Parse(JsonConvert.SerializeObject(response)));
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetExonerationType()
+        {
+            response = new GenericResponse();
+            catalogInterface = new Catalogs();
+
+            try
+            {
+                response.results = catalogInterface.GetExonerationTypes();
+                response.status = HttpStatusCode.OK;
+            }
+            catch (Exception ex)
+            {
+                Utils.SetExceptionToResponse(ref response, ex);
+            }
+
+            return Ok(JObject.Parse(JsonConvert.SerializeObject(response)));
+        }
+
 
         [HttpGet]
         public IHttpActionResult GetMeasureUnit()

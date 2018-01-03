@@ -45,8 +45,7 @@ namespace Centauro.DigitalInvoice.Api.Controllers
 
             //response = new GenericResponse();
             string myString = "esta es mi respuesta";
-
-            DataValidator validator = new DataValidator();
+            
             //response.errorList = validator.ValidateXML(xml);
 
 

@@ -14,7 +14,16 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Utilities.Xml
 
         public static XmlElement CreateNodeIn(XmlDocument document, string nodeName, string nameSpace, XmlElement rootNode)
         {
-            var result = document.CreateElement(nodeName, nameSpace);
+            XmlElement result;
+            if (nameSpace.Equals(string.Empty))
+            {
+                result = document.CreateElement(nodeName);
+            }
+            else
+            {
+                result = document.CreateElement(nodeName, nameSpace);
+            }
+            
             rootNode.AppendChild(result);
             return result;
         }

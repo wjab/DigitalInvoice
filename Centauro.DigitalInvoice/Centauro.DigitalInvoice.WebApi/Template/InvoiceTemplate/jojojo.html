@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Factura</title>
+    <link rel="stylesheet" href="style.css" media="all" />
+  </head>
+  <body>
+    <header class="clearfix">
+      <div id="logo">
+        <img src="logo.png">
+      </div>
+      <div id="company">
+        <h2 class="name">Stuard's Business</h2><!--Emisor Name-->
+        <div>Sierra Morena</div><!--Emisor Address-->
+        <div></div><!--Emisor Phone-->
+        <div><a href="mailto:sgcg5@hotmail.com">sgcg5@hotmail.com</a></div> <!--Emisor email-->
+      </div>	  
+      </div>
+    </header>
+    <main>
+		<div id="qr">
+			<img src="qr.jpg">
+		</div>
+	  <div id="invoice">		
+		<div class="date">Fecha de factura: 2018-01-02T15:35:09.383Z</div> <!-- Fecha factura -->
+        <div class="invoiceId">577009657894615989853539486278743794842289152742023879429107438593719189489660397023349665382623893594495120930629496880</div> <!-- Numero factura -->
+       </div>
+      <div id="details" class="clearfix">
+        <div id="client">
+          <div class="to">Factura para:</div>
+          <h2 class="name">Stuard Carrillo Gonzalez</h2> <!--Receptor Name-->
+          <div class="address">Sierra Morena</div> <!--Receptor Address-->
+          <div class="email"><a href="mailto:sgcg5@hotmail.com">sgcg5@hotmail.com</a></div> <!--Receptor email-->
+        </div>        
+      </div>
+      <table border="0" cellspacing="0" cellpadding="0">
+        <thead>
+          <tr>
+            <th class="no">C&oacutedigo</th>
+            <th class="desc">Descripci&oacuten</th>
+            <th class="unit">Precio unitario</th>
+            <th class="qty">Cantidad</th>
+            <th class="total">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+			<td id="item">DE-1288</td> 
+			<td class="desc">Medicinas contra la tos</td> 
+			<td class="unit">123</td> 
+			<td class="qty">123</td> 
+			<td id="item">15129</td>
+		  </tr> 
+		  <tr>
+			<td id="item">DE-1288</td> 
+			<td class="desc">Medicinas contra la tos</td> 
+			<td class="unit">123</td> 
+			<td class="qty">123</td> 
+			<td id="item">15129</td>
+		  </tr><!--Lineas detalle-->
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Total servicios grabados</td>
+            <td>15129</td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Total servicios exentos</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Total mercanc&iacuteas grabadas</td>
+            <td>0</td>
+          </tr>
+		  <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Total mercanc&iacuteas exentas</td>
+            <td>0</td>
+          </tr>
+		  <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Total grabado</td>
+            <td>15129</td>
+          </tr>
+		  <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Total exento</td>
+            <td>0</td>
+          </tr>
+		  <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Total venta</td>
+            <td>15129</td>
+          </tr>
+		  <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Total descuento</td>
+            <td>123</td>
+          </tr>
+		  <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Total impuesto</td>
+            <td>15006</td>
+          </tr>
+		  <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Total comprobante</td>
+            <td>1950</td>
+          </tr>
+        </tfoot>
+      </table>
+      <div id="notices">
+        <div>Notas:</div>
+        <div class="nota1"></div>
+		<div class="nota2"></div>
+      </div>
+    </main>
+    <footer>
+    </footer>
+  </body>
+</html>

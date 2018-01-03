@@ -1,4 +1,3 @@
-C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.WebApi\obj\Debug\Centauro.DigitalInvoice.WebApi.csprojResolveAssemblyReference.cache
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.WebApi\bin\ApplicationInsights.config
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.WebApi\bin\roslyn\csc.exe
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.WebApi\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -51,5 +50,8 @@ C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.WebApi\
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.WebApi\bin\es\System.Net.Http.Formatting.resources.dll
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.WebApi\bin\es\System.Web.Http.resources.dll
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.WebApi\bin\es\System.Web.Http.WebHost.resources.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.WebApi\obj\Debug\Centauro.DigitalInvoice.WebApi.csprojResolveAssemblyReference.cache
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.WebApi\obj\Debug\Centauro.DigitalInvoice.WebApi.dll
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.WebApi\obj\Debug\Centauro.DigitalInvoice.WebApi.pdb
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.WebApi\bin\TuesPechkin.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.WebApi\bin\Gma.QrCodeNet.Encoding.dll

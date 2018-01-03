@@ -8,7 +8,7 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Model
 {
     public class ValidationError : IError
     {
-        public string Error { get; set; }
+        public string errorMessage { get; set; }
     }
     
 }

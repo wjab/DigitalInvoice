@@ -18,6 +18,18 @@
           <Property Name="certificate" Type="varchar(max)" Nullable="false" />
           <Property Name="enabled" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="CallBackReceived">
+          <Key>
+            <PropertyRef Name="IdCallBack" />
+          </Key>
+          <Property Name="IdCallBack" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="fecha" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="clave" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="indEstado" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="callBackUrl" Type="varchar" MaxLength="250" />
+          <Property Name="respuestaXml" Type="varchar(max)" Nullable="false" />
+          <Property Name="fechaCallBack" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
         <EntityType Name="CodeProductService">
           <Key>
             <PropertyRef Name="CodeId" />
@@ -60,6 +72,14 @@ advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no ti
           <Property Name="Canton" Type="varchar" MaxLength="150" />
           <Property Name="Distrito" Type="varchar" MaxLength="150" />
         </EntityType>
+        <EntityType Name="LogRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="Request" Type="varchar(max)" Nullable="false" />
+          <Property Name="LogDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
         <EntityType Name="MeasureUnit">
           <Key>
             <PropertyRef Name="IdMeasureUnit" />
@@ -91,9 +111,11 @@ advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no ti
         </EntityType>
         <EntityContainer Name="DigitalInvoiceModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CallBackReceived" EntityType="Self.CallBackReceived" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CodeProductService" EntityType="Self.CodeProductService" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentTypeAuthExon" EntityType="Self.DocumentTypeAuthExon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogRequest" EntityType="Self.LogRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MeasureUnit" EntityType="Self.MeasureUnit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethods" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SaleCondition" EntityType="Self.SaleCondition" Schema="dbo" store:Type="Tables" />
@@ -119,6 +141,8 @@ advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no ti
           <EntitySet Name="MeasureUnit" EntityType="DigitalInvoiceModel.MeasureUnit" />
           <EntitySet Name="Taxes" EntityType="DigitalInvoiceModel.Taxes" />
           <EntitySet Name="Account" EntityType="DigitalInvoiceModel.Account" />
+          <EntitySet Name="CallBackReceived" EntityType="DigitalInvoiceModel.CallBackReceived" />
+          <EntitySet Name="LogRequest" EntityType="DigitalInvoiceModel.LogRequest" />
         </EntityContainer>
         <EntityType Name="CodeProductService">
           <Key>
@@ -201,6 +225,26 @@ advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no ti
           <Property Name="certificateExt" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="certificate" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="enabled" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CallBackReceived">
+          <Key>
+            <PropertyRef Name="IdCallBack" />
+          </Key>
+          <Property Name="IdCallBack" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="clave" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="indEstado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="callBackUrl" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="respuestaXml" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="fechaCallBack" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="LogRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="Request" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LogDate" Type="DateTime" Nullable="false" Precision="7" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -291,6 +335,28 @@ advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no ti
                 <ScalarProperty Name="passwordATV" ColumnName="passwordATV" />
                 <ScalarProperty Name="userATV" ColumnName="userATV" />
                 <ScalarProperty Name="accountId" ColumnName="accountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CallBackReceived">
+            <EntityTypeMapping TypeName="DigitalInvoiceModel.CallBackReceived">
+              <MappingFragment StoreEntitySet="CallBackReceived">
+                <ScalarProperty Name="fechaCallBack" ColumnName="fechaCallBack" />
+                <ScalarProperty Name="respuestaXml" ColumnName="respuestaXml" />
+                <ScalarProperty Name="callBackUrl" ColumnName="callBackUrl" />
+                <ScalarProperty Name="indEstado" ColumnName="indEstado" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="IdCallBack" ColumnName="IdCallBack" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogRequest">
+            <EntityTypeMapping TypeName="DigitalInvoiceModel.LogRequest">
+              <MappingFragment StoreEntitySet="LogRequest">
+                <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+                <ScalarProperty Name="Request" ColumnName="Request" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

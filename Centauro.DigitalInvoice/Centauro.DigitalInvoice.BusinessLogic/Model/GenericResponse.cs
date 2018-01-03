@@ -9,6 +9,11 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Model
 {
     public class GenericResponse
     {
+        public GenericResponse()
+        {
+            errorList = new List<IError>();
+        }
+
         public HttpStatusCode status { get; set; }
         public object input { get; set; }
         public string message { get; set; }

@@ -8,6 +8,6 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Model
 {
     public interface IError
     {
-        string Error { get; set; }
+        string errorMessage { get; set; }
     }
 }

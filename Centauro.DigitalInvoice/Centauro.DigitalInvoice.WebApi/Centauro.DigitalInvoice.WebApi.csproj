@@ -126,6 +126,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Template\InvoiceTemplate\InvoiceTemplate.html" />
+    <Content Include="Template\InvoiceTemplate\logo.png" />
+    <Content Include="Template\InvoiceTemplate\style.css" />
+    <Content Include="Template\SignTemplate.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -150,11 +154,30 @@
       <SubType>Designer</SubType>
     </Content>
     <None Include="Properties\PublishProfiles\DigitalInvoice.pubxml" />
+    <Content Include="Template\InvoiceTemplate\SourceSansPro-Regular.ttf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="XSD\Acepta_Rechaza_DocumentoXML.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XSD\FacturaElectronicaXML.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XSD\ResumenPeriodoCompras.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XSD\ResumenPeriodoComprasVentas.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XSD\ResumenPeriodoVentas.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XSD\sample.xsd">
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>

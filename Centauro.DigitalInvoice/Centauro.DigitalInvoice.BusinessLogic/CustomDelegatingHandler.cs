@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -25,10 +26,16 @@ namespace Centauro.DigitalInvoice.BusinessLogic
                 request.Headers.Authorization = new AuthenticationHeaderValue(Constants.Constants.auth_header_bearer, authenticationResponse.access_token);
                 
                 response = await base.SendAsync(request, cancellationToken);
+
+                if(response.StatusCode == HttpStatusCode.Forbidden || response.StatusCode == HttpStatusCode.NotFound || response.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    throw new Exception(response.StatusCode.ToString());
+                }
             }
             catch(Exception ex)
             {
                 ex.Message.ToString();
+                throw ex;
             }
 
             return response;
@@ -51,8 +58,8 @@ namespace Centauro.DigitalInvoice.BusinessLogic
                 StringBuilder stringBuilder = UriParametresBuilder(requestObject, functionToCall);
 
 
-                response = await client.GetAsync(string.Format(Constants.Constants.RequestApiFormat,
-                                                        ConfigurationManager.AppSettings["mhEndpointRecepcion"].ToString(),
+                response = await client.GetAsync(string.Format(Constants.Constants.RequestApiFormat_2,
+                                                        ConfigurationManager.AppSettings[Constants.Constants.mhEndpoint].ToString(),
                                                         stringBuilder.ToString()));
 
                 if(response != null)
@@ -63,6 +70,35 @@ namespace Centauro.DigitalInvoice.BusinessLogic
             catch(Exception ex)
             {
                 responseString = ex.Message.ToString();
+            }
+
+            return responseString;
+        }
+
+        public async Task<string> Get(string parameter, string functionToCall)
+        {
+            HttpResponseMessage response;
+            string responseString = string.Empty;
+
+            try
+            {
+                customHandler = new CustomDelegatingHandler();
+                HttpClient client = HttpClientFactory.Create(customHandler);
+
+                response = await client.GetAsync(string.Format(Constants.Constants.RequestApiFormat_3,
+                                                        ConfigurationManager.AppSettings[Constants.Constants.mhEndpoint].ToString(),
+                                                        ConfigurationManager.AppSettings[functionToCall],
+                                                        parameter));
+
+                if (response != null)
+                {
+                    responseString = await response.Content.ReadAsStringAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                responseString = ex.Message.ToString();
+                throw ex;
             }
 
             return responseString;
@@ -90,6 +126,7 @@ namespace Centauro.DigitalInvoice.BusinessLogic
             catch(Exception ex)
             {
                 responseString = ex.Message.ToString();
+                throw ex;
             }
 
             return responseString;
@@ -107,7 +144,7 @@ namespace Centauro.DigitalInvoice.BusinessLogic
                 HttpClient client = HttpClientFactory.Create(customHandler);
                 StringBuilder stringBuilder = new StringBuilder(ConfigurationManager.AppSettings[functionToCall].ToString());
 
-                response = await client.PutAsJsonAsync(ConfigurationManager.AppSettings["mhEndpointRecepcion"].ToString(), request);
+                response = await client.PutAsJsonAsync(ConfigurationManager.AppSettings[Constants.Constants.mhEndpoint].ToString(), request);
 
                 if (response != null)
                 {
@@ -117,6 +154,7 @@ namespace Centauro.DigitalInvoice.BusinessLogic
             catch (Exception ex)
             {
                 responseString = ex.Message.ToString();
+                throw ex;
             }
 
             return responseString;
@@ -133,8 +171,8 @@ namespace Centauro.DigitalInvoice.BusinessLogic
                 HttpClient client = HttpClientFactory.Create(customHandler);
                 StringBuilder stringBuilder = UriParametresBuilder(requestObject, functionToCall);
 
-                response = await client.DeleteAsync(string.Format(Constants.Constants.RequestApiFormat,
-                                                        ConfigurationManager.AppSettings["mhEndpointRecepcion"].ToString(),
+                response = await client.DeleteAsync(string.Format(Constants.Constants.RequestApiFormat_2,
+                                                        ConfigurationManager.AppSettings[Constants.Constants.mhEndpoint].ToString(),
                                                         stringBuilder.ToString()));
                 if (response != null)
                 {
@@ -144,6 +182,7 @@ namespace Centauro.DigitalInvoice.BusinessLogic
             catch (Exception ex)
             {
                 responseString = ex.Message.ToString();
+                throw ex;
             }
             return responseString;
         }
@@ -172,6 +211,7 @@ namespace Centauro.DigitalInvoice.BusinessLogic
             catch (Exception ex)
             {
                 responseString = ex.Message.ToString();
+                throw ex;
             }
 
             return responseString;

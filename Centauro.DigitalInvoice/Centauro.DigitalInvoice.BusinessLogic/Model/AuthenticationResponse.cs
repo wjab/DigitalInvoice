@@ -26,5 +26,10 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Model
         [Column("not-before-policy")]
         public int not_before_policy { get; set; }
         public string session_state { get; set; }
+        
+        /// <summary>
+        /// Custom property to manage the currentDateTime
+        /// </summary>
+        public DateTime currentDateTime { get; set; }
     }
 }

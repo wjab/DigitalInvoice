@@ -7,3 +7,4 @@ C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.DataBas
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.DataBase\bin\Debug\EntityFramework.SqlServer.xml
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.DataBase\obj\Debug\Centauro.DigitalInvoice.DataBase.dll
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.DataBase\obj\Debug\Centauro.DigitalInvoice.DataBase.pdb
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.DataBase\obj\Debug\Centauro.DigitalInvoice.DataBase.csprojResolveAssemblyReference.cache

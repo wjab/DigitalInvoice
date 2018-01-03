@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Factura</title>
+    <link rel="stylesheet" href="style.css" media="all" />
+  </head>
+  <body>
+    <header class="clearfix">
+      <div id="logo">
+        <img src="logo.png">
+      </div>
+      <div id="company">
+        <h2 class="name">{0}</h2><!--Emisor Name-->
+        <div>{1}</div><!--Emisor Address-->
+        <div>{2}</div><!--Emisor Phone-->
+        <div><a href="mailto:{3}">{3}</a></div> <!--Emisor email-->
+      </div>
+      </div>
+    </header>
+    <main>
+	<div id="invoice">
+		<div class="date">Fecha de factura: {8}</div> <!-- Fecha factura -->
+		<div class="invoiceId">{7}</div> <!-- Numero factura -->
+	  
+	</div>
+      <div id="details" class="clearfix">
+        <div id="client">
+          <div class="to">Factura para:</div>
+          <h2 class="name">{4}</h2> <!--Receptor Name-->
+          <div class="address">{5}</div> <!--Receptor Address-->
+          <div class="email"><a href="mailto:{6}">{6}</a></div> <!--Receptor email-->
+        </div>        
+      </div>
+      <table border="0" cellspacing="0" cellpadding="0">
+        <thead>
+          <tr>
+            <th class="no">C&oacutedigo</th>
+            <th class="desc">Descripci&oacuten</th>
+            <th class="unit">Precio unitario</th>
+            <th class="qty">Cantidad</th>
+            <th class="total">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>{11}</tr> <!--Lineas detalle-->
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Total servicios grabados</td>
+            <td>{12}</td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Total servicios exentos</td>
+            <td>{13}</td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Total mercanc&iacuteas grabadas</td>
+            <td>{14}</td>
+          </tr>
+		  <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Total mercanc&iacuteas exentas</td>
+            <td>{15}</td>
+          </tr>
+		  <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Total grabado</td>
+            <td>{16}</td>
+          </tr>
+		  <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Total exento</td>
+            <td>{17}</td>
+          </tr>
+		  <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Total venta</td>
+            <td>{18}</td>
+          </tr>
+		  <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Total descuento</td>
+            <td>{19}</td>
+          </tr>
+		  <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Total impuesto</td>
+            <td>{20}</td>
+          </tr>
+		  <tr>
+            <td colspan="2"></td>
+            <td colspan="2">Total comprobante</td>
+            <td>{21}</td>
+          </tr>
+        </tfoot>
+      </table>
+      <div id="notices">
+        <div>Notas:</div>
+        <div class="nota1">{9}</div>
+		<div class="nota2">{10}</div>
+      </div>
+    </main>
+    <footer>
+    </footer>
+  </body>
+</html>

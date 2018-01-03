@@ -93,18 +93,17 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Xades.Operations
         private static void AddCertDigestNode(XmlDocument document, XmlElement certNode, XmlDsigSignParameters parameters)
         {
             var certDigestNode = XmlHelper.CreateNodeIn(document, "CertDigest", XadesNamespaceUrl, certNode);
-            XmlHelper.CreateNodeWithTextIn(document, "DigestMethod", SignedXml.XmlDsigSHA1Url, SignedXml.XmlDsigNamespaceUrl, certDigestNode);
+            XmlHelper.CreateNodeIn(document, "DigestMethod", SignedXml.XmlDsigSHA1Url, certDigestNode);
+
             var certificateData = parameters.SignatureCertificate.RawData;
             var digestValue = CryptoHelper.GetBase64SHA256(certificateData);
-            XmlHelper.CreateNodeWithTextIn(document, "DigestValue", digestValue, SignedXml.XmlDsigNamespaceUrl, certDigestNode);
+            XmlHelper.CreateNodeWithTextIn(document, "DigestValue", digestValue, string.Empty, certDigestNode);
         }
         private static void AddIssuerSerialNode(XmlDocument document, XmlElement certNode, XmlDsigSignParameters parameters)
         {
             var issuerSerialNode = XmlHelper.CreateNodeIn(document, "IssuerSerial", XadesNamespaceUrl, certNode);
-            XmlHelper.CreateNodeWithTextIn(document, "X509IssuerName", parameters.SignatureCertificate.Issuer,
-                                           SignedXml.XmlDsigNamespaceUrl, issuerSerialNode);
-            XmlHelper.CreateNodeWithTextIn(document, "X509SerialNumber", parameters.SignatureCertificate.SerialNumber,
-                                           SignedXml.XmlDsigNamespaceUrl, issuerSerialNode);
+            XmlHelper.CreateNodeWithTextIn(document, "X509IssuerName", parameters.SignatureCertificate.Issuer, string.Empty, issuerSerialNode);
+            XmlHelper.CreateNodeWithTextIn(document, "X509SerialNumber", parameters.SignatureCertificate.SerialNumber, string.Empty, issuerSerialNode);
         }
 
         private static XmlElement AddUnsignedPropertiesNode(XmlDocument document, XmlElement qualifyingPropertiesNode)
@@ -121,7 +120,7 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Xades.Operations
             return new XmlDsigSignParameters
             {
                 IncludeCertificateInSignature = xadesSignParameters.IncludeCertificateInSignature,
-                IncludeTimestamp = true,
+                IncludeTimestamp = false,
                 InputPath = xadesSignParameters.InputPath,
                 InputXml = xadesSignParameters.InputXml,
                 OutputPath = xadesSignParameters.OutputPath,

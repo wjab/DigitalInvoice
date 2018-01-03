@@ -28,7 +28,7 @@ namespace Centauro.DigitalInvoice.WebApi.Controllers
         {
             string a = "jojojoj";
 
-            SendDocument sendDocument = new SendDocument();
+            Document sendDocument = new Document();
             AceptaRechazaDocumento aceptaDocumento = new AceptaRechazaDocumento()
             {
                 NombreEmisor = "Centauro Solutions",
@@ -57,12 +57,11 @@ namespace Centauro.DigitalInvoice.WebApi.Controllers
         public async Task<IHttpActionResult> ValidateXSD()
         {
             response = new GenericResponse();
-            DataValidator validator = new DataValidator();
 
             try
             {
                 string xml = Constants.XMLTest;                
-                response.errorList = validator.ValidateXML(xml, xsdDocument.Sample);
+                response.errorList = DataValidator.Instance().ValidateXML(xml, xsdDocument.Sample);
 
                 response.results = await Authentication.Instance().AuthenticationMH();
             }

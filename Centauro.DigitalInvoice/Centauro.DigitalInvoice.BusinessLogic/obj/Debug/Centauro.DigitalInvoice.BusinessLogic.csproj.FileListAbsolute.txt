@@ -3,7 +3,6 @@ C:\Users\Administrador\documents\visual studio 2015\Projects\Centauro.DigitalInv
 C:\Users\Administrador\documents\visual studio 2015\Projects\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\obj\Debug\Centauro.DigitalInvoice.BusinessLogic.dll
 C:\Users\Administrador\documents\visual studio 2015\Projects\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\obj\Debug\Centauro.DigitalInvoice.BusinessLogic.pdb
 C:\Users\Administrador\documents\visual studio 2015\Projects\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\obj\Debug\Centauro.DigitalInvoice.BusinessLogic.csprojResolveAssemblyReference.cache
-C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\obj\Debug\Centauro.DigitalInvoice.BusinessLogic.csprojResolveAssemblyReference.cache
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\Centauro.DigitalInvoice.BusinessLogic.dll.config
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\Centauro.DigitalInvoice.BusinessLogic.dll
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\Centauro.DigitalInvoice.BusinessLogic.pdb
@@ -12,11 +11,15 @@ C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Busines
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\EntityFramework.SqlServer.dll
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\Newtonsoft.Json.dll
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\System.Net.Http.Formatting.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\System.Security.Cryptography.X509Certificates.dll
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\Centauro.DigitalInvoice.DataBase.pdb
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\EntityFramework.xml
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\EntityFramework.SqlServer.xml
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\Newtonsoft.Json.xml
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\System.Net.Http.Formatting.xml
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\es\System.Net.Http.Formatting.resources.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\obj\Debug\Centauro.DigitalInvoice.BusinessLogic.csprojResolveAssemblyReference.cache
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\obj\Debug\Centauro.DigitalInvoice.BusinessLogic.dll
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\obj\Debug\Centauro.DigitalInvoice.BusinessLogic.pdb
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\TuesPechkin.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\bin\Debug\Gma.QrCodeNet.Encoding.dll

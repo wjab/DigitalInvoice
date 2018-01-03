@@ -22,22 +22,22 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/12/2017 09:02:14</publishTime>
     </File>
     <File Include="bin/Centauro.DigitalInvoice.BusinessLogic.dll">
-      <publishTime>12/18/2017 16:54:57</publishTime>
+      <publishTime>01/03/2018 00:32:33</publishTime>
     </File>
     <File Include="bin/Centauro.DigitalInvoice.BusinessLogic.pdb">
-      <publishTime>12/18/2017 16:54:57</publishTime>
+      <publishTime>01/03/2018 00:32:33</publishTime>
     </File>
     <File Include="bin/Centauro.DigitalInvoice.DataBase.dll">
-      <publishTime>12/18/2017 16:54:57</publishTime>
+      <publishTime>01/03/2018 00:32:33</publishTime>
     </File>
     <File Include="bin/Centauro.DigitalInvoice.DataBase.pdb">
-      <publishTime>12/18/2017 16:54:56</publishTime>
+      <publishTime>01/03/2018 00:32:33</publishTime>
     </File>
     <File Include="bin/Centauro.DigitalInvoice.WebApi.dll">
-      <publishTime>12/18/2017 16:55:20</publishTime>
+      <publishTime>01/03/2018 00:32:40</publishTime>
     </File>
     <File Include="bin/Centauro.DigitalInvoice.WebApi.pdb">
-      <publishTime>12/18/2017 16:55:20</publishTime>
+      <publishTime>01/03/2018 00:32:40</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>10/23/2017 13:15:18</publishTime>
@@ -142,10 +142,28 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/12/2017 09:02:09</publishTime>
     </File>
     <File Include="Settings.config">
-      <publishTime>12/18/2017 13:50:06</publishTime>
+      <publishTime>01/02/2018 23:53:40</publishTime>
+    </File>
+    <File Include="Template/InvoiceTemplate/InvoiceTemplate.html">
+      <publishTime>01/02/2018 22:07:36</publishTime>
+    </File>
+    <File Include="Template/InvoiceTemplate/logo.png">
+      <publishTime>05/09/2014 11:14:10</publishTime>
+    </File>
+    <File Include="Template/InvoiceTemplate/SourceSansPro-Regular.ttf">
+      <publishTime>05/08/2014 09:19:50</publishTime>
+    </File>
+    <File Include="Template/InvoiceTemplate/style.css">
+      <publishTime>05/19/2014 14:08:40</publishTime>
+    </File>
+    <File Include="Template/SignTemplate.xml">
+      <publishTime>12/28/2017 09:58:59</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/18/2017 16:55:28</publishTime>
+      <publishTime>01/03/2018 00:32:49</publishTime>
+    </File>
+    <File Include="XSD/template.xml">
+      <publishTime>12/28/2017 09:58:59</publishTime>
     </File>
   </ItemGroup>
 </Project>

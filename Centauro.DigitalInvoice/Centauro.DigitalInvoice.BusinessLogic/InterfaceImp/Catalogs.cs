@@ -230,5 +230,53 @@ namespace Centauro.DigitalInvoice.BusinessLogic
             return MeasureUnitList;
         }
 
+        public List<GeneralObject> GetTaxes()
+        {
+            List<GeneralObject> taxList = new List<GeneralObject>();
+
+            try
+            {
+                using (DigitalInvoiceEntities context = new DigitalInvoiceEntities())
+                {
+                    taxList = (from t in context.Taxes
+                               select new GeneralObject()
+                               {
+                                   code = t.CodeId,
+                                   name = t.TaxName
+                               }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
+            }
+
+            return taxList;
+        }
+
+        public List<GeneralObject> GetExonerationTypes()
+        {
+            List<GeneralObject> exonerationList = new List<GeneralObject>();
+
+            try
+            {
+                using (DigitalInvoiceEntities context = new DigitalInvoiceEntities())
+                {
+                    exonerationList = (from e in context.DocumentTypeAuthExon
+                               select new GeneralObject()
+                               {
+                                   code = e.CodeId,
+                                   name = e.DocumentType
+                               }).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.Message.ToString();
+            }
+
+            return exonerationList;
+        }
+
     }
 }
