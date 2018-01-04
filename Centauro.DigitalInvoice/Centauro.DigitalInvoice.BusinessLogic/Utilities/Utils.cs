@@ -3,6 +3,7 @@ using Gma.QrCodeNet.Encoding;
 using Gma.QrCodeNet.Encoding.Windows.Render;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -81,6 +82,15 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Utilities
                 ex.Message.ToString();
                 return null;
             }
+        }
+
+        public static string BuildLinkAndQRCode(string clave)
+        {
+            return GenerateQRCode(string.Format(ConfigurationManager.AppSettings[Constants.Constants.urlS3Invoice],
+                                                clave,
+                                                string.Format(Constants.Constants.RequestApiFormat_2,
+                                                                clave,
+                                                                Constants.Constants.xmlExtension)));
         }
     }
 }

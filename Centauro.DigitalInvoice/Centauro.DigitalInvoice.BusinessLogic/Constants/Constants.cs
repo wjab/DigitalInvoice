@@ -86,6 +86,14 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Constants
         #endregion
 
 
+        #region Api-Messages
+        public const string fail_Get_account_data = "Fallo al obtener información de la cuenta";
+        public const string fail_send_electronic_invoice = "Fallo al enviar la factura electrónica";
+        public const string fail_get_document_from_hacienda = "Fallo al optener el Documento en el servidor del Ministerio de Hacienda";
+        public const string fail_communication_oauth_hacienda = "Fallo comunicación con el servidor de autenticación OAuth del Ministerio de Hacienda";
+        public const string fail_while_authenticate_against_oauth = "La autenticación con el Oauth de Hacienda falló";
+        #endregion
+
 
     }
 }

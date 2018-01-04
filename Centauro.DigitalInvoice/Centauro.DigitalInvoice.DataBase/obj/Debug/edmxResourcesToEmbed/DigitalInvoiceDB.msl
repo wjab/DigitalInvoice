@@ -33,14 +33,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="IdentificationType">
-      <EntityTypeMapping TypeName="DigitalInvoiceModel.IdentificationType">
-        <MappingFragment StoreEntitySet="IdentificationType">
-          <ScalarProperty Name="IdentificationType1" ColumnName="IdentificationType" />
-          <ScalarProperty Name="CodeId" ColumnName="CodeId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Location">
       <EntityTypeMapping TypeName="DigitalInvoiceModel.Location">
         <MappingFragment StoreEntitySet="Location">
@@ -76,6 +68,7 @@
     <EntitySetMapping Name="Account">
       <EntityTypeMapping TypeName="DigitalInvoiceModel.Account">
         <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="logoImage" ColumnName="logoImage" />
           <ScalarProperty Name="enabled" ColumnName="enabled" />
           <ScalarProperty Name="certificate" ColumnName="certificate" />
           <ScalarProperty Name="certificateExt" ColumnName="certificateExt" />
@@ -106,6 +99,31 @@
           <ScalarProperty Name="LogDate" ColumnName="LogDate" />
           <ScalarProperty Name="Request" ColumnName="Request" />
           <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IdentificationType">
+      <EntityTypeMapping TypeName="DigitalInvoiceModel.IdentificationType">
+        <MappingFragment StoreEntitySet="IdentificationType">
+          <ScalarProperty Name="IdentificationType1" ColumnName="IdentificationType" />
+          <ScalarProperty Name="CodeId" ColumnName="CodeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RequestRecord">
+      <EntityTypeMapping TypeName="DigitalInvoiceModel.RequestRecord">
+        <MappingFragment StoreEntitySet="RequestRecord">
+          <ScalarProperty Name="sentToUI" ColumnName="sentToUI" />
+          <ScalarProperty Name="callBacakDatetime" ColumnName="callBacakDatetime" />
+          <ScalarProperty Name="responseXML" ColumnName="responseXML" />
+          <ScalarProperty Name="indState" ColumnName="indState" />
+          <ScalarProperty Name="docDatetime" ColumnName="docDatetime" />
+          <ScalarProperty Name="callBackReceived" ColumnName="callBackReceived" />
+          <ScalarProperty Name="sentDatetime" ColumnName="sentDatetime" />
+          <ScalarProperty Name="requestState" ColumnName="requestState" />
+          <ScalarProperty Name="accountId" ColumnName="accountId" />
+          <ScalarProperty Name="clave" ColumnName="clave" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

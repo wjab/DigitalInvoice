@@ -135,7 +135,6 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Template\InvoiceTemplate\InvoiceTemplate.html" />
-    <Content Include="Template\InvoiceTemplate\logo.png" />
     <Content Include="Template\InvoiceTemplate\style.css" />
     <Content Include="Template\SignTemplate.xml" />
     <Content Include="Web.config">
@@ -190,7 +189,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Centauro.DigitalInvoice.BusinessLogic\Centauro.DigitalInvoice.BusinessLogic.csproj">

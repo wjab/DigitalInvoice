@@ -1,7 +1,10 @@
 ﻿using Centauro.DigitalInvoice.BusinessLogic;
+using Centauro.DigitalInvoice.BusinessLogic.Interface;
+using Centauro.DigitalInvoice.BusinessLogic.InterfaceImp;
 using Centauro.DigitalInvoice.BusinessLogic.Log;
 using Centauro.DigitalInvoice.BusinessLogic.Model;
 using Centauro.DigitalInvoice.BusinessLogic.Utilities;
+using Centauro.DigitalInvoice.DataBase;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -17,7 +20,6 @@ namespace Centauro.DigitalInvoice.WebApi.Controllers
         private GenericResponse response;
         private Dictionary<string, object> input;
         private Document actionDocument;
-        private DataValidator validator;
 
         [HttpPost]
         public async Task<IHttpActionResult> AcceptDocument([FromBody] object document)
@@ -144,11 +146,22 @@ namespace Centauro.DigitalInvoice.WebApi.Controllers
         [HttpPost]
         public IHttpActionResult DocumentCallBack([FromBody] CallBackResponse request)
         {
+            IRequestRecordLog requestRecordLog = new RequestRecordLog();
             actionDocument = new Document();
 
             try
             {
-                actionDocument.StoreCallBackResponse(request);
+                RequestRecord record = new RequestRecord()
+                {
+                    clave = request.clave,
+                    docDatetime = DateTime.Parse(request.fecha),
+                    indState = request.indEstado,
+                    responseXML = request.respuestaXml,
+                    callBacakDatetime = DateTime.Now
+                };
+
+                requestRecordLog.UpdateRequestRecord(record);
+                //actionDocument.StoreCallBackResponse(request);
             }
             catch(Exception ex)
             {

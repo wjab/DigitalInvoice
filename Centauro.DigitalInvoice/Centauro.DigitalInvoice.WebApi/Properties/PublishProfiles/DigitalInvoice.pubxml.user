@@ -22,22 +22,22 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/12/2017 09:02:14</publishTime>
     </File>
     <File Include="bin/Centauro.DigitalInvoice.BusinessLogic.dll">
-      <publishTime>01/03/2018 19:09:05</publishTime>
+      <publishTime>01/04/2018 13:52:41</publishTime>
     </File>
     <File Include="bin/Centauro.DigitalInvoice.BusinessLogic.pdb">
-      <publishTime>01/03/2018 19:09:05</publishTime>
+      <publishTime>01/04/2018 13:52:41</publishTime>
     </File>
     <File Include="bin/Centauro.DigitalInvoice.DataBase.dll">
-      <publishTime>01/03/2018 19:09:05</publishTime>
+      <publishTime>01/04/2018 13:52:41</publishTime>
     </File>
     <File Include="bin/Centauro.DigitalInvoice.DataBase.pdb">
-      <publishTime>01/03/2018 19:09:05</publishTime>
+      <publishTime>01/04/2018 13:52:41</publishTime>
     </File>
     <File Include="bin/Centauro.DigitalInvoice.WebApi.dll">
-      <publishTime>01/03/2018 19:09:14</publishTime>
+      <publishTime>01/04/2018 13:52:46</publishTime>
     </File>
     <File Include="bin/Centauro.DigitalInvoice.WebApi.pdb">
-      <publishTime>01/03/2018 19:09:14</publishTime>
+      <publishTime>01/04/2018 13:52:46</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>10/23/2017 13:15:18</publishTime>
@@ -166,13 +166,13 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>05/08/2014 09:19:50</publishTime>
     </File>
     <File Include="Template/InvoiceTemplate/style.css">
-      <publishTime>01/03/2018 19:08:35</publishTime>
+      <publishTime>01/04/2018 10:55:37</publishTime>
     </File>
     <File Include="Template/SignTemplate.xml">
       <publishTime>12/28/2017 09:58:59</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/03/2018 19:09:20</publishTime>
+      <publishTime>01/04/2018 13:52:51</publishTime>
     </File>
     <File Include="XSD/template.xml">
       <publishTime>12/28/2017 09:58:59</publishTime>

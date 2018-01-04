@@ -18,35 +18,11 @@ namespace Centauro.DigitalInvoice.WebApi.Controllers
 {
     public class AuthController : ApiController
     {
-        /*
-         * Global variables
-         */
-        private GenericResponse response;
 
         [HttpGet]
-        public async Task<IHttpActionResult> hola()
-        {
-            string a = "jojojoj";
-
-            Document sendDocument = new Document();
-            AceptaRechazaDocumento aceptaDocumento = new AceptaRechazaDocumento()
-            {
-                NombreEmisor = "Centauro Solutions",
-                NumCedulaEmisor = 1010362541,
-                FechaEmisionDoc = DateTime.Now,
-                NumConsecutivoCompr = 1,
-                TipoDoc = (int)TipoDoc.Factura,
-                Mensaje = (int)TipoMensaje.Aceptacion,
-                DetalleMensaje = "jojojo detalle mensaje",
-                NombreReceptor = "Walter Arguello",
-                NumCedulaReceptor = 206370571,
-                IdentificacionExtranjero = "206370571",
-                NumConsecutivorecep = 1
-            };
-
-            AuthenticationResponse aa = await Authentication.Instance().AuthenticationMH();
-
-            return Ok(aa.access_token);
+        public IHttpActionResult OatuBearer(string accountId)
+        {           
+            return Ok(Authentication.Instance().AuthenticationMHById(accountId));
         }         
     }
 }

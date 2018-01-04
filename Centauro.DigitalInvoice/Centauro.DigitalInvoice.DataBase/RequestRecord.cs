@@ -12,16 +12,18 @@ namespace Centauro.DigitalInvoice.DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class Account
+    public partial class RequestRecord
     {
+        public long id { get; set; }
+        public string clave { get; set; }
         public string accountId { get; set; }
-        public string userATV { get; set; }
-        public string passwordATV { get; set; }
-        public string certificateName { get; set; }
-        public int certificatePIN { get; set; }
-        public string certificateExt { get; set; }
-        public string certificate { get; set; }
-        public bool enabled { get; set; }
-        public string logoImage { get; set; }
+        public string requestState { get; set; }
+        public System.DateTime sentDatetime { get; set; }
+        public bool callBackReceived { get; set; }
+        public Nullable<System.DateTime> docDatetime { get; set; }
+        public string indState { get; set; }
+        public string responseXML { get; set; }
+        public Nullable<System.DateTime> callBacakDatetime { get; set; }
+        public bool sentToUI { get; set; }
     }
 }

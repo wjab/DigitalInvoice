@@ -45,25 +45,6 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Auth
             oAuthDataDictionary = new ConcurrentDictionary<string, AuthenticationResponse>();
         }
 
-        public async Task<string> AuthenticationMH_Custom()
-        {
-            string respuesta = string.Empty;
-
-            HttpCustomClient client = new HttpCustomClient();
-            object newObject = new
-            {
-                access_token = ConfigurationManager.AppSettings[Constants.Constants.tokenEndpoint],
-                grant_type = Constants.Constants.password,
-                client_id = Constants.Constants.apiStag,
-                client_secret = string.Empty,
-                scope = string.Empty,
-                username = ConfigurationManager.AppSettings[Constants.Constants.userATV],
-                password = ConfigurationManager.AppSettings[Constants.Constants.passwordATV]
-            };
-
-            return await client.Post(newObject, Constants.Constants.tokenEndpoint);
-        }
-
         public async Task<AuthenticationResponse> AuthenticationMH()
         {
             HttpCustomClient client;
@@ -93,7 +74,7 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Auth
                     }
                     else
                     {
-                        throw new Exception("Fallo comunicación con el servidor de autenticación OAuth del Ministerio de Hacienda");
+                        throw new Exception(Constants.Constants.fail_communication_oauth_hacienda);
                     }
                 }
                 catch (Exception ex)
@@ -113,7 +94,7 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Auth
             string valid_token = string.Empty;
             AuthenticationResponse authResponse, newAuthResponse;
             IAccount accountImp = new AccountImp();
-            Account accountInfo;
+            DataBase.Account accountInfo;
             bool resultget;
 
             try
@@ -142,7 +123,7 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Auth
                     }
                     else
                     {
-                        throw new Exception("La autenticación con el Oauth de Hacienda falló");
+                        throw new Exception(Constants.Constants.fail_while_authenticate_against_oauth);
                     }
                     
                     #endregion
@@ -167,7 +148,7 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Auth
                         }
                         else
                         {
-                            throw new Exception("La autenticación con el Oauth de Hacienda falló");
+                            throw new Exception(Constants.Constants.fail_while_authenticate_against_oauth);
                         }
                     }
                 }                
@@ -210,7 +191,7 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Auth
                     }
                     else
                     {
-                        throw new Exception("Fallo comunicación con el servidor de autenticación OAuth del Ministerio de Hacienda");
+                        throw new Exception(Constants.Constants.fail_communication_oauth_hacienda);
                     }
                 }
                 catch (Exception ex)

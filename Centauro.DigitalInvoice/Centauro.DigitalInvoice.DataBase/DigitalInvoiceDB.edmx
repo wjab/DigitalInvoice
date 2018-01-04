@@ -17,6 +17,7 @@
           <Property Name="certificateExt" Type="varchar" MaxLength="3" Nullable="false" />
           <Property Name="certificate" Type="varchar(max)" Nullable="false" />
           <Property Name="enabled" Type="bit" Nullable="false" />
+          <Property Name="logoImage" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="CallBackReceived">
           <Key>
@@ -44,12 +45,9 @@
           <Property Name="CodeId" Type="int" Nullable="false" />
           <Property Name="DocumentType" Type="varchar" MaxLength="100" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="IdentificationType">
           <Key>
             <PropertyRef Name="CodeId" />
-            <PropertyRef Name="IdentificationType" />
           </Key>
           <Property Name="CodeId" Type="int" Nullable="false" />
           <Property Name="IdentificationType" Type="varchar" MaxLength="20" Nullable="false" />
@@ -95,6 +93,23 @@ advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no ti
           <Property Name="CodeId" Type="int" Nullable="false" />
           <Property Name="PaymentMethods" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="RequestRecord">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="clave" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clave" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="accountId" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="requestState" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="sentDatetime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="callBackReceived" Type="bit" Nullable="false" />
+          <Property Name="docDatetime" Type="datetime2" Precision="7" />
+          <Property Name="indState" Type="varchar" MaxLength="50" />
+          <Property Name="responseXML" Type="varchar(max)" />
+          <Property Name="callBacakDatetime" Type="datetime2" Precision="7" />
+          <Property Name="sentToUI" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="SaleCondition">
           <Key>
             <PropertyRef Name="CodeId" />
@@ -114,18 +129,14 @@ advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no ti
           <EntitySet Name="CallBackReceived" EntityType="Self.CallBackReceived" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CodeProductService" EntityType="Self.CodeProductService" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentTypeAuthExon" EntityType="Self.DocumentTypeAuthExon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentificationType" EntityType="Self.IdentificationType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LogRequest" EntityType="Self.LogRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MeasureUnit" EntityType="Self.MeasureUnit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestRecord" EntityType="Self.RequestRecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SaleCondition" EntityType="Self.SaleCondition" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Taxes" EntityType="Self.Taxes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="IdentificationType" EntityType="Self.IdentificationType" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [IdentificationType].[CodeId] AS [CodeId], 
-    [IdentificationType].[IdentificationType] AS [IdentificationType]
-    FROM [dbo].[IdentificationType] AS [IdentificationType]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -136,13 +147,14 @@ advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no ti
           <EntitySet Name="DocumentTypeAuthExon" EntityType="DigitalInvoiceModel.DocumentTypeAuthExon" />
           <EntitySet Name="PaymentMethods" EntityType="DigitalInvoiceModel.PaymentMethods" />
           <EntitySet Name="SaleCondition" EntityType="DigitalInvoiceModel.SaleCondition" />
-          <EntitySet Name="IdentificationType" EntityType="DigitalInvoiceModel.IdentificationType" />
           <EntitySet Name="Location" EntityType="DigitalInvoiceModel.Location" />
           <EntitySet Name="MeasureUnit" EntityType="DigitalInvoiceModel.MeasureUnit" />
           <EntitySet Name="Taxes" EntityType="DigitalInvoiceModel.Taxes" />
           <EntitySet Name="Account" EntityType="DigitalInvoiceModel.Account" />
           <EntitySet Name="CallBackReceived" EntityType="DigitalInvoiceModel.CallBackReceived" />
           <EntitySet Name="LogRequest" EntityType="DigitalInvoiceModel.LogRequest" />
+          <EntitySet Name="IdentificationType" EntityType="DigitalInvoiceModel.IdentificationType" />
+          <EntitySet Name="RequestRecord" EntityType="DigitalInvoiceModel.RequestRecord" />
         </EntityContainer>
         <EntityType Name="CodeProductService">
           <Key>
@@ -171,14 +183,6 @@ advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no ti
           </Key>
           <Property Name="CodeId" Type="Int32" Nullable="false" />
           <Property Name="SaleCondition1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="IdentificationType">
-          <Key>
-            <PropertyRef Name="CodeId" />
-            <PropertyRef Name="IdentificationType1" />
-          </Key>
-          <Property Name="CodeId" Type="Int32" Nullable="false" />
-          <Property Name="IdentificationType1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -225,6 +229,7 @@ advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no ti
           <Property Name="certificateExt" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="certificate" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="enabled" Type="Boolean" Nullable="false" />
+          <Property Name="logoImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="CallBackReceived">
           <Key>
@@ -245,6 +250,30 @@ advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no ti
           <Property Name="Id" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
           <Property Name="Request" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="LogDate" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="IdentificationType">
+          <Key>
+            <PropertyRef Name="CodeId" />
+          </Key>
+          <Property Name="CodeId" Type="Int32" Nullable="false" />
+          <Property Name="IdentificationType1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="RequestRecord">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="clave" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clave" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="accountId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="requestState" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sentDatetime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="callBackReceived" Type="Boolean" Nullable="false" />
+          <Property Name="docDatetime" Type="DateTime" Precision="7" />
+          <Property Name="indState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="responseXML" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="callBacakDatetime" Type="DateTime" Precision="7" />
+          <Property Name="sentToUI" Type="Boolean" Nullable="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -284,14 +313,6 @@ advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no ti
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="IdentificationType">
-            <EntityTypeMapping TypeName="DigitalInvoiceModel.IdentificationType">
-              <MappingFragment StoreEntitySet="IdentificationType">
-                <ScalarProperty Name="IdentificationType1" ColumnName="IdentificationType" />
-                <ScalarProperty Name="CodeId" ColumnName="CodeId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Location">
             <EntityTypeMapping TypeName="DigitalInvoiceModel.Location">
               <MappingFragment StoreEntitySet="Location">
@@ -327,6 +348,7 @@ advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no ti
           <EntitySetMapping Name="Account">
             <EntityTypeMapping TypeName="DigitalInvoiceModel.Account">
               <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="logoImage" ColumnName="logoImage" />
                 <ScalarProperty Name="enabled" ColumnName="enabled" />
                 <ScalarProperty Name="certificate" ColumnName="certificate" />
                 <ScalarProperty Name="certificateExt" ColumnName="certificateExt" />
@@ -357,6 +379,31 @@ advertencia 6002: La tabla o vista 'DigitalInvoice.dbo.IdentificationType' no ti
                 <ScalarProperty Name="LogDate" ColumnName="LogDate" />
                 <ScalarProperty Name="Request" ColumnName="Request" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentificationType">
+            <EntityTypeMapping TypeName="DigitalInvoiceModel.IdentificationType">
+              <MappingFragment StoreEntitySet="IdentificationType">
+                <ScalarProperty Name="IdentificationType1" ColumnName="IdentificationType" />
+                <ScalarProperty Name="CodeId" ColumnName="CodeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestRecord">
+            <EntityTypeMapping TypeName="DigitalInvoiceModel.RequestRecord">
+              <MappingFragment StoreEntitySet="RequestRecord">
+                <ScalarProperty Name="sentToUI" ColumnName="sentToUI" />
+                <ScalarProperty Name="callBacakDatetime" ColumnName="callBacakDatetime" />
+                <ScalarProperty Name="responseXML" ColumnName="responseXML" />
+                <ScalarProperty Name="indState" ColumnName="indState" />
+                <ScalarProperty Name="docDatetime" ColumnName="docDatetime" />
+                <ScalarProperty Name="callBackReceived" ColumnName="callBackReceived" />
+                <ScalarProperty Name="sentDatetime" ColumnName="sentDatetime" />
+                <ScalarProperty Name="requestState" ColumnName="requestState" />
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

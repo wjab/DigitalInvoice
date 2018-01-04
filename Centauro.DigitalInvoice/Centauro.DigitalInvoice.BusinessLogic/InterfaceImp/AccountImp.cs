@@ -49,7 +49,6 @@ namespace Centauro.DigitalInvoice.BusinessLogic.InterfaceImp
                         account.enabled = true;
                         context.Account.Add(account);
                         selectedAccount = account;
-
                     }
                     else
                     {
@@ -59,6 +58,7 @@ namespace Centauro.DigitalInvoice.BusinessLogic.InterfaceImp
                         selectedAccount.userATV = account.userATV;
                         selectedAccount.passwordATV = account.passwordATV;
                         selectedAccount.certificateName = account.certificateName;
+                        selectedAccount.logoImage = account.logoImage;
                     }
 
                     context.SaveChanges();

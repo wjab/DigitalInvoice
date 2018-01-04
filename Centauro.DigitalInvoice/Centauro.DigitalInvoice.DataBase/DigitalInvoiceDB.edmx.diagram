@@ -9,13 +9,14 @@
         <EntityTypeShape EntityType="DigitalInvoiceModel.DocumentTypeAuthExon" Width="2.625" PointX="3.875" PointY="0.75" />
         <EntityTypeShape EntityType="DigitalInvoiceModel.PaymentMethods" Width="2.375" PointX="0.75" PointY="3.75" />
         <EntityTypeShape EntityType="DigitalInvoiceModel.SaleCondition" Width="2" PointX="4.125" PointY="3.5" />
-        <EntityTypeShape EntityType="DigitalInvoiceModel.IdentificationType" Width="2.625" PointX="6.75" PointY="0.75" />
         <EntityTypeShape EntityType="DigitalInvoiceModel.Location" Width="1.5" PointX="7.25" PointY="3.5" />
         <EntityTypeShape EntityType="DigitalInvoiceModel.MeasureUnit" Width="1.5" PointX="4.375" PointY="5.75" />
         <EntityTypeShape EntityType="DigitalInvoiceModel.Taxes" Width="1.5" PointX="6.75" PointY="7.75" />
         <EntityTypeShape EntityType="DigitalInvoiceModel.Account" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="DigitalInvoiceModel.CallBackReceived" Width="1.5" PointX="3.375" PointY="8.75" />
         <EntityTypeShape EntityType="DigitalInvoiceModel.LogRequest" Width="1.5" PointX="9.375" PointY="3.75" />
+        <EntityTypeShape EntityType="DigitalInvoiceModel.IdentificationType" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DigitalInvoiceModel.RequestRecord" Width="1.5" PointX="9.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

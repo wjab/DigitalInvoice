@@ -5,13 +5,14 @@
     <EntitySet Name="DocumentTypeAuthExon" EntityType="DigitalInvoiceModel.DocumentTypeAuthExon" />
     <EntitySet Name="PaymentMethods" EntityType="DigitalInvoiceModel.PaymentMethods" />
     <EntitySet Name="SaleCondition" EntityType="DigitalInvoiceModel.SaleCondition" />
-    <EntitySet Name="IdentificationType" EntityType="DigitalInvoiceModel.IdentificationType" />
     <EntitySet Name="Location" EntityType="DigitalInvoiceModel.Location" />
     <EntitySet Name="MeasureUnit" EntityType="DigitalInvoiceModel.MeasureUnit" />
     <EntitySet Name="Taxes" EntityType="DigitalInvoiceModel.Taxes" />
     <EntitySet Name="Account" EntityType="DigitalInvoiceModel.Account" />
     <EntitySet Name="CallBackReceived" EntityType="DigitalInvoiceModel.CallBackReceived" />
     <EntitySet Name="LogRequest" EntityType="DigitalInvoiceModel.LogRequest" />
+    <EntitySet Name="IdentificationType" EntityType="DigitalInvoiceModel.IdentificationType" />
+    <EntitySet Name="RequestRecord" EntityType="DigitalInvoiceModel.RequestRecord" />
   </EntityContainer>
   <EntityType Name="CodeProductService">
     <Key>
@@ -40,14 +41,6 @@
     </Key>
     <Property Name="CodeId" Type="Int32" Nullable="false" />
     <Property Name="SaleCondition1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="IdentificationType">
-    <Key>
-      <PropertyRef Name="CodeId" />
-      <PropertyRef Name="IdentificationType1" />
-    </Key>
-    <Property Name="CodeId" Type="Int32" Nullable="false" />
-    <Property Name="IdentificationType1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Location">
     <Key>
@@ -94,6 +87,7 @@
     <Property Name="certificateExt" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
     <Property Name="certificate" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="enabled" Type="Boolean" Nullable="false" />
+    <Property Name="logoImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="CallBackReceived">
     <Key>
@@ -114,5 +108,29 @@
     <Property Name="Id" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
     <Property Name="Request" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="LogDate" Type="DateTime" Nullable="false" Precision="7" />
+  </EntityType>
+  <EntityType Name="IdentificationType">
+    <Key>
+      <PropertyRef Name="CodeId" />
+    </Key>
+    <Property Name="CodeId" Type="Int32" Nullable="false" />
+    <Property Name="IdentificationType1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="RequestRecord">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="clave" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="clave" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="accountId" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+    <Property Name="requestState" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sentDatetime" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="callBackReceived" Type="Boolean" Nullable="false" />
+    <Property Name="docDatetime" Type="DateTime" Precision="7" />
+    <Property Name="indState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="responseXML" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="callBacakDatetime" Type="DateTime" Precision="7" />
+    <Property Name="sentToUI" Type="Boolean" Nullable="false" />
   </EntityType>
 </Schema>

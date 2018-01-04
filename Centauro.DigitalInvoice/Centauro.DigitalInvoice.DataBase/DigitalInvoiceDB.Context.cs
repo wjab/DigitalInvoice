@@ -29,12 +29,13 @@ namespace Centauro.DigitalInvoice.DataBase
         public virtual DbSet<DocumentTypeAuthExon> DocumentTypeAuthExon { get; set; }
         public virtual DbSet<PaymentMethods> PaymentMethods { get; set; }
         public virtual DbSet<SaleCondition> SaleCondition { get; set; }
-        public virtual DbSet<IdentificationType> IdentificationType { get; set; }
         public virtual DbSet<Location> Location { get; set; }
         public virtual DbSet<MeasureUnit> MeasureUnit { get; set; }
         public virtual DbSet<Taxes> Taxes { get; set; }
         public virtual DbSet<Account> Account { get; set; }
         public virtual DbSet<CallBackReceived> CallBackReceived { get; set; }
         public virtual DbSet<LogRequest> LogRequest { get; set; }
+        public virtual DbSet<IdentificationType> IdentificationType { get; set; }
+        public virtual DbSet<RequestRecord> RequestRecord { get; set; }
     }
 }

@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Centauro.DigitalInvoice.Api", "Centauro.DigitalInvoice.Api\Centauro.DigitalInvoice.Api.csproj", "{6CAC268F-B738-42B8-84F9-29A68CE80810}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Centauro.DigitalInvoice.BusinessLogic", "Centauro.DigitalInvoice.BusinessLogic\Centauro.DigitalInvoice.BusinessLogic.csproj", "{7C110CDC-CD96-46A9-BAB2-D55691C5CBC1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Centauro.DigitalInvoice.WebApi", "Centauro.DigitalInvoice.WebApi\Centauro.DigitalInvoice.WebApi.csproj", "{577A5AD5-E130-409D-9B98-E8321E6BF1C0}"
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6CAC268F-B738-42B8-84F9-29A68CE80810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6CAC268F-B738-42B8-84F9-29A68CE80810}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6CAC268F-B738-42B8-84F9-29A68CE80810}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6CAC268F-B738-42B8-84F9-29A68CE80810}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7C110CDC-CD96-46A9-BAB2-D55691C5CBC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7C110CDC-CD96-46A9-BAB2-D55691C5CBC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C110CDC-CD96-46A9-BAB2-D55691C5CBC1}.Release|Any CPU.ActiveCfg = Release|Any CPU

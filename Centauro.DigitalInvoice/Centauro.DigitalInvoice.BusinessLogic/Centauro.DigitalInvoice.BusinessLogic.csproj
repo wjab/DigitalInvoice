@@ -82,11 +82,13 @@
     <Compile Include="Auth\Authentication.cs" />
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Converter.cs" />
-    <Compile Include="CustomDelegatingHandler.cs" />
+    <Compile Include="HttpCustomClient.cs" />
     <Compile Include="DataValidator.cs" />
     <Compile Include="Enums\Enum.cs" />
     <Compile Include="InterfaceImp\AccountImp.cs" />
     <Compile Include="InterfaceImp\Catalogs.cs" />
+    <Compile Include="InterfaceImp\RequestRecordLog.cs" />
+    <Compile Include="Interface\IRequestRecordLog.cs" />
     <Compile Include="Interface\IAccount.cs" />
     <Compile Include="Interface\ICatalogs.cs" />
     <Compile Include="Log\LogManager.cs" />
@@ -106,6 +108,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="Sign\CustomSignature.cs" />
+    <Compile Include="Utilities\BuildFiles.cs" />
     <Compile Include="Utilities\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
