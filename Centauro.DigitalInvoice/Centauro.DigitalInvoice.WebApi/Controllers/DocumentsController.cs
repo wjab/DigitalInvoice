@@ -1,25 +1,14 @@
 ﻿using Centauro.DigitalInvoice.BusinessLogic;
-using Centauro.DigitalInvoice.BusinessLogic.Auth;
-using Centauro.DigitalInvoice.BusinessLogic.Constants;
-using Centauro.DigitalInvoice.BusinessLogic.Enums;
-using Centauro.DigitalInvoice.BusinessLogic.Interface;
 using Centauro.DigitalInvoice.BusinessLogic.Log;
 using Centauro.DigitalInvoice.BusinessLogic.Model;
 using Centauro.DigitalInvoice.BusinessLogic.Utilities;
-using Centauro.DigitalInvoice.BusinessLogic.Xades;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Xml;
 
 namespace Centauro.DigitalInvoice.WebApi.Controllers
 {
@@ -112,7 +101,6 @@ namespace Centauro.DigitalInvoice.WebApi.Controllers
         {
             response = new GenericResponse();
             actionDocument = new Document();
-            //HeaderContainer headerContainer;
             ReceivedDigitalInvoice digitalInvoiceResponse;
 
             string accountId = string.Empty;

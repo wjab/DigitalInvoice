@@ -80,12 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Auth\Authentication.cs" />
-    <Compile Include="Common\Exceptions\InvalidDocumentException.cs" />
-    <Compile Include="Common\Exceptions\InvalidParameterException.cs" />
-    <Compile Include="Common\Exceptions\InvalidSignedDocumentException.cs" />
-    <Compile Include="Common\ExtendedSignedXml.cs" />
-    <Compile Include="Common\VerificationParameters.cs" />
-    <Compile Include="Common\XmlPropertyDescriptor.cs" />
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Converter.cs" />
     <Compile Include="CustomDelegatingHandler.cs" />
@@ -108,30 +102,11 @@
     <Compile Include="Model\HeaderResponse.cs" />
     <Compile Include="Model\IError.cs" />
     <Compile Include="Model\ReceivedDigitalInvoice.cs" />
-    <Compile Include="Model\SignatureType.cs" />
     <Compile Include="Model\ValidationError.cs" />
-    <Compile Include="Operations\Signers\XmlDsigDetachedSignOperation.cs" />
-    <Compile Include="Operations\Signers\XmlDsigEnvelopedSignOperation.cs" />
-    <Compile Include="Operations\Signers\XmlDsigEnvelopingSignOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="Sign\CustomSignature.cs" />
-    <Compile Include="Utilities\ArrayHelper.cs" />
-    <Compile Include="Utilities\Cryptography\CryptoHelper.cs" />
-    <Compile Include="Utilities\Xml\XmlHelper.cs" />
-    <Compile Include="Xades\Common\XadesSignParameters.cs" />
-    <Compile Include="Xades\Dsl\XadesSignDsl.cs" />
-    <Compile Include="Xades\Dsl\XadesVerifyDsl.cs" />
-    <Compile Include="Xades\Operations\XadesSignOperation.cs" />
-    <Compile Include="Xades\Operations\XadesVerifyOperation.cs" />
-    <Compile Include="Xades\XadesHelper.cs" />
-    <Compile Include="XmlDsigSignOperation.cs" />
     <Compile Include="Utilities\Utils.cs" />
-    <Compile Include="XmlDsig\Common\VerificationResults.cs" />
-    <Compile Include="XmlDsig\Common\XmlDsigSignatureFormat.cs" />
-    <Compile Include="XmlDsig\Common\XmlDsigSignParameters.cs" />
-    <Compile Include="XmlDsig\Helpers\XmlDsigNodesHelper.cs" />
-    <Compile Include="XmlDsig\XmlDsigVerifyOperation.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Centauro.DigitalInvoice.DataBase\Centauro.DigitalInvoice.DataBase.csproj">
