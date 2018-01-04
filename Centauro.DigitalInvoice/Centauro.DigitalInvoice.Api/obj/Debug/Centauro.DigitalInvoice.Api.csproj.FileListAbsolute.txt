@@ -81,7 +81,10 @@ C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\System.Web.Http.WebHost.dll
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\XsdToObject.dll
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\Centauro.DigitalInvoice.DataBase.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\TuesPechkin.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\Gma.QrCodeNet.Encoding.dll
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\EntityFramework.dll
+C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\TuesPechkin.Wkhtmltox.Win32.dll
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\Centauro.DigitalInvoice.BusinessLogic.pdb
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\Microsoft.AI.DependencyCollector.xml
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\Microsoft.AI.ServerTelemetryChannel.xml
@@ -102,6 +105,3 @@ C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\obj\Debug\Centauro.DigitalInvoice.Api.csprojResolveAssemblyReference.cache
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\obj\Debug\Centauro.DigitalInvoice.Api.dll
 C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\obj\Debug\Centauro.DigitalInvoice.Api.pdb
-C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\TuesPechkin.dll
-C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\Gma.QrCodeNet.Encoding.dll
-C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.Api\bin\TuesPechkin.Wkhtmltox.Win32.dll

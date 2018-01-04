@@ -8,7 +8,7 @@
   <body>
     <header class="clearfix">
       <div id="logo">
-        <img src="logo.png">
+        <img src="data:image/png;base64,{14}">
       </div>
       <div id="company">
         <h2 class="name">{0}</h2><!--Emisor Name-->
@@ -18,11 +18,10 @@
       </div>
       </div>
     </header>
-    <main>
+    <main>	
 	<div id="invoice">
 		<div class="date">Fecha de factura: {8}</div> <!-- Fecha factura -->
-		<div class="invoiceId">{7}</div> <!-- Numero factura -->
-	  
+		<div class="invoiceId">{7}</div> <!-- Numero factura -->	  
 	</div>
       <div id="details" class="clearfix">
         <div id="client">
@@ -46,56 +45,7 @@
           <tr>{11}</tr> <!--Lineas detalle-->
         </tbody>
         <tfoot>
-          <tr>
-            <td colspan="2"></td>
-            <td colspan="2">Total servicios grabados</td>
-            <td>{12}</td>
-          </tr>
-          <tr>
-            <td colspan="2"></td>
-            <td colspan="2">Total servicios exentos</td>
-            <td>{13}</td>
-          </tr>
-          <tr>
-            <td colspan="2"></td>
-            <td colspan="2">Total mercanc&iacuteas grabadas</td>
-            <td>{14}</td>
-          </tr>
-		  <tr>
-            <td colspan="2"></td>
-            <td colspan="2">Total mercanc&iacuteas exentas</td>
-            <td>{15}</td>
-          </tr>
-		  <tr>
-            <td colspan="2"></td>
-            <td colspan="2">Total grabado</td>
-            <td>{16}</td>
-          </tr>
-		  <tr>
-            <td colspan="2"></td>
-            <td colspan="2">Total exento</td>
-            <td>{17}</td>
-          </tr>
-		  <tr>
-            <td colspan="2"></td>
-            <td colspan="2">Total venta</td>
-            <td>{18}</td>
-          </tr>
-		  <tr>
-            <td colspan="2"></td>
-            <td colspan="2">Total descuento</td>
-            <td>{19}</td>
-          </tr>
-		  <tr>
-            <td colspan="2"></td>
-            <td colspan="2">Total impuesto</td>
-            <td>{20}</td>
-          </tr>
-		  <tr>
-            <td colspan="2"></td>
-            <td colspan="2">Total comprobante</td>
-            <td>{21}</td>
-          </tr>
+		  {12}
         </tfoot>
       </table>
       <div id="notices">
@@ -103,8 +53,13 @@
         <div class="nota1">{9}</div>
 		<div class="nota2">{10}</div>
       </div>
+	  <div></div>
+	  <div id="qr">
+		<img src="data:image/png;base64,{13}">
+	</div>
     </main>
     <footer>
+		<div>Autorizada mediante resolución Nº DGT-R-48-2016 del 7 de octubre de 2016.</div>
     </footer>
   </body>
 </html>

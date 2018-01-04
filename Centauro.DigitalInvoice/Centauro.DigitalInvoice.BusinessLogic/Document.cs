@@ -1,5 +1,4 @@
-﻿using Centauro.DigitalInvoice.BusinessLogic.Constants;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -7,24 +6,21 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Centauro.DigitalInvoice.BusinessLogic.Model;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Net;
-using Centauro.DigitalInvoice.BusinessLogic.Xades;
 using System.Xml;
-using System.Xml.Linq;
 using Centauro.DigitalInvoice.BusinessLogic.Auth;
 using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using Centauro.DigitalInvoice.DataBase;
 using Centauro.DigitalInvoice.BusinessLogic.Interface;
 using Centauro.DigitalInvoice.BusinessLogic.InterfaceImp;
-using Centauro.DigitalInvoice.BusinessLogic.Enums;
 using Centauro.DigitalInvoice.BusinessLogic.Utilities;
 using TuesPechkin;
 using System.Numerics;
+using Centauro.DigitalInvoice.BusinessLogic.Enums;
 
 namespace Centauro.DigitalInvoice.BusinessLogic
 {
@@ -75,85 +71,15 @@ namespace Centauro.DigitalInvoice.BusinessLogic
 
             }
         }
-
-        //public async Task<string> SendElectronicInvoice(facturaelectronicaxml payload, string accountId)
-        //{
-        //    string respuesta = string.Empty;
-        //    string ccc;
-        //    HttpResponseMessage responseMessage = null;
-
-        //    string certificatePath = @"C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\Certificate\310156726431.p12";
-
-        //    try
-        //    {
-        //        string psw = ConfigurationManager.AppSettings[Constants.Constants.certificatePIN];
-        //        X509Certificate2 cert = new X509Certificate2(certificatePath, psw);
-
-        //        var o = new
-        //        {
-        //            facturaelectronicaxml = payload
-        //        };
-
-        //        XmlDocument doc = (XmlDocument)JsonConvert.DeserializeXmlNode(JsonConvert.SerializeObject(o));
-
-        //        var tempO = new
-        //        {
-        //            FacturaElectronica = payload.FacturaElectronica
-        //        };
-
-        //        var fe = doc.SelectSingleNode("//FacturaElectronica");
-        //        var feXML = doc.SelectSingleNode("/facturaelectronicaxml");
-        //        feXML.RemoveChild(fe);
-        //        XmlDocument tempDoc = (XmlDocument)JsonConvert.DeserializeXmlNode(JsonConvert.SerializeObject(tempO));
-        //        var howToSign = XadesHelper.Sign(tempDoc).Using(cert).IncludingCertificateInSignature();
-
-        //        //howToSign.WithProperty("uno", txtPropertyValue.Text, "http://xades.codeplex.com/#properties");
-                                
-
-        //        var resultXML = howToSign.SignXML();
-        //        var newfe = feXML.OwnerDocument.ImportNode(resultXML.SelectSingleNode("//FacturaElectronica"), true);
-        //        feXML.AppendChild(newfe);
-        //        //response.errorList = validator.ValidateXML(doc.InnerXml, xsdDocument.FacturaElectronica);
-
-
-        //        DataValidator validator = new DataValidator();
-        //        ccc = Constants.Constants.myTestXML;
-        //        //validator.ValidateXML(ccc/*feXML.OuterXml*/, Enums.xsdDocument.FacturaElectronica);
-                
-        //        using (HttpClient client = new HttpClient())
-        //        {
-        //            //ccc = feXML.OuterXml.ToString();
-        //            //ccc = Constants.Constants.myTestXML;
-        //            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, ConfigurationManager.AppSettings[Constants.Constants.mhEndpoint]);
-        //            request.Content = new StringContent(ccc, Encoding.UTF8, Constants.Constants.application_json);
-
-        //            AuthenticationResponse authenticationResponse = await Authentication.Instance().AuthenticationMH();
-        //            request.Headers.Authorization = new AuthenticationHeaderValue(Constants.Constants.auth_header_bearer, authenticationResponse.access_token);
-
-        //            responseMessage = await client.SendAsync(request);
-        //        }
-
-                
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ex.Message.ToString();
-        //    }
-
-        //    string responseString = await responseMessage.Content.ReadAsStringAsync();
-        //    return responseString;
-        //}
-
+        
         public async Task<ReceivedDigitalInvoice> SendElectronicInvoiceToMH(FacturaElectronica payload, string accountId)
         {
             ReceivedDigitalInvoice InvoiceResponse = new ReceivedDigitalInvoice();
-            //HeaderContainer headerContainer = new HeaderContainer();
             HttpResponseMessage responseMessage;
             XmlDocument xmlDocSignature;
             XmlDocument xmlDocInvoice;
             IAccount accountImp;
-            string singIdentifier, htmlInvoice;
+            string singIdentifier, htmlInvoice, imageQR;
             SHA256 sha256;
             object newRequest = null;
             Account accountData;
@@ -167,6 +93,8 @@ namespace Centauro.DigitalInvoice.BusinessLogic
                 xmlDocInvoice = new XmlDocument();
                 sha256 = SHA256Managed.Create();
                 accountImp = new AccountImp();
+                BigInteger bigIntClave = new BigInteger(Encoding.UTF8.GetBytes(payload.Clave));
+                payload.Clave = bigIntClave.ToString();
 
                 singIdentifier = ConfigurationManager.AppSettings[Constants.Constants.SignIdentifier];
 
@@ -188,7 +116,19 @@ namespace Centauro.DigitalInvoice.BusinessLogic
                 }
                 
                 xmlDocSignature.Load(string.Format(Constants.Constants.RequestApiFormat_2, AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings[Constants.Constants.signTemplate]));
-          
+
+                #region Generar QR
+
+                imageQR = Utils.GenerateQRCode(
+                                string.Format(ConfigurationManager.AppSettings[Constants.Constants.urlS3Invoice], 
+                                                payload.Clave, 
+                                                string.Format(Constants.Constants.RequestApiFormat_2, 
+                                                                payload.Clave, 
+                                                                Constants.Constants.xmlExtension)));
+
+                #endregion
+
+
                 #region Estructura para firma digital
 
                 /*
@@ -249,9 +189,8 @@ namespace Centauro.DigitalInvoice.BusinessLogic
                 argsDocument.Add(payload.Receptor.Ubicacion.OtrasSenas);
                 argsDocument.Add(payload.Receptor.CorreoElectronico);
                 #endregion
-
-                BigInteger bigInt = new BigInteger(Encoding.UTF8.GetBytes(payload.Clave));
-                argsDocument.Add(bigInt);
+                                
+                argsDocument.Add(payload.Clave);
                 argsDocument.Add(payload.FechaEmision);                
                 
                 #region Footer Otros - Notas
@@ -276,18 +215,21 @@ namespace Centauro.DigitalInvoice.BusinessLogic
                 #endregion
 
                 #region Resumen - Totales
-                argsDocument.Add(payload.ResumenFactura.TotalServGravados);
-                argsDocument.Add(payload.ResumenFactura.TotalServExentos);
-                argsDocument.Add(payload.ResumenFactura.TotalMercanciasGravadas);
-                argsDocument.Add(payload.ResumenFactura.TotalMercanciasExentas);
-                argsDocument.Add(payload.ResumenFactura.TotalGravado);
-                argsDocument.Add(payload.ResumenFactura.TotalExento);
-                argsDocument.Add(payload.ResumenFactura.TotalVenta);
-                argsDocument.Add(payload.ResumenFactura.TotalDescuentos);
-                argsDocument.Add(payload.ResumenFactura.TotalVentaNeta);
-                argsDocument.Add(payload.ResumenFactura.TotalImpuesto);
-                argsDocument.Add(payload.ResumenFactura.TotalComprobante);
+                argsLinea = new List<object>();
+                argsLinea.Add(payload.ResumenFactura.TotalServGravados);
+                argsLinea.Add(payload.ResumenFactura.TotalServExentos);
+                argsLinea.Add(payload.ResumenFactura.TotalMercanciasGravadas);
+                argsLinea.Add(payload.ResumenFactura.TotalMercanciasExentas);
+                argsLinea.Add(payload.ResumenFactura.TotalVenta);
+                argsLinea.Add(payload.ResumenFactura.TotalDescuentos);
+                argsLinea.Add(payload.ResumenFactura.TotalImpuesto);
+                argsLinea.Add(payload.ResumenFactura.TotalComprobante);
+
+                argsDocument.Add(string.Format(Constants.Constants.lineaTotales, argsLinea.ToArray()));
                 #endregion                
+
+                argsDocument.Add(imageQR);
+                argsDocument.Add(imageQR);
 
                 htmlInvoice = string.Format(htmlInvoice, argsDocument.ToArray());
 

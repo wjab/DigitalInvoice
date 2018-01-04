@@ -1,7 +1,11 @@
 ﻿using Centauro.DigitalInvoice.BusinessLogic.Model;
 using Gma.QrCodeNet.Encoding;
+using Gma.QrCodeNet.Encoding.Windows.Render;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -60,14 +64,17 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Utilities
             return seconds;
         }
 
-        public QrCode GenerateQRCode(string link)
+        public static string GenerateQRCode(string link)
         {
             try
             {
                 QrEncoder qr_encoder = new QrEncoder();
                 QrCode code = null;
                 qr_encoder.TryEncode(link, out code);
-                return code;
+                GraphicsRenderer renderer = new GraphicsRenderer(new FixedCodeSize(350, QuietZoneModules.Zero), Brushes.Black, Brushes.White);
+                MemoryStream ms = new MemoryStream();
+                renderer.WriteToStream(code.Matrix,ImageFormat.Png, ms);
+                return Convert.ToBase64String(ms.GetBuffer());
             }
             catch (Exception ex)
             {

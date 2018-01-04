@@ -47,55 +47,6 @@ namespace Centauro.DigitalInvoice.WebApi.Controllers
             AuthenticationResponse aa = await Authentication.Instance().AuthenticationMH();
 
             return Ok(aa.access_token);
-        }              
-
-        /// <summary>
-        /// Variables definition
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<IHttpActionResult> ValidateXSD()
-        {
-            response = new GenericResponse();
-
-            try
-            {
-                string xml = Constants.XMLTest;                
-                response.errorList = DataValidator.Instance().ValidateXML(xml, xsdDocument.Sample);
-
-                response.results = await Authentication.Instance().AuthenticationMH();
-            }
-            catch(Exception ex)
-            {
-                Utils.SetExceptionToResponse(ref response, ex);
-            }
-
-            return Ok(JObject.Parse(JsonConvert.SerializeObject(response)));
-        }
-
-        /// <summary>
-        /// Variables definition
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public async Task<IHttpActionResult> ValidateXSD1()
-        {
-            response = new GenericResponse();            
-
-            try
-            {
-                response.results = await Authentication.Instance().AuthenticationMH();
-            }
-            catch (Exception ex)
-            {
-                Utils.SetExceptionToResponse(ref response, ex);
-            }
-
-            return Ok(JObject.Parse(JsonConvert.SerializeObject(response)));
-        }
-
-
-
-
+        }         
     }
 }
