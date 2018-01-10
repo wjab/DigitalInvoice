@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Factura electr&oacutenica: {0}</title> <!-- Numero factura  -->
+    <link rel="stylesheet" href="style.css" media="all" />
+  </head>
+  
+  <body>
+  
+    <header class="clearfix">
+		<!--Informacion factura-->
+		{1}
+    </header>
+	
+    <main>	
+		<!--Informacion Receptor-->
+		{2}	
+		
+      <table border="0" cellspacing="0" cellpadding="0">
+        <thead>
+          <tr>
+            <th class="no">C&oacutedigo</th>
+            <th class="desc">Descripci&oacuten</th>
+            <th class="unit">Precio unitario</th>
+            <th class="qty">Cantidad</th>
+            <th class="total">Total</th>
+          </tr>
+        </thead>
+        <tbody>			  
+			<!--Lineas de detalle-->
+			{3}
+        </tbody>
+        <tfoot>
+			<!--Lineas de totales-->
+			{4}
+        </tfoot>
+      </table>
+
+		<!--Notas y QR-->
+		{5}
+    </main>
+    
+	
+	<footer>
+		<div>Emitido conforme a lo establecido en la resolución de Facturaci&oacuten Electr&oacutenica, 
+		No. DGT-R-48-2016 del 7 de octubre de 2016 del siete de octubre de dos mil diecis&eacuteis de 
+		la Direcci&oacuten General de Tributaci&oacuten</div>
+    </footer>
+	
+  </body>
+</html>

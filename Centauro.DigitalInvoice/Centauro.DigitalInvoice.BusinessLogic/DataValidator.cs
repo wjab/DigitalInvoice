@@ -36,9 +36,9 @@ namespace Centauro.DigitalInvoice.BusinessLogic
 
             #region Load XSD's            
 
-            xsdDictionary.GetOrAdd(xsdDocument.Sample.ToString(), LoadXSD(string.Format(Constants.Constants.RequestApiFormat_2, AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings[Constants.Constants.sampleXSD])));
+            ////xsdDictionary.GetOrAdd(xsdDocument.Sample.ToString(), LoadXSD(string.Format(Constants.Constants.RequestApiFormat_2, AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings[Constants.Constants.sampleXSD])));
 
-            xsdDictionary.GetOrAdd(xsdDocument.AceptaRechaza.ToString(), LoadXSD(string.Format(Constants.Constants.RequestApiFormat_2, AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings[Constants.Constants.aceptaRechazaXSD])));
+            ////xsdDictionary.GetOrAdd(xsdDocument.AceptaRechaza.ToString(), LoadXSD(string.Format(Constants.Constants.RequestApiFormat_2, AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings[Constants.Constants.aceptaRechazaXSD])));
             xsdDictionary.GetOrAdd(xsdDocument.FacturaElectronica.ToString(), LoadXSD(string.Format(Constants.Constants.RequestApiFormat_2, AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings[Constants.Constants.facturaElectronicaXSD])));
             //xsdDictionary.GetOrAdd(xsdDocument.ResumenPeriodoCompras.ToString(), LoadXSD(string.Format(Constants.Constants.RequestApiFormat_2, AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings[Constants.Constants.resumentPeriodoComprasXSD])));
             //xsdDictionary.GetOrAdd(xsdDocument.ResumenPeriodoComprasVentas.ToString(), LoadXSD(string.Format(Constants.Constants.RequestApiFormat_2, AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings[Constants.Constants.resumentPeriodoCompraVentasXSD])));
@@ -67,12 +67,6 @@ namespace Centauro.DigitalInvoice.BusinessLogic
 
             try
             {
-                /*string xsd = GetXSD(xsdDocumentType);
-
-                XmlReaderSettings settings = new XmlReaderSettings();
-                settings.ValidationType = ValidationType.Schema;
-                settings.Schemas.Add(null, XmlReader.Create(xsd));*/
-
                 XmlReaderSettings settings = GetXSD(xsdDocumentType);
 
                 XmlReader xmlReader = XmlReader.Create(new StringReader(xmlData), settings);

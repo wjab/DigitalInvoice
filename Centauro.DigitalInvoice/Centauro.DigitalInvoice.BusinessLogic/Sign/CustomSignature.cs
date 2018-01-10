@@ -16,7 +16,7 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Sign
 {
     public class CustomSignature
     {
-        public static void SignXML(string accountId, string fechaEmision, ref XmlDocument xml)
+        public static void SignXML(string fechaEmision, ref XmlDocument xml, string accountId = "",  X509Certificate2 certificate = null)
         {
             XmlDocument xmlDocSignature;
             DataBase.Account accountData;
@@ -34,14 +34,29 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Sign
                 sha1 = new SHA1CryptoServiceProvider();
 
                 singIdentifier = ConfigurationManager.AppSettings[Constants.Constants.SignIdentifier];
-                accountData = accountImp.GetAccountById(accountId);
-                if (accountData != null)
+
+                if (certificate == null)
                 {
-                    cert = new X509Certificate2(Convert.FromBase64String(accountData.certificate), accountData.certificatePIN.ToString());
+                    if (!string.IsNullOrEmpty(accountId))
+                    {
+                        accountData = accountImp.GetAccountById(accountId);
+                        if (accountData != null)
+                        {
+                            cert = new X509Certificate2(Convert.FromBase64String(accountData.certificate), accountData.certificatePIN.ToString());
+                        }
+                        else
+                        {
+                            throw new Exception(Constants.Constants.fail_Get_account_data);
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception(Constants.Constants.fail_CertificateInfo_incomplete);
+                    }
                 }
                 else
                 {
-                    throw new Exception(Constants.Constants.fail_Get_account_data);
+                    cert = certificate;
                 }
 
                 xmlDocSignature.Load(string.Format(Constants.Constants.RequestApiFormat_2, AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings[Constants.Constants.signTemplate]));
@@ -78,7 +93,6 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Sign
                 XmlDocumentFragment xFrag = xml.CreateDocumentFragment();
                 xFrag.InnerXml = xmlSignature;
                 xml.ChildNodes[0].AppendChild(xFrag);
-
             }
             catch(Exception ex)
             {

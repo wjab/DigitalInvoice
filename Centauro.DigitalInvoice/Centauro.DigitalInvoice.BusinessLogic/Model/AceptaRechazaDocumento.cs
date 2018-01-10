@@ -8,24 +8,49 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Model
 {
     public class AceptaRechazaDocumento
     {
-        public AceptaRechazaDocumento()
-        {
-            FirmaDigital = new FirmaDigital();
-        }
+        /// <summary>
+        /// Clave numÃ©rica del comprobante
+        /// </summary>
+        public string Clave { get; set; }
 
-        public string NombreEmisor { get; set; }
-        public long NumCedulaEmisor { get; set; }
-        public DateTime FechaEmisionDoc { get; set; }
-        public long NumConsecutivoCompr { get; set; }
-        public int TipoDoc { get; set; }
+        /// <summary>
+        /// NÃºmero de cÃ©dula fisica/jurÃ­dica/NITE/DIMEX del vendedor
+        /// </summary>
+        public long NumeroCedulaEmisor { get; set; }
+
+        /// <summary>
+        /// Fecha de emision de la confirmaciÃ³n
+        /// </summary>
+        public string FechaEmisionDoc { get; set; }
+
+        /// <summary>
+        /// Codigo del mensaje de respuesta. 1 aceptado, 2 aceptado parcialmente, 3 rechazado
+        /// </summary>
         public int Mensaje { get; set; }
+
+        /// <summary>
+        /// Detalle del mensaje
+        /// </summary>
         public string DetalleMensaje { get; set; }
-        public string NombreReceptor { get; set; }
-        public long NumCedulaReceptor { get; set; }
 
-        public string IdentificacionExtranjero { get; set; }
-        public long NumConsecutivorecep { get; set; }
+        /// <summary>
+        /// Monto total del impuesto, que es obligatorio si el comprobante tenga impuesto.
+        /// </summary>
+        public decimal MontoTotalImpuesto { get; set; }
 
-        public FirmaDigital FirmaDigital { get; set; }
+        /// <summary>
+        /// Monto total de la factura
+        /// </summary>
+        public decimal TotalFactura { get; set; }
+
+        /// <summary>
+        /// NÃºmero de cÃ©dula fisica/jurÃ­dica/NITE/DIMEX del comprador
+        /// </summary>
+        public long NumeroCedulaReceptor { get; set; }
+
+        /// <summary>
+        /// NumeraciÃ³n consecutiva de los mensajes de confirmaciÃ³n
+        /// </summary>
+        public string NumeroConsecutivoReceptor { get; set; }
     }
 }

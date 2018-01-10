@@ -22,22 +22,22 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/12/2017 09:02:14</publishTime>
     </File>
     <File Include="bin/Centauro.DigitalInvoice.BusinessLogic.dll">
-      <publishTime>01/04/2018 13:52:41</publishTime>
+      <publishTime>01/10/2018 17:13:45</publishTime>
     </File>
     <File Include="bin/Centauro.DigitalInvoice.BusinessLogic.pdb">
-      <publishTime>01/04/2018 13:52:41</publishTime>
+      <publishTime>01/10/2018 17:13:45</publishTime>
     </File>
     <File Include="bin/Centauro.DigitalInvoice.DataBase.dll">
-      <publishTime>01/04/2018 13:52:41</publishTime>
+      <publishTime>01/10/2018 17:13:44</publishTime>
     </File>
     <File Include="bin/Centauro.DigitalInvoice.DataBase.pdb">
-      <publishTime>01/04/2018 13:52:41</publishTime>
+      <publishTime>01/10/2018 17:13:44</publishTime>
     </File>
     <File Include="bin/Centauro.DigitalInvoice.WebApi.dll">
-      <publishTime>01/04/2018 13:52:46</publishTime>
+      <publishTime>01/10/2018 17:13:48</publishTime>
     </File>
     <File Include="bin/Centauro.DigitalInvoice.WebApi.pdb">
-      <publishTime>01/04/2018 13:52:46</publishTime>
+      <publishTime>01/10/2018 17:13:48</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>10/23/2017 13:15:18</publishTime>
@@ -154,10 +154,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/12/2017 09:02:09</publishTime>
     </File>
     <File Include="Settings.config">
-      <publishTime>01/03/2018 15:15:04</publishTime>
+      <publishTime>01/10/2018 11:41:32</publishTime>
     </File>
     <File Include="Template/InvoiceTemplate/InvoiceTemplate.html">
-      <publishTime>01/03/2018 19:01:38</publishTime>
+      <publishTime>01/08/2018 14:11:19</publishTime>
     </File>
     <File Include="Template/InvoiceTemplate/logo.png">
       <publishTime>05/09/2014 11:14:10</publishTime>
@@ -172,7 +172,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>12/28/2017 09:58:59</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/04/2018 13:52:51</publishTime>
+      <publishTime>01/10/2018 17:13:54</publishTime>
     </File>
     <File Include="XSD/template.xml">
       <publishTime>12/28/2017 09:58:59</publishTime>

@@ -162,7 +162,7 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Auth
 
         }
 
-        private async Task<AuthenticationResponse> AuthenticationMH(string user, string password)
+        public async Task<AuthenticationResponse> AuthenticationMH(string user, string password)
         {
             HttpCustomClient client;
             string stringResponse = string.Empty;

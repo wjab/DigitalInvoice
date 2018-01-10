@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Factura electr&oacutenica: {0}</title> <!-- Numero factura  -->
+    <link rel="stylesheet" href="style.css" media="all" />
+  </head>
+  
+  <body>
+  
+    <header class="clearfix">
+		<div id="invoiceNo">
+			<h2 class="name">Factura electr&oacutenica No. <b>{0}</b></h2><!-- Numero factura  -->	
+
+			<div id="logo">
+				<img src="{1}"> <!-- Logo -->
+			</div>
+  
+		</div>
+		
+		<div id="invoiceInfo">
+			<h2 class="name">Fecha: {2}</h2> <!-- Fecha factura -->
+			<h2 class="name">Hora: {3}</h2> <!--Hora factura -->
+			
+			<div id="companyHeader">
+				<h2 class="name">{4}</h2><!--Emisor Name  -->
+				<div>{5}</div><!--Emisor cedula  -->   
+				<div>{6}</div><!--Emisor Address  -->   
+				<div>{7}</div><!--Emisor Phone  -->             
+				<div><a href="mailto:{8}">{8}</a></div> <!--Emisor email -->
+			</div>
+		</div>
+	
+    </header>
+	
+    <main>	
+	
+		<div id="details" class="clearfix">
+			<div id="client">
+				<h2 class="name"><b>Receptor: </b>{9}</h2> <!--Receptor Name -->
+				<div><b>C&eacutedula: </b>{10}</div>
+				<div><b>Tel&eacutefono: </b>{11}</div>
+				<div class="email"><b>Correo: </b><a href="mailto:{12}">{12}</a></div> <!--Receptor email-->
+				<div class="address"><b>Direcci&oacuten exacta: </b>{13}</div> <!--Receptor Address-->	
+		    </div>
+			<div></div>
+		</div>
+	  
+      <table border="0" cellspacing="0" cellpadding="0">
+        <thead>
+          <tr>
+            <th class="no">C&oacutedigo</th>
+            <th class="desc">Descripci&oacuten</th>
+            <th class="unit">Precio unitario</th>
+            <th class="qty">Cantidad</th>
+            <th class="total">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+			<tr>
+				<td id="item">DE-1288</td> 
+				<td class="desc">Medicinas contra la tos</td> 
+				<td class="unit">123</td> 
+				<td class="qty">123</td> 
+				<td id="itemTotal">15129</td>
+			</tr>  <!--Lineas detalle-->
+        </tbody>
+        <tfoot>
+			<tr> 
+				<td colspan="2"></td>  
+				<td colspan="2">Subtotal neto</td> <td>40.000.00</td> 
+			</tr> 
+			<tr> 
+				<td colspan="2"></td> 
+				<td colspan="2">Impuesto de ventas</td> <td>5.200</td> 
+			</tr> 
+			<tr> 
+				<td colspan="2"></td> 
+				<td colspan="2">Otros impuestos</td> <td></td> 
+			</tr> 
+			<tr> 
+				<td colspan="2"></td> 
+				<td colspan="2">Total</td><td>45.200.00</td> 
+			</tr>
+        </tfoot>
+      </table>
+
+      <div id="notices">
+        <div>Notas:</div>
+        <div class="nota1">{14}</div> <!-- nota #1 -->
+		<div class="nota2">{15}</div> <!-- nota #2 -->
+      </div>
+	  <div></div>
+		<div id="qr">
+			<img src="data:image/png;base64,{15}"> <!-- Codigo QR -->
+		</div>
+    </main>
+    
+	
+	<footer>
+		<div>Emitido conforme a lo establecido en la resolución de Facturaci&oacuten Electr&oacutenica, 
+		No. DGT-R-48-2016 del 7 de octubre de 2016 del siete de octubre de dos mil diecis&eacuteis de 
+		la Direcci&oacuten General de Tributaci&oacuten</div>
+    </footer>
+	
+  </body>
+</html>

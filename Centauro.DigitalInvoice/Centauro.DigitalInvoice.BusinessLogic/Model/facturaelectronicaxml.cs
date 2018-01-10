@@ -7,62 +7,6 @@ using System.Threading.Tasks;
 
 namespace Centauro.DigitalInvoice.BusinessLogic.Model
 {
-    //public class facturaelectronicaxml
-    //{
-    //    public facturaelectronicaxml()
-    //    {
-    //        CodigoType = new CodigoType();
-    //        EmisorType = new EmisorType();
-    //        ExoneracionType = new ExoneracionType();
-    //        IdentificacionType = new IdentificacionType();
-    //        ImpuestoType = new ImpuestoType();
-    //        ReceptorType = new ReceptorType();
-    //        TelefonoType = new TelefonoType();
-    //        UbicacionType = new UbicacionType();
-
-    //        FacturaElectronica = new FacturaElectronica();
-    //    }
-
-    //    /*public decimal Cantidad { get; set; }
-    //    public decimal Monto { get; set; }
-
-    //    public FacturaElectronicaXML FacturaElectronicaXML { get; set; }*/
-
-    //    public CodigoType CodigoType { get; set; }
-
-    //    public EmisorType EmisorType { get; set; }
-    //    public ExoneracionType ExoneracionType { get; set; }
-    //    public IdentificacionType IdentificacionType { get; set; }
-    //    public ImpuestoType ImpuestoType { get; set; }
-    //    public ReceptorType ReceptorType { get; set; }
-    //    public TelefonoType TelefonoType { get; set; }
-    //    public UbicacionType UbicacionType { get; set; }
-
-    //    public string ClaveType { get; set; }
-    //    public decimal DecimalDineroType { get; set; }
-    //    public string NumeroConsecutivoType { get; set; }
-    //    public string UnidadMedidaType { get; set; }
-
-    //    public FacturaElectronica FacturaElectronica { get; set; }
-    //}
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
     /// <summary>
     /// Elemento Raiz de la Facturacion ElectrÃ³nica
     /// </summary>
@@ -199,18 +143,18 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Model
     public class ResumenFactura
     {
         public string CodigoMoneda { get; set; }
-        public object TipoCambio { get; set; }
-        public object TotalServGravados { get; set; }
-        public object TotalServExentos { get; set; }
-        public object TotalMercanciasGravadas { get; set; }
-        public object TotalMercanciasExentas { get; set; }
-        public object TotalGravado { get; set; }
-        public object TotalExento { get; set; }
-        public object TotalVenta { get; set; }
-        public object TotalDescuentos { get; set; }
-        public object TotalVentaNeta { get; set; }
-        public object TotalImpuesto { get; set; }
-        public object TotalComprobante { get; set; }
+        public decimal TipoCambio { get; set; }
+        public decimal TotalServGravados { get; set; }
+        public decimal TotalServExentos { get; set; }
+        public decimal TotalMercanciasGravadas { get; set; }
+        public decimal TotalMercanciasExentas { get; set; }
+        public decimal TotalGravado { get; set; }
+        public decimal TotalExento { get; set; }
+        public decimal TotalVenta { get; set; }
+        public decimal TotalDescuentos { get; set; }
+        public decimal TotalVentaNeta { get; set; }
+        public decimal TotalImpuesto { get; set; }
+        public decimal TotalComprobante { get; set; }
     }
 
     public class InformacionReferencia
@@ -284,7 +228,7 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Model
     {
         public ReceptorType()
         {
-            //Identificacion = new IdentificacionType();
+            Identificacion = new IdentificacionType();
             Ubicacion = new UbicacionType();
             Telefono = new TelefonoType();
             Fax = new TelefonoType();
@@ -333,7 +277,6 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Model
         public decimal Monto { get; set; }
         public ExoneracionType Exoneracion { get; set; }
     }
-
     
     public class ExoneracionType
     {

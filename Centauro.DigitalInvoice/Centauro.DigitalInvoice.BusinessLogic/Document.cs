@@ -27,55 +27,84 @@ namespace Centauro.DigitalInvoice.BusinessLogic
 {
     public class Document
     {
-        public async Task<string> SendAceptDenyDocument(AceptaRechazaDocumento payload, string accountId)
+        public async Task<ReceivedDigitalDocument> SendAceptDenyDocument(AceptaRechazaDocumento documento, CredentialData credential, RequestAdditionalInfo additionalInfo)
         {
+            ReceivedDigitalDocument InvoiceResponse = new ReceivedDigitalDocument();
             string respuesta = string.Empty;
-            HttpResponseMessage responseMessage;
-
-            /*var request = (HttpWebRequest)WebRequest.Create("https://www.verisign.com/");
-            var response = (HttpWebResponse)request.GetResponse();
-            response.Close();
-
-            X509Certificate cert = request.ServicePoint.Certificate;
-            var x509 = new X509Certificate2(cert);
-
-            File.WriteAllBytes("custom.cert", cert.Export());
-
-            Console.WriteLine(x509.Issuer);*/
-            
-
-            string certificatePath = @"C:\github\DigitalInvoice\Centauro.DigitalInvoice\Centauro.DigitalInvoice.BusinessLogic\Certificate\310156726431.p12";
+            X509Certificate2 cert;
+            AuthenticationResponse oAuthResponse;
+            XmlDocument xmlDocInvoice;
+            object newRequest = null;
 
             try
             {
-                X509Certificate2 cert = new X509Certificate2();
+                if (!string.IsNullOrEmpty(credential.certificate) && !string.IsNullOrEmpty(credential.certificatePassword))
+                {
+                    cert = new X509Certificate2(Convert.FromBase64String(credential.certificate), credential.certificatePassword);
+                }
+                else
+                {
+                    throw new Exception(Constants.Constants.fail_CertificateInfo_incomplete);
+                }
+                               
+                xmlDocInvoice = Utils.GetXmlFromObject(documento);
 
-                byte[] rawCertificateData = File.ReadAllBytes(certificatePath);
-                cert.Import(rawCertificateData, ConfigurationManager.AppSettings[Constants.Constants.certificatePIN], X509KeyStorageFlags.PersistKeySet);
+                CustomSignature.SignXML(documento.FechaEmisionDoc, ref xmlDocInvoice, null, cert);
+                
+                oAuthResponse = await Authentication.Instance().AuthenticationMH(credential.atvUser, credential.atvPassword);
 
-                payload.FirmaDigital.x509Certificado = Convert.ToBase64String(Encoding.ASCII.GetBytes(cert.ToString(true)));
+                if (oAuthResponse != null)
+                {
+                    newRequest = new
+                    {
+                        clave = documento.Clave,
+                        fecha = documento.FechaEmisionDoc,
+                        emisor = new
+                        {
+                            additionalInfo.Emisor.tipoIdentificacion,
+                            additionalInfo.Emisor.numeroIdentificacion
+                        },
+                        receptor = new
+                        {
+                            additionalInfo.Receptor.tipoIdentificacion,
+                            additionalInfo.Receptor.numeroIdentificacion
+                        },
+                        consecutivoReceptor = additionalInfo.ConsecutivoReceptor,
+                        comprobanteXml = Convert.ToBase64String(Encoding.UTF8.GetBytes(xmlDocInvoice.OuterXml)),
+                        callbackUrl = string.Format(Constants.Constants.RequestApiFormat_2,
+                                                ConfigurationManager.AppSettings[Constants.Constants.serverDomain],
+                                                ConfigurationManager.AppSettings[Constants.Constants.CallBackUrl])
+                    };
+                }
+                else
+                {
+                    throw new Exception(Constants.Constants.fail_communication_oauth_hacienda);
+                }
+
+                try
+                {
+                    HttpCustomClient client = new HttpCustomClient();
+                    InvoiceResponse = await client.Post(newRequest, Constants.Constants.mhActionRecepcion, Constants.Constants.mhEndpoint, null, oAuthResponse.access_token);
+
+                    InvoiceResponse.xmlInvoice = Convert.ToBase64String(Encoding.UTF8.GetBytes(xmlDocInvoice.OuterXml));
+                    InvoiceResponse.pdfInvoice = "";
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
             catch (Exception ex)
             {
                 ex.Message.ToString();
             }
-            
-            payload.FirmaDigital.firma = Convert.ToBase64String(Encoding.ASCII.GetBytes("hola"));
 
-            using (HttpClient client = new HttpClient())
-            {
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, ConfigurationManager.AppSettings[Constants.Constants.mhEndpoint]);
-                request.Content = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, Constants.Constants.application_json); ;
-
-                responseMessage = await client.SendAsync(request);
-                return await responseMessage.Content.ReadAsStringAsync();
-
-            }
+            return InvoiceResponse;
         }
         
-        public async Task<ReceivedDigitalInvoice> SendElectronicInvoiceToMH(FacturaElectronica payload, string accountId)
+        public async Task<ReceivedDigitalDocument> SendElectronicInvoiceToMH(FacturaElectronica payload, string accountId)
         {
-            ReceivedDigitalInvoice InvoiceResponse = new ReceivedDigitalInvoice();
+            ReceivedDigitalDocument InvoiceResponse = new ReceivedDigitalDocument();
             IRequestRecordLog requestRecordLog;
             BuildFiles buildFiles;
             HttpResponseMessage responseMessage;
@@ -88,24 +117,18 @@ namespace Centauro.DigitalInvoice.BusinessLogic
                 buildFiles = new BuildFiles();
                 xmlDocInvoice = new XmlDocument();
                 requestRecordLog = new RequestRecordLog();
-
-                var container = new
-                {
-                    facturaelectronicaxml = payload
-                };
-
-                string json = JsonConvert.SerializeObject(container, Newtonsoft.Json.Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                xmlDocInvoice = (XmlDocument)JsonConvert.DeserializeXmlNode(json);    
+    
+                xmlDocInvoice = Utils.GetXmlFromObject(payload);
 
                 #region Sign XML and Validate against XSD
 
-                CustomSignature.SignXML(accountId, payload.FechaEmision, ref xmlDocInvoice);
+                CustomSignature.SignXML(payload.FechaEmision, ref xmlDocInvoice, accountId);
 
-                /*IList<IError> listErros = DataValidator.Instance().ValidateXML(xmlDocInvoice.OuterXml, xsdDocument.FacturaElectronica);
-                if(listErros.Count > 0)
-                {
-                    throw new Exception("El XML contine errores " + Utils.ConcatElements(listErros));
-                }*/
+                //IList<IError> listErros = DataValidator.Instance().ValidateXML(xmlDocInvoice.OuterXml, xsdDocument.FacturaElectronica);
+                //if(listErros.Count > 0)
+                //{
+                //    throw new Exception(string.Format(Constants.Constants.RequestApiFormat_2, Constants.Constants.xml_has_errors, Utils.ConcatElements(listErros)) );
+                //}
 
                 #endregion
 
@@ -160,41 +183,11 @@ namespace Centauro.DigitalInvoice.BusinessLogic
                 try
                 {
                     HttpCustomClient client = new HttpCustomClient();
-                    responseMessage = await client.Post(newRequest, Constants.Constants.mhActionRecepcion, Constants.Constants.mhEndpoint, accountId);
+                    InvoiceResponse = await client.Post(newRequest, Constants.Constants.mhActionRecepcion, Constants.Constants.mhEndpoint, accountId);
 
-                    #region Evaluate response
-                    if (responseMessage != null)
-                    {
-                        InvoiceResponse.reasonPhrase = responseMessage.ReasonPhrase;
-                        InvoiceResponse.statusCode = Convert.ToInt32(responseMessage.StatusCode);
-
-                        if (responseMessage.StatusCode != HttpStatusCode.Accepted)
-                        {
-                            InvoiceResponse.x_Error_Cause = Convert.ToString(responseMessage.Headers.GetValues(Constants.Constants.header_errorCause).FirstOrDefault());
-                            #region Otros Datos Header - de momento no se usan
-                            //headerContainer.headerResponse.Breadcrumbid = Convert.ToString(responseMessage.Headers.GetValues(Constants.Constants.header_groupId).FirstOrDefault());
-                            //headerContainer.headerResponse.X_Ratelimit_Limit = Convert.ToInt32(responseMessage.Headers.GetValues(Constants.Constants.header_rateLimit).FirstOrDefault());
-                            //headerContainer.headerResponse.X_Ratelimit_Remaining = Convert.ToInt32(responseMessage.Headers.GetValues(Constants.Constants.header_reteRemaining).FirstOrDefault());
-                            //headerContainer.headerResponse.X_Ratelimit_Reset = Convert.ToInt32(responseMessage.Headers.GetValues(Constants.Constants.header_rateReset).FirstOrDefault());
-                            #endregion
-                        }
-                        else
-                        {
-                            InvoiceResponse.fileLocation = responseMessage.Headers.GetValues(Constants.Constants.header_location).FirstOrDefault();
-
-                            #region Bitacora request
-                            requestRecordLog.RegisterRequestRecord(payload.Clave, accountId, InvoiceResponse.reasonPhrase);
-                            #endregion
-                        }
-
-                        InvoiceResponse.xmlInvoice = Convert.ToBase64String(Encoding.UTF8.GetBytes(xmlDocInvoice.OuterXml));
-                        InvoiceResponse.pdfInvoice = pdfInvoice;
-                    }
-                    else
-                    {
-                        throw new Exception(Constants.Constants.fail_send_electronic_invoice);
-                    }
-                    #endregion                                        
+                    InvoiceResponse.xmlInvoice = Convert.ToBase64String(Encoding.UTF8.GetBytes(xmlDocInvoice.OuterXml));
+                    InvoiceResponse.pdfInvoice = pdfInvoice;
+                                                           
                 }
                 catch (Exception ex)
                 {

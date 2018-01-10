@@ -46,7 +46,7 @@ namespace Centauro.DigitalInvoice.WebApi.Controllers
                 NumConsecutivorecep = document.NumConsecutivorecep
             };*/
 
-                var result = await actionDocument.SendAceptDenyDocument(aceptaDocumento, dynamicObject.accountId);
+                //var result = await actionDocument.SendAceptDenyDocument(aceptaDocumento, dynamicObject.accountId);
                                 
                 response.input = document;
                 response.status = HttpStatusCode.OK;
@@ -85,7 +85,7 @@ namespace Centauro.DigitalInvoice.WebApi.Controllers
                     NumConsecutivorecep = document.NumConsecutivorecep
                 }; */               
 
-                var result = await actionDocument.SendAceptDenyDocument(aceptaDocumento, dynamicObject.accountId);
+                //var result = await actionDocument.SendAceptDenyDocument(aceptaDocumento, dynamicObject.accountId);
 
                 response.input = document;
                 response.status = HttpStatusCode.OK;
@@ -103,7 +103,7 @@ namespace Centauro.DigitalInvoice.WebApi.Controllers
         {
             response = new GenericResponse();
             actionDocument = new Document();
-            ReceivedDigitalInvoice digitalInvoiceResponse;
+            ReceivedDigitalDocument digitalInvoiceResponse;
 
             string accountId = string.Empty;
             FacturaElectronica electronicInvoice;
@@ -203,6 +203,48 @@ namespace Centauro.DigitalInvoice.WebApi.Controllers
                 }
             }
             catch(Exception ex)
+            {
+                Utils.SetExceptionToResponse(ref response, ex);
+            }
+
+            return Ok(JObject.Parse(JsonConvert.SerializeObject(response)));
+        }
+        
+        [HttpPost]
+        public async Task<IHttpActionResult> SendUnregisteredReceptorResponse([FromBody] object request)
+        {
+            response = new GenericResponse();
+            actionDocument = new Document();
+            CredentialData credential;
+            AceptaRechazaDocumento documento;
+            RequestAdditionalInfo additionalInfo;
+            ReceivedDigitalDocument digitalInvoiceResponse;
+
+            try
+            {
+                dynamic dynamicObject = JObject.Parse(request.ToString());
+
+                documento = JsonConvert.DeserializeObject<AceptaRechazaDocumento>(dynamicObject.document.ToString());
+                credential = JsonConvert.DeserializeObject<AceptaRechazaDocumento>(dynamicObject.credentials.ToString());
+                additionalInfo = JsonConvert.DeserializeObject<RequestAdditionalInfo>(dynamicObject.additionalInfo.ToString());
+
+                digitalInvoiceResponse = await actionDocument.SendAceptDenyDocument(documento, credential, additionalInfo);
+
+                if (digitalInvoiceResponse.statusCode != Convert.ToInt32(HttpStatusCode.Accepted))
+                {
+                    response.message = digitalInvoiceResponse.reasonPhrase;
+                    response.errorList.Add(new Error() { errorMessage = digitalInvoiceResponse.x_Error_Cause });
+                    response.status = (HttpStatusCode)digitalInvoiceResponse.statusCode;
+                }
+                else
+                {
+                    response.results = digitalInvoiceResponse;
+                    response.status = HttpStatusCode.Accepted;
+                }
+
+                response.input = request;
+            }
+            catch (Exception ex)
             {
                 Utils.SetExceptionToResponse(ref response, ex);
             }

@@ -67,6 +67,13 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Constants
 
         public const string signTemplate = "signTemplate";
         public const string invoiceTemplate = "InvoiceTemplate";
+        public const string invoiceInfo = "InvoiceInfo";
+        public const string invoiceEmisor = "InvoiceEmisor";
+        public const string invoiceLines = "InvoiceLines";
+        public const string invoiceReceptor = "InvoiceReceptor";
+        public const string invoiceTotals = "InvoiceTotals";
+        public const string invoiceNotes = "InvoiceNotes";
+
         public const string invoiceTemplateCss = "InvoiceTemplateCss";
 
         public const string sampleXSD = "sampleXSD";
@@ -88,10 +95,12 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Constants
 
         #region Api-Messages
         public const string fail_Get_account_data = "Fallo al obtener información de la cuenta";
-        public const string fail_send_electronic_invoice = "Fallo al enviar la factura electrónica";
+        public const string fail_CertificateInfo_incomplete = "La información del certificado está incompleta";
+        public const string fail_send_electronic_invoice = "Fallo al enviar el documento electrónico";
         public const string fail_get_document_from_hacienda = "Fallo al optener el Documento en el servidor del Ministerio de Hacienda";
         public const string fail_communication_oauth_hacienda = "Fallo comunicación con el servidor de autenticación OAuth del Ministerio de Hacienda";
         public const string fail_while_authenticate_against_oauth = "La autenticación con el Oauth de Hacienda falló";
+        public const string xml_has_errors = "El XML contine errores ";
         #endregion
 
 

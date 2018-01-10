@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Factura</title>
+    <link rel="stylesheet" href="style.css" media="all" />
+  </head>
+  <body>
+    <header class="clearfix">
+      <div id="logo">
+        <img src="{14}">
+      </div>
+      <div id="company">
+        <h2 class="name">{0}</h2><!--Emisor Name-->
+        <div>{1}</div><!--Emisor Address-->
+        <div>{2}</div><!--Emisor Phone-->
+        <div><a href="mailto:{3}">{3}</a></div> <!--Emisor email-->
+      </div>
+      </div>
+    </header>
+    <main>	
+	<div id="invoice">
+		<div class="date">Fecha de factura: {8}</div> <!-- Fecha factura -->
+		<div class="invoiceId">{7}</div> <!-- Numero factura -->	  
+	</div>
+      <div id="details" class="clearfix">
+        <div id="client">
+          <div class="to">Factura para:</div>
+          <h2 class="name">{4}</h2> <!--Receptor Name-->
+          <div class="address">{5}</div> <!--Receptor Address-->
+          <div class="email"><a href="mailto:{6}">{6}</a></div> <!--Receptor email-->
+        </div>        
+      </div>
+      <table border="0" cellspacing="0" cellpadding="0">
+        <thead>
+          <tr>
+            <th class="no">C&oacutedigo</th>
+            <th class="desc">Descripci&oacuten</th>
+            <th class="unit">Precio unitario</th>
+            <th class="qty">Cantidad</th>
+            <th class="total">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>{11}</tr> <!--Lineas detalle-->
+        </tbody>
+        <tfoot>
+		  {12}
+        </tfoot>
+      </table>
+      <div id="notices">
+        <div>Notas:</div>
+        <div class="nota1">{9}</div>
+		<div class="nota2">{10}</div>
+      </div>
+	  <div></div>
+	  <div id="qr">
+		<img src="data:image/png;base64,{13}">
+	</div>
+    </main>
+    <footer>
+		<div>Autorizada mediante resolución Nº DGT-R-48-2016 del 7 de octubre de 2016.</div>
+    </footer>
+  </body>
+</html>

@@ -40,66 +40,116 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Utilities
             try
             {
                 #region Crear HTML
-
-                htmlInvoice = File.ReadAllText(string.Format(Constants.Constants.RequestApiFormat_2, AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings[Constants.Constants.invoiceTemplate]));
-
-                lineasDetalle = new StringBuilder();
+                                                
                 argsDocument = new List<object>();
+                argsDocument.Add(payload.NumeroConsecutivo);
 
                 #region Datos Emisor
-                argsDocument.Add(payload.Emisor.Nombre);
-                argsDocument.Add(payload.Emisor.Ubicacion.OtrasSenas);
-                argsDocument.Add(string.Format(Constants.Constants.RequestApiFormat_2, payload.Emisor.Telefono.CodigoPais, payload.Emisor.Telefono.NumTelefono));
-                argsDocument.Add(payload.Emisor.CorreoElectronico);
+                lineasDetalle = new StringBuilder();
+                argsLinea = new List<object>();
+                htmlInvoice = File.ReadAllText(string.Format(Constants.Constants.RequestApiFormat_2, AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings[Constants.Constants.invoiceEmisor]));
+
+                argsLinea.Add(payload.Emisor.Nombre);
+                argsLinea.Add(payload.Emisor.Identificacion.Numero);
+                argsLinea.Add(payload.Emisor.Ubicacion.Provincia + payload.Emisor.Ubicacion.Canton + payload.Emisor.Ubicacion.Distrito + payload.Emisor.Ubicacion.OtrasSenas);
+                argsLinea.Add(string.Format(Constants.Constants.RequestApiFormat_2, payload.Emisor.Telefono.CodigoPais, payload.Emisor.Telefono.NumTelefono));
+                argsLinea.Add(payload.Emisor.CorreoElectronico);
+
+                lineasDetalle.Append(string.Format(htmlInvoice, argsLinea.ToArray()));
+
                 #endregion
 
+                #region Datos Factura
+
+                argsLinea = new List<object>();
+                htmlInvoice = File.ReadAllText(string.Format(Constants.Constants.RequestApiFormat_2, AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings[Constants.Constants.invoiceInfo]));
+
+                argsLinea.Add(payload.NumeroConsecutivo);
+                if(!base64LogoImage.Contains("data:image"))
+                {
+                    base64LogoImage = "data:image/png;base64," + base64LogoImage;
+                }
+                argsLinea.Add(base64LogoImage);
+                argsLinea.Add(Convert.ToDateTime(payload.FechaEmision).ToString("dd/mm/yyyy"));
+                argsLinea.Add(Convert.ToDateTime(payload.FechaEmision).ToString("hh:mm:ss tt"));
+                argsLinea.Add(lineasDetalle.ToString());
+
+                argsDocument.Add(string.Format(htmlInvoice, argsLinea.ToArray()));
+
+                #endregion
+                
                 #region Datos Receptor
-                argsDocument.Add(payload.Receptor.Nombre);
-                argsDocument.Add(payload.Receptor.Ubicacion.OtrasSenas);
-                argsDocument.Add(payload.Receptor.CorreoElectronico);
-                #endregion
 
-                argsDocument.Add(payload.Clave);
-                argsDocument.Add(payload.FechaEmision);
+                argsLinea = new List<object>();
+                htmlInvoice = File.ReadAllText(string.Format(Constants.Constants.RequestApiFormat_2, AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings[Constants.Constants.invoiceReceptor]));
 
-                #region Footer Otros - Notas
-                argsDocument.Add(payload.Otros.OtroContenido.codigo);
-                argsDocument.Add(payload.Otros.OtroTexto.text);
+                argsLinea.Add(payload.Receptor.Nombre);
+                argsLinea.Add(string.IsNullOrEmpty(payload.Receptor.Identificacion.Numero) ? string.Empty : payload.Receptor.Identificacion.Numero);
+                argsLinea.Add(string.Format(Constants.Constants.RequestApiFormat_2,
+                                               (string.IsNullOrEmpty(payload.Receptor.Telefono.CodigoPais) ? string.Empty : payload.Receptor.Telefono.CodigoPais),
+                                               (string.IsNullOrEmpty(payload.Receptor.Telefono.NumTelefono) ? string.Empty : payload.Receptor.Telefono.NumTelefono)));
+
+                argsLinea.Add(payload.Receptor.CorreoElectronico);
+                argsLinea.Add(payload.Receptor.Ubicacion.Provincia + payload.Receptor.Ubicacion.Canton + payload.Receptor.Ubicacion.Distrito + payload.Receptor.Ubicacion.OtrasSenas);                
+                argsDocument.Add(string.Format(htmlInvoice, argsLinea.ToArray()));
+
                 #endregion
 
                 #region Lineas Detalle
+
+                lineasDetalle = new StringBuilder();
+                htmlInvoice = File.ReadAllText(string.Format(Constants.Constants.RequestApiFormat_2, AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings[Constants.Constants.invoiceLines]));
+
                 foreach (var item in payload.DetalleServicio.LineaDetalle)
                 {
                     argsLinea = new List<object>();
-                    argsLinea.Add(item.Codigo[0].Codigo);
+                    argsLinea.Add(item.Codigo.Count == 0 ? string.Empty : item.Codigo[0].Codigo);
                     argsLinea.Add(item.Detalle);
                     argsLinea.Add(item.PrecioUnitario);
                     argsLinea.Add(item.Cantidad);
                     argsLinea.Add(item.MontoTotal);
 
-                    lineasDetalle.Append(string.Format(Constants.Constants.lineaDetalle, argsLinea.ToArray()));
+                    lineasDetalle.Append(string.Format(htmlInvoice, argsLinea.ToArray()));
                 }
                 argsDocument.Add(lineasDetalle.ToString());
 
+                #endregion                                
+                
+                #region Totales
+
+                lineasDetalle = new StringBuilder();
+                htmlInvoice = File.ReadAllText(string.Format(Constants.Constants.RequestApiFormat_2, AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings[Constants.Constants.invoiceTotals]));
+
+                lineasDetalle.Append(Utils.BuildInvoiceTotalLine(nameof(payload.ResumenFactura.TotalServGravados), payload.ResumenFactura.TotalServGravados, htmlInvoice));
+                lineasDetalle.Append(Utils.BuildInvoiceTotalLine(nameof(payload.ResumenFactura.TotalServExentos), payload.ResumenFactura.TotalServExentos, htmlInvoice));
+                lineasDetalle.Append(Utils.BuildInvoiceTotalLine(nameof(payload.ResumenFactura.TotalMercanciasGravadas), payload.ResumenFactura.TotalMercanciasGravadas, htmlInvoice));
+                lineasDetalle.Append(Utils.BuildInvoiceTotalLine(nameof(payload.ResumenFactura.TotalMercanciasExentas), payload.ResumenFactura.TotalMercanciasExentas, htmlInvoice));
+                lineasDetalle.Append(Utils.BuildInvoiceTotalLine(nameof(payload.ResumenFactura.TotalGravado), payload.ResumenFactura.TotalGravado, htmlInvoice));
+                lineasDetalle.Append(Utils.BuildInvoiceTotalLine(nameof(payload.ResumenFactura.TotalExento), payload.ResumenFactura.TotalExento, htmlInvoice));
+                lineasDetalle.Append(Utils.BuildInvoiceTotalLine(nameof(payload.ResumenFactura.TotalVenta), payload.ResumenFactura.TotalVenta, htmlInvoice));
+                lineasDetalle.Append(Utils.BuildInvoiceTotalLine(nameof(payload.ResumenFactura.TotalDescuentos), payload.ResumenFactura.TotalDescuentos, htmlInvoice));
+                lineasDetalle.Append(Utils.BuildInvoiceTotalLine(nameof(payload.ResumenFactura.TotalVentaNeta), payload.ResumenFactura.TotalVentaNeta, htmlInvoice));
+                lineasDetalle.Append(Utils.BuildInvoiceTotalLine(nameof(payload.ResumenFactura.TotalImpuesto), payload.ResumenFactura.TotalImpuesto, htmlInvoice));
+                lineasDetalle.Append(Utils.BuildInvoiceTotalLine(nameof(payload.ResumenFactura.TotalComprobante), payload.ResumenFactura.TotalComprobante, htmlInvoice));
+
+                argsDocument.Add(lineasDetalle.ToString());
                 #endregion
 
-                #region Resumen - Totales
+                #region Notas
+
                 argsLinea = new List<object>();
-                argsLinea.Add(payload.ResumenFactura.TotalServGravados);
-                argsLinea.Add(payload.ResumenFactura.TotalServExentos);
-                argsLinea.Add(payload.ResumenFactura.TotalMercanciasGravadas);
-                argsLinea.Add(payload.ResumenFactura.TotalMercanciasExentas);
-                argsLinea.Add(payload.ResumenFactura.TotalVenta);
-                argsLinea.Add(payload.ResumenFactura.TotalDescuentos);
-                argsLinea.Add(payload.ResumenFactura.TotalImpuesto);
-                argsLinea.Add(payload.ResumenFactura.TotalComprobante);
+                htmlInvoice = File.ReadAllText(string.Format(Constants.Constants.RequestApiFormat_2, AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings[Constants.Constants.invoiceNotes]));
 
-                argsDocument.Add(string.Format(Constants.Constants.lineaTotales, argsLinea.ToArray()));
+                argsLinea.Add(string.IsNullOrEmpty(payload.Otros.OtroContenido.codigo) ? string.Empty : payload.Otros.OtroContenido.codigo);
+                argsLinea.Add(string.IsNullOrEmpty(payload.Otros.OtroTexto.text) ? string.Empty : payload.Otros.OtroTexto.text);
+                argsLinea.Add(base64QrImage);
+
+                argsDocument.Add(string.Format(htmlInvoice, argsLinea.ToArray()));
+
+                argsDocument.Add(string.Format(htmlInvoice, argsDocument.ToArray()));
                 #endregion
 
-                argsDocument.Add(base64QrImage);
-                argsDocument.Add(base64LogoImage);
-
+                htmlInvoice = File.ReadAllText(string.Format(Constants.Constants.RequestApiFormat_2, AppDomain.CurrentDomain.BaseDirectory, ConfigurationManager.AppSettings[Constants.Constants.invoiceTemplate]));
                 htmlInvoice = string.Format(htmlInvoice, argsDocument.ToArray());
 
                 #endregion
@@ -130,18 +180,16 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Utilities
                                 {
                                     new ObjectSettings
                                     {
-                                        HtmlText = htmlInvoice,
+                                        HtmlText = htmlInvoice,                                        
                                         ProduceExternalLinks = true,
                                         ProduceLocalLinks = true,
                                         WebSettings =
-                                        {
+                                        {                                            
                                             PrintBackground = true,
                                             PrintMediaType = true,
                                             LoadImages = true,
                                             DefaultEncoding = Constants.Constants.encoding_UTF_8,
-                                            UserStyleSheet = string.Format( Constants.Constants.RequestApiFormat_2,
-                                                                            AppDomain.CurrentDomain.BaseDirectory,
-                                                                            ConfigurationManager.AppSettings[Constants.Constants.invoiceTemplateCss])
+                                            UserStyleSheet = AppDomain.CurrentDomain.BaseDirectory + ConfigurationManager.AppSettings[Constants.Constants.invoiceTemplateCss]
                                         }
                                     }
                                 }
@@ -172,7 +220,7 @@ namespace Centauro.DigitalInvoice.BusinessLogic.Utilities
                 accountData = accountImp.GetAccountById(accountId);
                 if (accountData != null)
                 {
-                    imageQR = Utils.BuildLinkAndQRCode(payload.Clave);
+                    imageQR = Utils.BuildLinkAndQRCode(payload.Clave, payload.Emisor.Identificacion.Numero);
                     htmlInvoice = BuildHtmlInvoice(payload, imageQR, accountData.logoImage);
                     pdfInvoice = BuildPDFInvoice(htmlInvoice);
                 }

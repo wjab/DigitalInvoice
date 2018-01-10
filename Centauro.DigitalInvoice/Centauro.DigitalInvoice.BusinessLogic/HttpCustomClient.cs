@@ -72,14 +72,16 @@ namespace Centauro.DigitalInvoice.BusinessLogic
             return responseString;
         }
 
-        public async Task<HttpResponseMessage> Post(object request, string functionToCall, string domain = "", string accountId = "")
+        public async Task<ReceivedDigitalDocument> Post(object request, string functionToCall, string domain = "", string accountId = "", string oAuthToken = "")
         {
+            ReceivedDigitalDocument InvoiceResponse = new ReceivedDigitalDocument();
             HttpResponseMessage response;
 
             try
             {
                 HttpClient client = new HttpClient();
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Constants.Constants.auth_header_bearer, await Authentication.Instance().AuthenticationMHById(accountId));
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(Constants.Constants.auth_header_bearer, 
+                    string.IsNullOrEmpty(oAuthToken) ? await Authentication.Instance().AuthenticationMHById(accountId) : oAuthToken);
 
                 StringBuilder stringBuilder = new StringBuilder();
 
@@ -88,13 +90,40 @@ namespace Centauro.DigitalInvoice.BusinessLogic
                         ConfigurationManager.AppSettings[functionToCall].ToString()));            
 
                 response = await client.PostAsJsonAsync(stringBuilder.ToString(), request);
+
+                #region Evaluate response
+                if (response != null)
+                {
+                    InvoiceResponse.reasonPhrase = response.ReasonPhrase;
+                    InvoiceResponse.statusCode = Convert.ToInt32(response.StatusCode);
+
+                    if (response.StatusCode != HttpStatusCode.Accepted)
+                    {
+                        InvoiceResponse.x_Error_Cause = Convert.ToString(response.Headers.GetValues(Constants.Constants.header_errorCause).FirstOrDefault());
+                        #region Otros Datos Header - de momento no se usan
+                        //headerContainer.headerResponse.Breadcrumbid = Convert.ToString(responseMessage.Headers.GetValues(Constants.Constants.header_groupId).FirstOrDefault());
+                        //headerContainer.headerResponse.X_Ratelimit_Limit = Convert.ToInt32(responseMessage.Headers.GetValues(Constants.Constants.header_rateLimit).FirstOrDefault());
+                        //headerContainer.headerResponse.X_Ratelimit_Remaining = Convert.ToInt32(responseMessage.Headers.GetValues(Constants.Constants.header_reteRemaining).FirstOrDefault());
+                        //headerContainer.headerResponse.X_Ratelimit_Reset = Convert.ToInt32(responseMessage.Headers.GetValues(Constants.Constants.header_rateReset).FirstOrDefault());
+                        #endregion
+                    }
+                    else
+                    {
+                        InvoiceResponse.fileLocation = response.Headers.GetValues(Constants.Constants.header_location).FirstOrDefault();                       
+                    }
+                }
+                else
+                {
+                    throw new Exception(Constants.Constants.fail_send_electronic_invoice);
+                }
+                #endregion
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
 
-            return response;
+            return InvoiceResponse;
         }
 
         public async Task<string> Put(object request, string functionToCall)
